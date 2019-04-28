@@ -1,0 +1,25 @@
+/*reset*/
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+a{text-decoration: none;}
+
+/*common*/
+
+/*header*/
+header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+.header_wrapper{width:1170px;margin: 0 auto;}
+
+.logo {}
+.logo a{color:white;line-height:75px;float: left;}
+
+.menu{float:left; margin-left: 50px;}
+.menu li{float:left;}
+.menu a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
+.account{float:right;}
+.account a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
+body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
+.body_wrapper{width:1170px; height:100%;background-color: white;margin: 0 auto;}
+.projects{padding: 50px;}
+.projects a{ margin: 25px; display:inline-block;}
