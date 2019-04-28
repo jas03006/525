@@ -20,3 +20,4 @@ function go_main(){
     // 기존 페이지를 새로운 페이지로 변경
     location.replace("../index.html");
 }
+
