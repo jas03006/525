@@ -1,3 +1,10 @@
+/*header*/
+header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+.header_wrapper{width:1170px;margin: 0 auto;}
+
+.logo {}
+.logo a{color:white;line-height:75px;float: left;}
+
 body {
 	padding-left:20%;
 	padding-right:20%;
