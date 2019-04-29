@@ -5,6 +5,13 @@ header {height:75px; background-color: #006F84; width:100%; z-index: 9999; posit
 .logo {}
 .logo a{color:white;line-height:75px;float: left;}
 
+.menu{float:left; margin-left: 50px;}
+.menu li{float:left;}
+.menu a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
+.account{float:right;}
+.account a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
 body {
 	padding-left:20%;
 	padding-right:20%;
