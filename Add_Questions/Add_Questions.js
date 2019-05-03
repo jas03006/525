@@ -19,6 +19,7 @@ function deleteAll(){
 
 function addQuestionBox(){
   var qDiv = document.createElement("div");
+  var numDiv = document.createElement("div");
   var question = document.createElement("textarea");
   var buttonDiv = document.createElement("div");
   var addButton = document.createElement("a");
@@ -34,13 +35,15 @@ function addQuestionBox(){
   
   //Enter listener
   question.addEventListener('keyup', enterEvent);
-  qDiv.innerHTML = "Q" + questionNum + ". ";
+  numDiv.innerHTML = "Q" + questionNum + ". ";
+  numDiv.className = "numDiv";
+  qDiv.appendChild(numDiv);
   qDiv.appendChild(question);
   qDiv.id = "qDiv" + questionNum;
-  qDiv.className = "center";
+  qDiv.className = "question-container";
   
   //Add question to the content
-  document.getElementById("paper").appendChild(qDiv);
+  document.getElementById("container").appendChild(qDiv);
   
   //Add question button specification
   addButton.innerHTML = "+";

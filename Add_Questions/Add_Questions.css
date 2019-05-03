@@ -7,7 +7,7 @@ body {
 .md-stepper-horizontal {
 	display:table;
 	width:100%;
-	height: 150px;
+  height: 150px;
 	margin:0 auto;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -137,20 +137,37 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: center;
   margin: 20px;
 }
-
+.numDiv{
+  display: inline-block;
+  vertical-align: top;
+  font-family: 'Merriweather', serif;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px;
+}
 .questionBox{
   width: 80%;
   height: 100px;
-  padding: 12px 20px;
+  padding: 9px 15px;
   box-sizing: border-box;
   border: 2px solid #3ea99f;
   border-radius: 4px;
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-family: 'Merriweather', serif;
+  font-size: 19px;
+  letter-spacing: normal;
+  line-spacing: 10px;
+  line-height: 130%;
   resize: none;
   outline: none;
+  display: inline-block;
 }
-
+#container{
+  text-align: center;
+}
+.question-container{
+  margin: 20px;
+}
 #content{
   width: 100%;
   height: 100%;
