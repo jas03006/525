@@ -137,4 +137,22 @@ function submit(questionBox){
   addQuestionBox().focus();
 }
 
+
+function goUploadQuestion(){
+  // µÚ·Î°¡±â ´©¸£¸é ´Ù½Ã ¾ÕÆäÀÌÁö·Î ÀÌµ¿
+  window.history.forward(2);
+  // ±âÁ¸ ÆäÀÌÁö¸¦ »õ·Î¿î ÆäÀÌÁö·Î º¯°æ
+  location.replace("https://jas03006.github.io/525/Add_Questions/Add_Questions.html");
+}
+
+
+function goLifeChart(){
+  // µÚ·Î°¡±â ´©¸£¸é ´Ù½Ã ¾ÕÆäÀÌÁö·Î ÀÌµ¿
+  window.history.forward(1);
+  // ±âÁ¸ ÆäÀÌÁö¸¦ »õ·Î¿î ÆäÀÌÁö·Î º¯°æ
+  location.replace("https://jas03006.github.io/525/Life_Chart/life_chart.html");
+}
+
+
+
 initialize();
