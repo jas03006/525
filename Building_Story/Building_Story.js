@@ -21,7 +21,8 @@ function addQuestionBox(){
   var qDiv = document.createElement("div");
   var mDiv = document.createElement("div");
   var cDiv = document.createElement("div");
-  var memories = document.createElement("textarea");
+  //var mImgs = document.createEmelent("img");
+  var memories = document.createElement("img");
   var comments = document.createElement("textarea");
   var buttonDiv = document.createElement("div");
   var addButton = document.createElement("a");
@@ -31,14 +32,18 @@ function addQuestionBox(){
   
   //Question box specification
   //Text area specification
-  memories.className = "questionBox";
+  memories.className = "memoryBox";
   memories.id = "question1_" + questionNum;
-  memories.placeholder = "Write question #" +  questionNum + " here";
+  memories.src = "./../src/image/memory/post_it.png";
 
-  comments.className = "questionBox";
+  comments.className = "commentBox";
   comments.id = "question2_" + questionNum;
-  comments.placeholder = "Write Comment #" +  questionNum + " here";
-  
+  comments.placeholder = "Write Comments of Q" +  questionNum + " here";
+/*
+  mImgs.className = "memoryImg";
+  mImgs.id = "memoryImg_" + questionNum;
+  mImgs.src = "./../src/image/memory/post_it.png";
+*/  
   //Enter listener
   //memories.addEventListener('keyup', enterEvent);
   //comments.addEventListener('keyup', enterEvent);
@@ -46,6 +51,7 @@ function addQuestionBox(){
   mDiv.innerHTML = "Memories<br />"
   cDiv.innerHTML = "Comments<br />"
   mDiv.appendChild(memories);
+  //memories.appendChild(mImgs);
   cDiv.appendChild(comments);
   qDiv.appendChild(mDiv);
   qDiv.appendChild(cDiv);
