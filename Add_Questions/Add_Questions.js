@@ -63,7 +63,7 @@ function addQuestionBox(){
   
   confirmButton.id = "confirmButton";
   //confirmButton.class = "btn btn-success";
-  confirmButton.innerHTML = "Confirm";
+  confirmButton.innerHTML = "Next";
   confirmButton.addEventListener("click", confirm);
   confirmDiv.appendChild(confirmButton);
   confirmDiv.id = "confirmDiv";

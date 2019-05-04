@@ -245,3 +245,28 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   width: 20%;
 /*   border: 1px solid black; */
 }
+
+#confirmButton:active{
+  background-color: #15aa3d;
+  transform: translateY(1px);
+}
+
+#confirmButton {
+	background-color:#25ba4d;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:14px 29px;
+	text-decoration:none;
+}
+
+#confirmDiv{
+  text-align: right;
+  margin: 50px;
+  padding-right: 50px;
+}
