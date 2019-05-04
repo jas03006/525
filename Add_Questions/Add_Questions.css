@@ -38,8 +38,7 @@ body {
   width:34px;
 	height:34px;
   cursor: pointer;
-  transform: translateX(-2px);
-  transform: translateY(-2px);
+  transform: translateX(1px) translateY(-2px);
 }
 .md-stepper-horizontal.green .md-step.active .md-step-circle:active{
   background-color:#009E3D;
@@ -107,7 +106,8 @@ li{list-style: none;}
 a{text-decoration: none;}
 
 /*header*/
-header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+/* #75a2e8 */
+header {height:75px; background-color: #4887f1; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
 .header_wrapper{width:1170px;margin: 0 auto;}
 
 .logo {}
@@ -150,7 +150,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   height: 100px;
   padding: 9px 15px;
   box-sizing: border-box;
-  border: 2px solid #3ea99f;
+  border: 2px solid #748695;
   border-radius: 4px;
   background-color: #f8f8f8;
   font-family: 'Merriweather', serif;
@@ -189,7 +189,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	border:3px solid;
 	display:inline-block;
 	cursor:pointer;
-	color:#3ea99f;
+	color:#748695;
 	font-family:Verdana;
 	font-size:28px;
 	padding:16px 20px;
@@ -198,7 +198,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 
 .addButton:active{
   transform: translateY(1px);
-  color:#2e998f;
+  color:#546675;
 }
 
 
