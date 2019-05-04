@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+  
+    <link href="./life_chart.css" rel="stylesheet" />
+  </head>
+    <header>
+    <div class="header_wrapper">
+
+    <ul class="logo">
+      <li><a href="https://jas03006.github.io/525/index.html"><h1>JOBIS</h1></a></li>
+    </ul>
+
+    <ul class="menu">
+      <li><a href="https://jas03006.github.io/525/project.html">PROJECT</a></li>
+      <li><a href="https://jas03006.github.io/525/memory.html">MEMORY</a></li>
+    </ul>
+
+    <ul class="account">
+      <li><a href="login">login</a></li>
+    </ul>
+
+  </div>
+  </header>
+  <body>
+    <div id = "content">
+      <div id = "paper">
+        <div class="md-stepper-horizontal green">
+          <div class="md-step active">
+            <div class="md-step-circle" onclick="goUploadQuestion()"><span>1</span></div>
+            <div class="md-step-title">Upload Questions</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+          <div class="md-step active">
+            <div class="md-step-circle"><span>2</span></div>
+            <div class="md-step-title">Build Life Chart</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+          <div class="md-step">
+            <div class="md-step-circle"><span>3</span></div>
+            <div class="md-step-title">Build Your Story</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+        </div>
+        <div class = "left" style = "margin-top: 50px">
+          <h1>Life Chart</h1>
+        </div>
+        <div id = "life-chart-container" class = "center">
+          <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>
+          <div id = "life-chart" style = "display: inline-block">
+            
+          </div>
+          <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>
+        </div>
+      </div>
+    </div>
+    
+    
+   
+    <script type="text/javascript" src="./life_chart.js"></script>
+  </body>
+</html>
