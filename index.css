@@ -51,7 +51,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	border: 2px solid;
 	border-radius: 25px;
 	margin: 0 auto;
-	width: 370px;
+	width: 25%;
 	height: 500px;
 	display: inline-block; 
 	padding-top: 7px;
@@ -64,7 +64,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	//border: 1px solid;
 	display: inline-block; 
 	font-weight: bold;
-	font-size: 45px;
+	font-size: 36px;
 	text-align: center;
 	vertical-align: middle;
 	padding-left: 30px;
