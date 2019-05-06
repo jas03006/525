@@ -25,12 +25,14 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 #tutorial{
 	text-align: center;
 	border: 2px solid;
+	border-color: #7F7F7F;
 	margin-top: 110px;
 	margin-bottom: 130px;
 	margin-left: 220px;
 	margin-right: 220px;
 	border-radius: 30px;
 	padding-bottom: 110px;
+	background-color: #FAFAFA;
 }
 
 .tutorial_title{

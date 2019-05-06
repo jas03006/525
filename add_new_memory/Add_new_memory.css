@@ -25,9 +25,9 @@ body {
 }
 
 .front_page{
-	padding-left:5%;
-	padding-top:3%;
-	padding-bottom:4%;
+	padding-left:70px;
+	padding-top:100px;
+	padding-bottom:64px;
 	background-color: white;
 }
 
@@ -64,6 +64,8 @@ textarea{
 	height:80px;
 	width:88%;
 	font-size:16pt;
+	 resize: none;
+	// resize: vertical;
 }
 textarea:focus{
         outline: none;
@@ -128,6 +130,7 @@ textarea::-webkit-scrollbar-thumb {
 	text-decoration:none;
 	//text-shadow:0px 1px 0px #3d768a;
 	
-	position: relative;
-	left: 78%;
+	//position: relative;
+	margin-left: 74%;
+	//left: 820px;
 }

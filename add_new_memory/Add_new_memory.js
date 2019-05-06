@@ -1,17 +1,23 @@
-
+﻿
 
 function change_star(event){
 	var x = event.clientX;
-	if( x >= 465 ){
-		var width = (x-465); ///2.05;
-		var num_star = 0;
+	var offset = event.target.offsetLeft;
+	var width = (x-offset);
+	var num_star = 0;
+	var star_half_width = 205/10.0;
+	console.log(offset);
+	console.log(star_half_width );
+	if( x >= offset ){
+		num_star = 0;
 		while(width>=0){
-			width = width - 20.5;
+			width = width - star_half_width;
 			num_star += 0.5;
 		}
 		document.getElementById("star").children[0].children[0].style = 'width:' + (num_star * 20) +'%';
 		//document.getElementById("star").innerHTML += x;
 	}
+	return num_star;
 }
 
 function go_main(){
