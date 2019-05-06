@@ -1,0 +1,70 @@
+/*reset*/
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+a{text-decoration: none;}
+
+/*common*/
+
+/*header*/
+header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+.header_wrapper{width:1170px;margin: 0 auto;}
+
+.logo {}
+.logo a{color:white;line-height:75px;float: left;}
+
+.menu{float:left; margin-left: 50px;}
+.menu li{float:left;}
+.menu a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
+.account{float:right;}
+.account a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
+body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
+.body_wrapper{width:1170px; height:100%;background-color: white;margin: 0 auto;}
+
+#tutorial{
+	text-align: center;
+	border: 2px solid;
+	margin-top: 110px;
+	margin-bottom: 130px;
+	margin-left: 220px;
+	margin-right: 220px;
+	border-radius: 30px;
+	padding-bottom: 110px;
+}
+
+.tutorial_title{
+	font-weight: bold;
+	font-size: 37px;
+	padding-top: 50px;
+}
+.step_title{
+	padding-top: 100px;
+	padding-bottom: 50px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.dummy_img{
+	border: 2px solid;
+	border-radius: 25px;
+	margin: 0 auto;
+	width: 370px;
+	height: 500px;
+	display: inline-block; 
+	padding-top: 7px;
+	font-weight: bold;
+	font-size: 20px;	
+	vertical-align: middle;
+}
+
+.arrow{
+	//border: 1px solid;
+	display: inline-block; 
+	font-weight: bold;
+	font-size: 45px;
+	text-align: center;
+	vertical-align: middle;
+	padding-left: 40px;
+	padding-right: 40px;
+}
