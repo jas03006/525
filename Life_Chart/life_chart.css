@@ -51,7 +51,7 @@ body {
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
-.md-stepper-horizontal .md-step.question .md-step-circle:before {
+.md-stepper-horizontal .md-step.working .md-step-circle:before {
 	font-family:'FontAwesome';
 	font-weight:100;
 	content: "\f128";
@@ -136,18 +136,16 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 #content{
-  width: 100%;
-  height: 100%;
   background-color: #e8e8e8;
 }
 
 #paper{
-  width: 80%;
-  height: 100%;
+  width: 1350px;
   display: table;
   margin: 0 auto;
   background-color: white;
 	box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
+  text-align: center;
 }
 #left{
   text-align: left;
@@ -155,47 +153,50 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 
 #life-chart-container{
   margin: 20px;
-  border: 2px solid black;
+  padding-top: 70px;
+  width: 1400px;
+  height: 500px;
+  margin-bottom: 100px;
+  border: 2px solid #748695;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #f8f8f8;
+  font-size: 19px;
+  letter-spacing: normal;
+  line-height: 120%;
+  display: table;
 }
 
 #life-chart{
   border: 2px solid black;
-  width: 90%;
-  height: 150px;
+  width: 1000px;
+  height: 100px;
   margin: 0 auto;
-  text-align: center;
   padding-top: 20px;
   padding-bottom: 40px;
 }
+.fas.fa-chevron-left, .fas.fa-chevron-right{
+  transform: translateY(-30px);
+  padding: 10px;
+  margin: 30px;
+}
 
-.chart1{
-  border: 1px solid black;
-  width: 20%;
-  margin-top: 20px;
-  background-color: white;
-  display: inline-block;
-  
+.fas.fa-chevron-left:hover, .fas.fa-chevron-right:hover{
+  background-color: #DDDDDD;
+  border-radius: 40px;
 }
-.chart2{
-  border: 1px solid black;
-  width: 20%;
-  margin-top: 20px;
-  background-color: grey;
-  display: inline-block;
+
+.fas.fa-chevron-left:active, .fas.fa-chevron-right:active{
+  transform: translateY(-29px);
+  background-color: #CCCCCC;
 }
-.chart3{
+
+.year{
   border: 1px solid black;
-  width: 20%;
   margin-top: 20px;
-  background-color: white;
-  display: inline-block;
-  
-}
-.chart4{
-  border: 1px solid black;
-  width: 20%;
-  margin-top: 20px;
-  background-color: grey;
+  height: 20px;
+  text-align: center;
+  position: relative;
   display: inline-block;
 }
 
@@ -203,47 +204,111 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   margin: auto;
 }
 
-.fas.fa-thumbtack{
+.fas.fa-pen{
   font-size: 20px;
-  z-index: 1;
   color: red;
   cursor: pointer;
   position: relative;
-/*   border: 1px solid black; */
+  display: inline-block;
+  transform: rotate(45deg);
 }
 
-.fas.fa-thumbtack:hover{
-  transform: translateY(-3px);
+.fas.fa-pen:hover{
+  transform: translateX(1px) translateY(-2px) rotate(45deg);
 }
 
-.fas.fa-thumbtack:active{
-  transform: translateY(-1px);
+.fas.fa-pen:active{
+  transform: rotate(45deg);
   color: #DD0000;
 }
 
-.memosOn{
+.pinDiv{
+  z-index: 10;
+  text-align: left;
+  margin: auto;
+  width: 200px;
+  height: 30px;
   position: relative;
-/*   border: 1px solid black; */
-  background-color: #FFFFA5;
-  font-weight: normal;
-  padding: 10px;
+  display: inline-block;
+  transform-origin: 10% 70%;
+  transform: rotate(-45deg) translateX(6px);
+}
+
+.memosOn, .fixedOn, .fixedOut{
+  font-size: 18px;
+  #border: 1px solid black;
+  font-family: "Open Sans" sans-serif;
+  padding-left: 10px;
+  height: 30px;
   color: black;
   cursor: default;
+  position: relative;
+  top: -2px;
 }
 .memosOff{
   opacity: 0;
-  position: relative;
-/*   border: 1px solid black; */
-  background-color: #FFFFA5;
-  font-weight: normal;
-  padding: 10px;
-  color: black;
-  cursor: default;
 }
-.fake{
+
+/* .fixedOn{
+  opacity: 1;
+}
+
+.fixedOut{
+  opacity: 1;
+} */
+
+#commentDiv{
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+  margin: auto;
+  margin-top: 20px;
+  width: 900px;
+  height: 150px;
+  background-color: #FFFF99;
+  border: 1px solid black;
+  visibility: hidden;
+}
+
+#commentDiv:hover{
+  box-shadow: 0px 0px 5px #777777;
+}
+
+#comment{
+  width: 100%;
+  border: none;
+  padding: 5px;
+  height: 115px;
+  background-color: #FFFF99;
+  font-family: 'Merriweather', serif;
+  font-size: 20px;
+  letter-spacing: normal;
+  line-spacing: 10px;
+  line-height: 130%;
+  resize: none;
+  outline: none;
   display: inline-block;
-  width: 20%;
-/*   border: 1px solid black; */
+}
+
+.deleteHelper{
+  #border: 1px solid black;
+  text-align: center;
+  position: relative;
+  padding-top: 11px;
+  vertical-align: center;
+  height: 60px;
+  width: 50px;
+  left: 880px;
+  top: -185px;
+}
+
+.far.fa-times-circle{
+  #border: 1px solid black;
+  font-size: 24px;
+  color: #EE0000;
+  cursor: pointer;
+  position: relative;
+  visibility: hidden;
 }
 
 #confirmButton:active{
@@ -269,4 +334,10 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: right;
   margin: 50px;
   padding-right: 50px;
+}
+
+#test{
+  position: relative;
+  left: 500px;
+  top: -500px;
 }

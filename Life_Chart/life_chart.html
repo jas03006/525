@@ -2,7 +2,7 @@
   <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
-  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link href="./life_chart.css" rel="stylesheet" />
   </head>
     <header>
@@ -47,14 +47,19 @@
           </div>
         </div>
         <div class = "left" style = "margin-top: 50px">
-          <h1>Life Chart</h1>
+          <h1>My Life Chart</h1>
         </div>
-        <div id = "life-chart-container" class = "center">
+        <div id = "life-chart-container">
           <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>
           <div id = "life-chart" style = "display: inline-block">
             
           </div>
           <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>
+            <div id = "commentDiv" onmouseover = "deleteButtonShow()" onmouseout = "deleteButtonHide()">
+              <div id = "commentName">My comment for this memory: </div>
+              <textarea id = "comment" placeholder = "Write your comment here"></textarea>
+              <div class = deleteHelper><i class="far fa-times-circle" id = "deleteButton" onclick = "deleteComment(this)"></i></div>
+          </div>
         </div>
         <div id = "confirmDiv">
           <a id = "confirmButton" onclick = "confirm()">
