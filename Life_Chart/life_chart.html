@@ -2,23 +2,22 @@
   <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link href="./life_chart.css" rel="stylesheet" />
   </head>
     <header>
     <div class="header_wrapper">
 
     <ul class="logo">
-      <li><a href="../index.html"><h1>JOBIS</h1></a></li>
+      <li><a href="https://jas03006.github.io/525/index.html"><h1>JOBIS</h1></a></li>
     </ul>
 
     <ul class="menu">
-      <li><a href="../project.html">PROJECT</a></li>
-      <li><a href="../memory.html">MEMORY</a></li>
+      <li><a href="https://jas03006.github.io/525/project.html">PROJECT</a></li>
+      <li><a href="https://jas03006.github.io/525/memory.html">MEMORY</a></li>
     </ul>
 
     <ul class="account">
-      <li><a href="../login/login.html">login</a></li>
+      <li><a href="login">login</a></li>
     </ul>
 
   </div>
@@ -46,14 +45,13 @@
             <div class="md-step-bar-right"></div>
           </div>
         </div>
-        <div class = "left" style = "margin-top: 50px">
-          <h1>My Life Chart</h1>
-        </div>
+        <div style = "margin-top: 50px">
+          <h1 class = "left">My Life Chart</h1>
         <div id = "life-chart-container">
           <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>
-          <div id = "life-chart" style = "display: inline-block">
+          <span id = "life-chart">
             
-          </div>
+          </span>
           <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>
             <div id = "commentDiv" onmouseover = "deleteButtonShow()" onmouseout = "deleteButtonHide()">
               <div id = "commentName">My comment for this memory: </div>
@@ -61,6 +59,7 @@
               <div class = deleteHelper><i class="far fa-times-circle" id = "deleteButton" onclick = "deleteComment(this)"></i></div>
           </div>
         </div>
+      </div>
         <div id = "confirmDiv">
           <a id = "confirmButton" onclick = "confirm()">
             Next

@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Open Sans', sans-serif;
   font-size:16px;
@@ -52,7 +51,7 @@ body {
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
-.md-stepper-horizontal .md-step.question .md-step-circle:before {
+.md-stepper-horizontal .md-step.working .md-step-circle:before {
 	font-family:'FontAwesome';
 	font-weight:100;
 	content: "\f128";
@@ -98,15 +97,12 @@ body {
 	right:50%;
 	margin-right:20px;
 }
-
-
 /*reset*/
 *{margin: 0;padding: 0;}
 li{list-style: none;}
 a{text-decoration: none;}
 
 /*header*/
-/* #75a2e8 */
 header {height:75px; background-color: #4887f1; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
 .header_wrapper{width:1170px;margin: 0 auto;}
 
@@ -169,16 +165,18 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   margin: 20px;
 }
 #content{
+  background-color: #e8e8e8;
   width: 100%;
-  height: 100%;
 }
 
 #paper{
-  width: 80%;
+  width: 1350px;
   height: 100%;
   display: table;
   margin: 0 auto;
   background-color: white;
+  box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
+  text-align: center;
 }
 
 .addButton {

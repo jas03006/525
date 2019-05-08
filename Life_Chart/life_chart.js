@@ -1,6 +1,7 @@
 var yearStart = 2016;
 var currYear = 2019;
 var currPin = -1;
+var currMemo = "";
 var framePinName = -1;
 
 memos = [{title: "SS internship", year: 2016, month: 1, date: 1, comment: "Hello"}, {title: "AI conference", year: 2017, month: 12, date: 1, comment: ""}, {title: "HCI team project", year: 2019, month: 12, date: 31, comment: ""}]
@@ -47,8 +48,8 @@ function drawYear(){
   for(var i = 0; i < 4; i++){
     var newYear = document.createElement("div");
     
-    newYear.id = yearStart + i;
-    newYear.className = "col-md-3 year";
+    newYear.id = (yearStart + i).toString();
+    newYear.className = "year";
     newYear.innerHTML = yearStart + i;
     
     if((yearStart + i) % 2 == 0){
@@ -70,7 +71,7 @@ function initialize(){
   for(var i = 0; i < pinNum; i++){
     var currYear = document.getElementById(memos[i].year);
     var canvas = document.getElementById("life-chart");
-    
+    //console.log(i);
     //console.log(memos[i], relLeft, relTop);
     if(memos[i].year >= yearStart && memos[i].year < (yearStart + 4)){
       var relLeft = currYear.offsetLeft - canvas.offsetLeft;
@@ -79,7 +80,6 @@ function initialize(){
     }
     //drawMemo(memos[i]);
   }
-  
 }
  
 function drawPin(pins, currYear, left, top, width){
@@ -94,7 +94,7 @@ function drawPin(pins, currYear, left, top, width){
   pin.id = pins.title;
   pinDiv.className = "pinDiv";
   
-  pinDiv.style.left = (100 + (frac - 0.5) * width).toString() + "px";
+  pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
   pinDiv.style.top = "-200%";
   //pinDiv.style.left = (left + frac * width - 6 - i * 200).toString() + "px";
   //pinDiv.style.left = (-14 + frac * 114).toString() + "%";
@@ -115,13 +115,17 @@ function drawPin(pins, currYear, left, top, width){
 function pinIn(){
   var memoClass = this.parentElement.children[1].className;
   var commentDiv = document.getElementById("commentDiv");
+  var commentName = document.getElementById("commentName");
   var comment = document.getElementById("comment");
   
   if(memoClass == "memosOff"){
     this.parentElement.children[1].className = "memosOn";
-    if(currPin == -1){
+    //if(currPin == -1){
+    commentName.innerHTML = this.parentElement.children[1].innerHTML;
+    currMemo = comment.value;
+    //findMemo(currPin.id).comment = comment.value;
       comment.value = findMemo(this.parentElement.children[1].innerHTML).comment;
-    }
+    //}
     commentDiv.style.visibility = "visible";
   }
   if(memoClass == "fixedOut"){
@@ -132,11 +136,18 @@ function pinIn(){
 function pinOut(){
   var memoClass = this.parentElement.children[1].className;
   var commentDiv = document.getElementById("commentDiv");
-
+  var comment = document.getElementById("comment");
+  
   if(memoClass == "memosOn"){
     this.parentElement.children[1].className = "memosOff";
+    commentName.innerHTML = currPin.id;
     if(currPin == -1){
       commentDiv.style.visibility = "hidden";
+    }
+    else{
+      //comment.value = findMemo(currPin.id).comment;
+      comment.value = currMemo;
+      //currMemo = "";
     }
   }
   if(memoClass == "fixedOn"){
@@ -166,74 +177,34 @@ function turnComment(self){
     currPin = self;
     //Load current Pin comment
     comment.value = findMemo(self.id).comment;
+    currMemo = comment.value;
   }
   //New pin is picked
   else if(currPin != self){
     //Save current Pin comment
-    findMemo(currPin.id).comment = comment.value;
+    findMemo(currPin.id).comment = currMemo;
     //Change current Pin
     currPin.parentElement.children[1].className = "memosOff";
     currPin = self;
     //Load current Pin comment
     comment.value = findMemo(self.id).comment;
+    currMemo = comment.value;
   }
   //Same pin picked -> unpick pin
   else{
     //Save current Pin comment
-    findMemo(currPin.id).comment = comment.value;
+    findMemo(currPin.id).comment = currMemo;
     //Unpick pin
     currPin = -1;
+    currMemo = "";
   }
-}
-
-function myMove1() {
-  var elem1 = document.getElementById(yearStart + 0);
-  var elem2 = document.getElementById(yearStart + 1);
-  var elem3 = document.getElementById(yearStart + 2);
-  var elem4 = document.getElementById(yearStart + 3);
-  var elem5 = document.getElementById(yearStart + 4);
-  var pos = 0;
-  var limit = pos + 250;
-  var id = setInterval(function(){
-    if (pos >= limit) {
-      clearInterval(id);
-    } else {
-      pos += 10;
-      elem1.style.left = pos + "px";
-      elem2.style.left = pos + "px"; 
-      elem3.style.left = pos + "px"; 
-      elem4.style.left = pos + "px"; 
-      elem5.style.left = pos + "px"; 
-    }
-  }, 10);
-}
-
-function myMove2() {
-  var elem1 = document.getElementById(yearStart + 0);
-  var elem2 = document.getElementById(yearStart + 1);
-  var elem3 = document.getElementById(yearStart + 2);
-  var elem4 = document.getElementById(yearStart + 3);
-  var elem5 = document.getElementById(yearStart + 4);
-  var pos = 250;
-  var limit = pos - 250;
-  var id = setInterval(function(){
-    if (pos >= limit) {
-      clearInterval(id);
-    } else {
-      pos -= 10;
-      elem1.style.left = pos + "px";
-      elem2.style.left = pos + "px"; 
-      elem3.style.left = pos + "px"; 
-      elem4.style.left = pos + "px"; 
-      elem5.style.left = pos + "px"; 
-    }
-  }, 10);
 }
 
 function moveLeft(){
   yearStart -= 1;
   var chart = document.getElementById("life-chart");
-  //myMove1();
+
+  
   //If current pin exists, maintain current pin
   if(currPin != -1){
     framePinName = currPin.id;
@@ -303,14 +274,14 @@ function goUploadQuestion(){
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Add_Questions/Add_Questions.html");
+  location.replace("https://jas03006.github.io/525/Add_Questions/Add_Questions.html");
 }
 
 function confirm(){
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Building_Story/Building_Story.html");
+  location.replace("https://jas03006.github.io/525/Building_Stroy/Building_Story.html");
 }
 
 initialize();
