@@ -316,7 +316,7 @@ function confirm(){
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Building_Stroy/Building_Story.html");
+  location.replace("../Building_Story/Building_Story.html");
 }
 
 initialize();

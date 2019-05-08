@@ -5,8 +5,10 @@ a{text-decoration: none;}
 
 /*common*/
 
-/*header*/
-header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+/*header height:75px;*/ 
+header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed; 
+display:none;
+}
 .header_wrapper{width:1170px;margin: 0 auto;}
 
 .logo {}
@@ -19,45 +21,154 @@ header {height:75px; background-color: #006F84; width:100%; z-index: 9999; posit
 .account{float:right;}
 .account a{line-height: 75px; color:white; padding: 0 15px; display: block;}
 
-body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
-.body_wrapper{width:1170px; height:100%;background-color: white;margin: 0 auto;}
+
+body //margin-top:75px
+ {margin-top: 0px; background-color: #EEEEEE;
+	}
+
+
+#overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.65);
+  overflow-x: hidden;
+ // transition: 0.5s;
+  text-align: center;
+  padding-top: 24%;
+	font-size: 45px;
+	color: #CCCCCC;
+}
+
+.popup {
+	height: 300px;
+  	width: 500px;
+	   content: "";
+ 	 position: absolute;
+	  text-align: center;
+	  top: 33%;
+ 	  left: 37%;
+	border-radius: 30px;
+ 	 background-color: #eeeeee;
+
+	display: none;
+}
+
+.popup_content{
+	font-weight: bold;
+	font-size: 35px;
+	margin-top: 15%;
+}
+
+button{
+	margin-top: 17%;
+	display:inline-block;
+	width: 100px;
+	height: 50px;
+	margin-right: 50px;
+	margin-left: 50px;
+
+	//box-shadow: 0px 10px 14px -7px #276873;
+	background-color:#3ea99f;
+	//-moz-border-radius:8px;
+	//-webkit-border-radius:8px;
+	border-radius:8px;
+	cursor:pointer;
+	color:#ffffff;
+	//font-family:Arial;
+	font-size:25px;
+	font-weight:bold;
+	padding: 8px 20px;
+	//text-decoration:none;
+}
 
 #tutorial{
+	width: 1330px;
 	text-align: center;
-	border: 2px solid;
+	border: 2px none;//solid;
 	border-color: #7F7F7F;
-	margin-top: 110px;
-	margin-bottom: 130px;
-	margin-left: 220px;
-	margin-right: 220px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: 40px;
+	//margin-right: 220px;
 	border-radius: 30px;
 	padding-bottom: 110px;
 	background-color: #FAFAFA;
+	display:inline-block;
+}
+
+#upper_page{
+	background-color: white;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: 60px;
+	margin-right: 60px;
+	padding-top: 120px;
+	padding-bottom: 100px;
+}
+
+.tutorial_logo{
+	font-weight: bold;
+	font-size: 75px;
 }
 
 .tutorial_title{
 	font-weight: bold;
-	font-size: 37px;
-	padding-top: 50px;
+	font-size: 39px;
+	padding-top: 110px;
+	padding-bottom: 75px;
 }
+
+.tutorial_description{
+	font-weight: bold;
+	font-size: 29px;
+	padding-bottom: 40px;
+}
+
+.step{
+	margin-left: 60px;
+	margin-right: 60px;
+	margin-bottom: 70px;
+}
+
 .step_title{
-	padding-top: 100px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	margin-top:30px;
+	//margin-left: 60px;
+	//margin-right: 60px;
+	background-color: #D0D0D0;
+	padding-top: 50px;
 	padding-bottom: 50px;
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 32px;
+}
+
+.step_description{
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	//margin-left: 60px;
+	//margin-right: 60px;
+	padding: 30px;
+	background-color: #C3EFEF;
 }
 
 .dummy_img{
-	border: 2px solid;
+	//border: 2px solid;
 	border-radius: 25px;
 	margin: 0 auto;
-	width: 25%;
+	width: 350px;
 	height: 500px;
 	display: inline-block; 
 	padding-top: 7px;
 	font-weight: bold;
 	font-size: 20px;	
 	vertical-align: middle;
+	background-color: #F2F2F2;
 }
 
 .arrow{
@@ -70,3 +181,65 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	padding-left: 30px;
 	padding-right: 40px;
 }
+
+
+
+
+
+
+#login_page{
+	position: fixed;
+	border-radius: 30px;
+	background-color: #FAFAFA;
+	display:inline-block;
+	height: 94%;
+	width:450px;
+	//padding-top:250px;
+	//padding-left:40px;
+	margin-top:30px;
+	margin-left:40px;
+	vertical-align: top;//2300px;
+	//border: 1px solid;
+	text-align: center;
+}
+
+table{
+	height: 200px;
+	margin-top: 60%;
+	//border: 1px solid;
+	padding: 20px;
+	display: inline-block;
+}
+
+td{
+	padding: 10px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+input{
+	height: 30px;
+	width: 200px;
+	font-size: 30px;	
+	border-radius:8px;
+	padding: 8px;
+}
+
+#login_button{
+	box-shadow: 0px 10px 14px -7px #276873;
+	background-color:#3ea99f;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	//font-family:Arial;
+	font-size:25px;
+	font-weight:bold;
+	padding: 8px 20px;
+	text-decoration:none;
+	//text-shadow:0px 1px 0px #3d768a;
+}
+
+

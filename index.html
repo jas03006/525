@@ -1,4 +1,5 @@
 <link href="./index.css" rel="stylesheet" />
+<link href="./add_new_memory/jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />  
 <!DOCTYPE html>
 <html>
 
@@ -18,26 +19,81 @@
     </ul>
 
     <ul class="account">
-      <li><a href="./login/login.html">login</a></li>
+      <li><a onclick = "popup_logout()">login</a></li>
     </ul>
 
   </div>
 </header>
 
+
+<div id = "overlay"> Loading... </div>
+<div id = "login_fail_popup" class = "popup" > <div class = "popup_content">Check ID or password! <div><button onclick = "popdown_login_fail()"> Yes </button> </div></div></div>
+<div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
+
+
 <body>
 <div id='tutorial'>
+
+<div id = 'upper_page'>
+<div class = 'tutorial_logo'> JOBIS </div>
 <div class = 'tutorial_title'> Write your own Personal History Statement! </div>
-<div  class = 'step_title'>1. Upload your important memories </div>
-<div  class = 'dummy_img'> Create new memory </div > <span class='arrow'> ---></span> <div   class = 'dummy_img'> Remind your memory </div >
-<div  class = 'step_title'> 2. Register Questions of Personal History Statement</div>
-<div  class = 'dummy_img'> Register questions </div >
-<div  class = 'step_title'> 3. Create your life flowchart </div>
-<div  class = 'dummy_img'> Explore flowchart </div > <span class='arrow'>  ---> </span> <div   class = 'dummy_img'> Write memos and Build flow </div >
-<div  class = 'step_title'> 4. Build story layouts </div>
-<div  class = 'dummy_img'> Select memories </div > <span class='arrow'> ---> </span> <div   class = 'dummy_img'> Build a story layout </div >
-<div  class = 'step_title'> 5. Write a draft for each question! </div>
-<div  class = 'dummy_img'> Refer previous steps </div > <span class='arrow'>  ---> </span> <div   class = 'dummy_img'> Write your own draft </div >
+<div class = 'tutorial_description'> Ask Youself </div>
+<div class = 'tutorial_description'> See Your Life </div>
+<div class = 'tutorial_description'> Find Your Own Story </div>
 </div>
+
+
+<div class = 'step'>
+<div  class = 'step_title'>1. Upload your important memories </div>
+<div class = 'step_description'>
+<div  class = 'dummy_img'> Create new memory </div > <span class='arrow'> ---></span> <div   class = 'dummy_img'> Remind your memory </div>
+</div></div>
+
+<div class = 'step'>
+<div  class = 'step_title'> 2. Register Questions of Personal History Statement</div>
+<div class = 'step_description'>
+<div  class = 'dummy_img'> Register questions </div >
+</div> </div>
+
+<div class = 'step'>
+<div  class = 'step_title'> 3. Create your life flowchart </div>
+<div class = 'step_description'>
+<div  class = 'dummy_img'> Explore flowchart </div > <span class='arrow'>  ---> </span> <div   class = 'dummy_img'> Write memos and Build flow </div>
+</div></div>
+
+<div class = 'step'>
+<div  class = 'step_title'> 4. Build story layouts </div>
+<div class = 'step_description'>
+<div  class = 'dummy_img'> Select memories </div > <span class='arrow'> ---> </span> <div   class = 'dummy_img'> Build a story layout </div>
+</div></div>
+
+<div class = 'step'>
+<div  class = 'step_title'> 5. Write a draft for each question! </div>
+<div class = 'step_description'>
+<div  class = 'dummy_img'> Refer previous steps </div> <span class='arrow'>  ---> </span> <div   class = 'dummy_img'> Write your own draft </div>
+</div></div>
+
+</div>
+</div>
+</div>
+
+
+<div id = 'login_page'> 
+<table>
+<tr><td>ID</td><td><input id='ID' type='text' value='testuser1'></input></td> </tr>
+<tr><td>password</td> <td><input id='PASSWORD' type='password'  value='1234'></input></td></tr>
+<tr><td></td><td  align='right'><a href="#" id="login_button" onclick="login()">login</a></td></tr>
+</table>
+</div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="./add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+    
+<script src="./add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    
+<script type="text/javascript" src="./index.js"></script>
 </body>
 
 </html>
