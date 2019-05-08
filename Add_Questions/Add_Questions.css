@@ -37,9 +37,11 @@ body {
   width:34px;
 	height:34px;
   cursor: pointer;
-  transform: translateX(1px) translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 1px 1px 5px #AAAAAA;
 }
 .md-stepper-horizontal.green .md-step.active .md-step-circle:active{
+  transform: translateY(-3px);
   background-color:#009E3D;
 }
 .md-stepper-horizontal.green .md-step.active .md-step-circle {
