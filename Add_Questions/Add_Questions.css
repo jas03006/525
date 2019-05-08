@@ -166,12 +166,13 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 #content{
   background-color: #e8e8e8;
+  text-align: center;
   width: 100%;
 }
 
 #paper{
-  width: 1350px;
-  height: 100%;
+  width: 1300px;
+  height: 101%;
   display: table;
   margin: 0 auto;
   background-color: white;

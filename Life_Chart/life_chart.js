@@ -3,8 +3,23 @@ var currYear = 2019;
 var currPin = -1;
 var currMemo = "";
 var framePinName = -1;
+var yearNum = [];
 
-memos = [{title: "SS internship", year: 2016, month: 1, date: 1, comment: "Hello"}, {title: "AI conference", year: 2017, month: 12, date: 1, comment: ""}, {title: "HCI team project", year: 2019, month: 12, date: 31, comment: ""}]
+memos = [{title: "SS internship", year: 2016, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2016, month: 9, date: 18, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
+
+function countYear(year){
+  var len = yearNum.length;
+  
+  for(var i = 0; i < len; i++){
+    if(yearNum[i].year.toString() == year){
+      yearNum[i].count += 1;
+      return yearNum[i].count;
+    }
+  }
+  
+  yearNum.push({year: year, count: 0});
+  return 0;
+}
 
 function findMemo(memoTitle){
   for(var i = 0; i < memos.length; i++){
@@ -68,6 +83,7 @@ function initialize(){
   var pinNum = memos.length;
   
   //Draw pins and memos
+  yearNum = [];
   for(var i = 0; i < pinNum; i++){
     var currYear = document.getElementById(memos[i].year);
     var canvas = document.getElementById("life-chart");
@@ -76,6 +92,7 @@ function initialize(){
     if(memos[i].year >= yearStart && memos[i].year < (yearStart + 4)){
       var relLeft = currYear.offsetLeft - canvas.offsetLeft;
       var relTop = currYear.offsetTop - canvas.offsetTop;
+      
       drawPin(memos[i], currYear, relLeft, relTop, currYear.offsetWidth);
     }
     //drawMemo(memos[i]);
@@ -88,14 +105,32 @@ function drawPin(pins, currYear, left, top, width){
   var memo = document.createElement("span");
   var canvas = document.getElementById("life-chart");
   var frac = Math.round(dateFraction(pins.year, pins.month, pins.date) * 100) / 100;
-  
+  var yearCount = countYear(pins.year);
+
   pin.className = "fas fa-pen";
   //pin.id = pins.year.toString() + '.' + pins.month.toString() + '.' + pins.date.toString();
   pin.id = pins.title;
   pinDiv.className = "pinDiv";
   
+
+  if(pins.importance == 3){
+    pin.style.color = "#FF0000";
+    pin.style.fontSize = "30px";
+    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+  }
+  else if(pins.importance == 2){
+    pin.style.color = "#992222";
+    pin.style.fontSize = "25px";
+    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+  }
+  else if(pins.importance == 1){
+    pin.style.color = "#776666";
+    pin.style.fontSize = "25px";
+    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+  }
+  
   pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
-  pinDiv.style.top = "-200%";
+  
   //pinDiv.style.left = (left + frac * width - 6 - i * 200).toString() + "px";
   //pinDiv.style.left = (-14 + frac * 114).toString() + "%";
   //pinDiv.style.top = (top - 80).toString() + "px";

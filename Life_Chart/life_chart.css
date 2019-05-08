@@ -134,10 +134,12 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 #content{
   background-color: #e8e8e8;
   text-align: center;
+  width: 100%;
 }
 
 #paper{
-  width: 1350px;
+  width: 1300px;
+  height: 101%;
   display: table;
   margin: 0 auto;
   background-color: white;
@@ -190,6 +192,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 
 .year{
   border: 1px solid black;
+  font-weight: bold;
   #margin-top: 20px;
   height: 20px;
   padding-top: 2px;
@@ -203,8 +206,6 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 .fas.fa-pen{
-  font-size: 20px;
-  color: red;
   cursor: pointer;
   position: relative;
   display: inline-block;
@@ -212,12 +213,11 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 .fas.fa-pen:hover{
-  transform: translateX(1px) translateY(-1px) rotate(45deg);
+  transform: translateX(2px) translateY(-2px) rotate(45deg);
 }
 
 .fas.fa-pen:active{
   transform: rotate(45deg);
-  color: #DD0000;
 }
 
 .pinDiv{
@@ -237,7 +237,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 .memosOn, .fixedOn, .fixedOut{
   #border: 1px solid black;
   font-family: "Open Sans" sans-serif;
-  padding-left: 10px;
+  padding-left: 15px;
   height: 30px;
   color: black;
   cursor: default;
@@ -254,14 +254,6 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 .memosOff{
   visibility: hidden;
 }
-
-/* .fixedOn{
-  opacity: 1;
-}
-
-.fixedOut{
-  opacity: 1;
-} */
 
 #commentDiv{
   padding: 10px;
@@ -286,11 +278,10 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   padding: 5px;
   height: 115px;
   background-color: #FFFF99;
-  font-family: 'Merriweather', serif;
-  font-size: 20px;
-  letter-spacing: normal;
-  line-spacing: 10px;
-  line-height: 130%;
+  font-family: 'Noto Serif', serif;
+  font-size: 22px;
+  letter-spacing: 0.03em;
+  line-height: 140%;
   resize: none;
   outline: none;
   display: inline-block;
@@ -304,7 +295,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   height: 60px;
   width: 50px;
   left: 895px;
-  top: -192px;
+  top: -185px;
 }
 
 .far.fa-times-circle{
