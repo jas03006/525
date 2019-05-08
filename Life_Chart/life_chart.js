@@ -116,17 +116,17 @@ function drawPin(pins, currYear, left, top, width){
   if(pins.importance == 3){
     pin.style.color = "#FF0000";
     pin.style.fontSize = "30px";
-    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-270 - yearCount * 146).toString() + "%";
   }
   else if(pins.importance == 2){
     pin.style.color = "#992222";
     pin.style.fontSize = "25px";
-    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-270 - yearCount * 146).toString() + "%";
   }
   else if(pins.importance == 1){
     pin.style.color = "#776666";
     pin.style.fontSize = "25px";
-    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-270 - yearCount * 146).toString() + "%";
   }
   
   pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
