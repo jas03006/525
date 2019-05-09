@@ -33,6 +33,11 @@ plus {
 	font-size: 6vw;
 }
 
+.btn{
+  width: 12vw;
+  height: 6vh;
+}
+
 .left{
   /*border: 1px solid black;*/
   padding-left: 100px;
@@ -53,7 +58,7 @@ plus {
 
 .container_inv {
   position: relative;
-  //visibility: hidden;
+  visibility: hidden;
 }
 
 .text-block {
