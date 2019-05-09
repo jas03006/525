@@ -149,6 +149,23 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: center;
   margin: 20px;
 }
+.bsfcBox{
+  width: 80%;
+  height: 100px;
+  padding: 9px 15px;
+  box-sizing: border-box;
+  border: 2px solid #748695;
+  border-radius: 4px;
+  background-color: white;
+  font-family: 'Merriweather', serif;
+  font-size: 19px;
+  letter-spacing: normal;
+  line-spacing: 10px;
+  line-height: 130%;
+  resize: none;
+  outline: none;
+  display: inline-block;
+}
 .draftBox{
   width: 80%;
   height: 100px;
@@ -171,6 +188,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 .draft-container{
   margin: 20px;
+  margin-top: 10px;
 }
 #content{
   width: 100%;
@@ -283,12 +301,12 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
  }
 
 #chanButton:active{
-  background-color: #15aa3d;
+  background-color: #777777;
   transform: translateY(1px);
 }
 
 #chanButton {
-	background-color:#25ba4d;
+	background-color:#888888;
 	-moz-border-radius:17px;
 	-webkit-border-radius:17px;
 	border-radius:17px;
@@ -297,10 +315,11 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	color:#ffffff;
 	font-family:Arial;
 	font-size:17px;
-	padding:14px 29px;
+	padding:8px 19px;
 	text-decoration:none;
 }
 
 #chanDiv{
   text-align: left;
+  padding-left : 12%;
  }

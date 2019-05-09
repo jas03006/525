@@ -31,7 +31,7 @@ function makeDraft(){
   setQuestion();
 
   //bs<->fc change button
-  makecb();
+  //makecb();
 
   //building story
   for (var i = 0; i < questionNumber; i++) {
@@ -79,7 +79,7 @@ function makecb() {
 function make1bs() {
   var bsDiv = document.createElement("div");
   var bs = document.createElement("textarea");
-  bs.className = "draftBox";
+  bs.className = "bsfcBox";
   bs.id = "bs" + draftNum;
   bs.placeholder = "building story of Q." + draftNum;
   bsDiv.appendChild(bs);
@@ -92,7 +92,7 @@ function make1bs() {
 function makefc() {
   var fcDiv = document.createElement("div");
   var fc = document.createElement("textarea");
-  fc.className = "draftBox";
+  fc.className = "bsfcBox";
   fc.id = "fc";
   fc.placeholder = "Flow Chart must be here";
   fcDiv.appendChild(fc);
