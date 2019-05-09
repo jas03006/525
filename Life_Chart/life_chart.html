@@ -4,6 +4,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
     <link href="./life_chart.css" rel="stylesheet" />
+
+<link href="../popup_overlay.css" rel="stylesheet" />
+
   </head>
     <header>
     <div class="header_wrapper">
@@ -18,11 +21,17 @@
     </ul>
 
     <ul class="account">
-      <li><a href="../index.html">login</a></li>
+      <li><a onclick = "popup_logout()">login</a></li>
     </ul>
 
   </div>
   </header>
+
+<div id = "overlay"> Loading... </div>
+<div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
+
+
+
   <body>
     <div id = "content">
       <div id = "paper">
@@ -71,6 +80,13 @@
     
     
    
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+    
+<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+
     <script type="text/javascript" src="./life_chart.js"></script>
+<script type="text/javascript" src="../popup_overlay.js"></script> 
   </body>
 </html>

@@ -15,16 +15,16 @@ function change_star(event){
 	var offset = event.target.offsetLeft;
 	var width = (x-offset);
 	var num_star = 0;
-	var star_half_width = 205/10.0;
+	var star_width = 205/5.0;
 	console.log(offset);
-	console.log(star_half_width );
-	if( x >= offset ){
+	console.log(star_width );
+	if( (x >= offset) ){
 		num_star = 0;
 		while(width>=0){
-			width = width - star_half_width;
-			num_star += 0.5;
+			width = width - star_width;
+			num_star += 1;
 		}
-		document.getElementById("star").children[0].children[0].style = 'width:' + (num_star * 20) +'%';
+		document.getElementById("star").children[0].children[0].style = 'width:' + (num_star * 33.33) +'%';
 		//document.getElementById("star").innerHTML += x;
 	}
 	importance_ = num_star;
