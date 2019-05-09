@@ -9,17 +9,6 @@ html {
 	align-items: center;
 }
 
-th {
-	border-bottom-style: solid;
-	padding: 3px;
-}
-
-td {
-	border-bottom-style: dotted;
-	border-color: gray;
-	padding: 3px;
-}
-
 h2 {
 	font-size: 40px;
 	color: #3ea99f;
@@ -28,20 +17,27 @@ h2 {
 	margin-block-end: 0.8em;
 }
 
-h3 {
-	margin-block-start: 0.2em;
-	margin-block-end: 0.2em;
-	font-size: 36px;
-}
-
 p {
 	margin-block-start: 0.2em;
 	margin-block-end: 0.2em;
 	font-size: 24px;
 }
 
+h3 {
+	margin-block-start: 0.2em;
+	margin-block-end: 0.2em;
+	font-size: 36px;
+}
+
 plus {
 	font-size: 96px;
+}
+
+.left{
+  /*border: 1px solid black;*/
+  padding-left: 100px;
+  margin: 20px;
+  text-align: left;
 }
 
 .contents {
@@ -52,6 +48,12 @@ plus {
 
 .container {
   position: relative;
+  visibility: visible;
+}
+
+.container_inv {
+  position: relative;
+  visibility: hidden;
 }
 
 .text-block {
@@ -76,37 +78,5 @@ plus {
 #memtable {
 	border-collapse: collapse;
 	width: 80%;
-	margin: auto;
-}
-
-#post1 {
-	visibility: visible;
-}
-
-#post2 {
-	visibility: hidden;
-}
-
-#post3 {
-	visibility: hidden;
-
-	}
-#post4 {
-	visibility: hidden;
-}
-
-#post5 {
-	visibility: hidden;
-}
-
-#post6 {
-	visibility: hidden;
-}
-
-#post7 {
-	visibility: hidden;
-}
-
-#post8 {
-	visibility: hidden;
+	margin: 0 auto;
 }
