@@ -1,8 +1,9 @@
 ﻿var questionNum = 1;
+var showing = 0;
 
 function initialize(){
   
-  addQuestionBox();
+  addQuestionBox("");
 }
 
 function deleteAll(){
@@ -17,9 +18,12 @@ function deleteAll(){
   initialize();
 }
 
-function addQuestionBox(){
+function addQuestionBox(textline){
   var qDiv = document.createElement("div");
   var numDiv = document.createElement("div");
+  var num = document.createElement("div");
+  var helpDiv = document.createElement("div");
+  var deleteButton = document.createElement("div");
   var question = document.createElement("textarea");
   var buttonDiv = document.createElement("div");
   var addButton = document.createElement("a");
@@ -32,11 +36,25 @@ function addQuestionBox(){
   question.className = "questionBox";
   question.id = "question" + questionNum;
   question.placeholder = "Write question #" +  questionNum + " here";
-  
+  if(textline != ""){
+    question.value = textline;
+  }
   //Enter listener
   question.addEventListener('keyup', enterEvent);
-  numDiv.innerHTML = "Q" + questionNum + ". ";
+  num.innerHTML = "Q" + questionNum + ". ";
+  num.className = "num";
   numDiv.className = "numDiv";
+  num.addEventListener('click', numberClick);
+  num.addEventListener('mouseover', numberHover);
+  num.addEventListener('mouseout', numberHoverOut);
+  helpDiv.className = "helper";
+  helpDiv.appendChild(deleteButton);
+  deleteButton.className = "fas fa-minus-circle";
+  num.id = questionNum;
+  deleteButton.addEventListener('click', questionDelete);
+  numDiv.appendChild(num);
+  numDiv.appendChild(helpDiv);
+  
   qDiv.appendChild(numDiv);
   qDiv.appendChild(question);
   qDiv.id = "qDiv" + questionNum;
@@ -54,11 +72,12 @@ function addQuestionBox(){
   });
   
   addQuestionText.innerHTML = "Add Question";
-  addQuestionText.style.color = "#748695";
-  
+  addQuestionText.className = "addButtonText";
   buttonDiv.className = "center";
   buttonDiv.appendChild(addButton);
   buttonDiv.appendChild(addQuestionText);
+  addButton.addEventListener('mouseover', addButtonHover);
+  addButton.addEventListener('mouseout', addButtonHoverOut);
   buttonDiv.id = "myButton";
   
   confirmButton.id = "confirmButton";
@@ -73,6 +92,166 @@ function addQuestionBox(){
   document.getElementById("paper").appendChild(confirmDiv);
   
   return question;
+}
+
+function myMoveLeft(elem) {
+  var pos = 25;
+  
+  var id = setInterval(function() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      if(pos == 25){
+        elem.style.visibility = "visible";
+      }
+      elem.style.left = pos + 'px';
+      elem.style.opacity = (25 - pos) * 0.04;
+      pos--;
+    }
+  }, 1);
+  
+}
+
+function myMoveRight(elem) {
+  var pos = 0;
+  
+  var id = setInterval(function() {
+    if (pos == 25) {
+      clearInterval(id);
+      elem.style.visibility = "hidden";
+    } else {
+      elem.style.left = pos + 'px';
+      elem.style.opacity = (24 - pos) * 0.04;
+      pos++;
+    }
+  }, 1);
+  
+}
+
+function numberClick(){
+    if (this.className != event.target.className)
+      return;
+    
+  if(this.className == "num"){
+    var del = this.parentElement.children[1].children[0];
+    this.style.fontWeight = "900";
+    
+    this.className = "numPick"
+    myMoveLeft(del);
+  }
+  else if(this.className == "numPick"){
+    var del = this.parentElement.children[1].children[0];
+    
+    this.style.fontWeight = "normal";
+    this.className = "num"
+    
+    myMoveRight(del);
+  }
+}
+function myBright(elem) {
+  var l = 100;
+  
+  var id = setInterval(function() {
+    if (l == 70) {
+      clearInterval(id);
+    } else {
+      elem.style.backgroundColor = "hsl(0, 0%, " + l + "%)";
+      l--;
+    }
+  }, 6);
+}
+
+function myDark(elem) {
+  var l = 70;
+  
+  var id = setInterval(function() {
+    if (l == 100) {
+      clearInterval(id);
+    } else {
+      elem.style.backgroundColor = "hsl(0, 0%, " + l + "%)";
+      l++;
+    }
+  }, 6);
+}
+
+function numberHover(){
+  //console.log(event.target.className, this.className);
+  if (this.className != event.target.className){
+    return;
+  }
+  myBright(this);
+}
+
+function numberHoverOut(){
+  //console.log(event.target.className, this.className);
+  if (this.className != event.target.className){
+    return;
+  }
+  myDark(this);
+}
+function myMoveDown(elem) {
+  var pos = -25;
+  var id = setInterval(function() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      if(pos == -25){
+        elem.style.visibility = "visible";
+      }
+      elem.style.top = pos + 'px';
+      elem.style.opacity = (25 + pos) * 0.04;
+      pos++;
+    }
+  }, 1);
+  
+}
+function myMoveUp(elem) {
+  var pos = 0;
+  var id = setInterval(function() {
+    if (pos == -25) {
+      clearInterval(id);
+    } else {
+      if(pos == 0){
+        elem.style.visibility = "hidden";
+      }
+      elem.style.top = pos + 'px';
+      elem.style.opacity = (25 + pos) * 0.04;
+      pos--;
+    }
+  }, 1);
+  
+}
+function addButtonHover(){
+  if (this != event.target)
+      return;
+  var text = this.parentElement.children[1];
+  myMoveDown(text);
+  
+}
+
+function addButtonHoverOut(){
+  if (this != event.target)
+      return;
+  var text = this.parentElement.children[1];
+  myMoveUp(text);
+}
+
+function questionDelete(){
+  var num = questionNum;
+  var qid = this.parentElement.parentElement.children[0];
+  qid.parentElement.parentElement.remove();
+  //console.log(qid.id, num);
+  
+  for(var i = parseInt(qid.id); i < num; i++){
+    var question = document.getElementById(i + 1);
+    //console.log(question);
+    if(question != null){
+      question.id = i;
+      question.innerHTML = "Q" + i + ". ";
+      question.parentElement.parentElement.children[1].placeholder = "Write question #" + i + " here";
+    }
+  }
+  questionNum--;
 }
 
 function confirm(){
@@ -100,29 +279,6 @@ function enterEvent(e) {
     }
 }
 
-//version1
-
-/*function submit(questionBox){
-  //console.log(question);
-  var question = questionBox.value
-  var qDiv = document.createElement("div");
-  var addedQuestion = document.createElement("div");
-  
-  //Add question 
-  addedQuestion.innerHTML = "Q" + (questionNum + 1) + ". " + question;
-  questionNum++;
-  addedQuestion.className = "left";
-  qDiv.className = "center";
-  qDiv.appendChild(addedQuestion);
-  document.getElementById("paper").appendChild(qDiv);
-  
-  //Delete question box and add new one
-  questionBox.remove();
-  addQuestionBox().focus();
-}*/
-
-//version2
-
 function submit(questionBox){
   var question = questionBox.value;
   
@@ -136,9 +292,8 @@ function submit(questionBox){
   questionNum++;
 
   //Add new questionBox
-  addQuestionBox().focus();
+  addQuestionBox("").focus();
 }
-
 
 initialize();
 

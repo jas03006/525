@@ -4,6 +4,7 @@ body {
   color:#555555; 
 }
 .md-stepper-horizontal {
+  user-select: none;
 	display:table;
 	width:100%;
   height: 150px;
@@ -135,16 +136,60 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: center;
   margin: 20px;
 }
+.helper{
+  
+  #border: 1px solid red;
+  position: relative;
+  margin: auto;
+  text-align: right;
+  width: 45px;
+  height: 50px;
+  top: -40px;
+  left: -50px;
+  cursor: default;
+}
 .numDiv{
   display: inline-block;
+  position: relative;
+  top: -20px;
+  #border: 1px solid black;
+  height: 60px;
+}
+.numPick, .num{
+  user-select: none;
+  #border: 1px solid blue;
+  
   vertical-align: top;
+  cursor: default;
   font-family: 'Merriweather', serif;
   font-size: 22px;
-  font-weight: bold;
+  text-align: right;
   margin: 10px;
+  width: 40px;
+  height: 36px;
+  cursor: pointer;
+  padding-top: 4px;
+  padding-right: 4px;
+  border-radius: 17px;
+}
+
+.fas.fa-minus-circle{
+  display: block;
+  color: red;
+  #border: 1px solid black;
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  position: relative;
+  visibility: hidden;
+  cursor: pointer;
+}
+.fas.fa-minus-circle:active{
+  color: #EE0000;
+  transform: translateY(1px);
 }
 .questionBox{
-  width: 80%;
+  width: 900px;
   height: 100px;
   padding: 9px 15px;
   box-sizing: border-box;
@@ -159,12 +204,26 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   resize: none;
   outline: none;
   display: inline-block;
+
 }
+
+textarea::-webkit-scrollbar {
+  width: 10px;
+  background-color: #D8D8D8;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #777777; }
+
 #container{
   text-align: center;
 }
 .question-container{
-  margin: 20px;
+  text-align: left;
+  margin: 20px auto;
+  width: 80%;
 }
 #content{
   background-color: #e8e8e8;
@@ -183,6 +242,8 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 .addButton {
+  user-select: none;
+  width: 25px;
 	background-color:transparent;
 	-moz-border-radius:42px;
 	-webkit-border-radius:42px;
@@ -190,18 +251,32 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	border:3px solid;
 	display:inline-block;
 	cursor:pointer;
-	color:#748695;
+	#color:#748695;
+  color: #77BB77;
 	font-family:Verdana;
-	font-size:28px;
+	font-size:27px;
 	padding:16px 20px;
 	text-decoration:none;
 }
-
+.addButton:hover{
+  #width: 28px;
+  #border: 3px solid black;
+  #color: #607080;
+  #color: #66AA66;
+}
 .addButton:active{
   transform: translateY(1px);
-  color:#546675;
+  color:#66AA66;
 }
 
+.addButtonText{
+  color: #445665;
+  uesr-select: none;
+  position: relative;
+  visibility: hidden;
+  #border: 1px solid black;
+  #top: -30px;
+}
 
 #confirmButton:active{
   background-color: #15aa3d;
@@ -209,6 +284,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 #confirmButton {
+  user-select: none;
 	background-color:#25ba4d;
 	-moz-border-radius:17px;
 	-webkit-border-radius:17px;
