@@ -56,22 +56,28 @@ function addWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container";
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div class = "btn"><a href="#"><img id = "memosheet" src="./src/image/button/Btn_view_memory.png"></a></div><br /><div class = "btn"><a href="#"><img id = "memosheet" class = "btn" src="./src/image/button/Btn_edit_memory.png"></a></div><br /><a href="#">DELETE MEMORY</a></div></div>';
+
   post.addEventListener("mouseleave", function () {
       //leave
+    var projectOptions1 = document.getElementById("content"+(i+2));
+    var projectOptions2 = document.getElementById("option"+(i+2));
+
       console.log("leave\t"+ post.id);
       projectOptions1.style.display = 'block';    
       projectOptions2.style.display = 'none';    
     });
     post.addEventListener("mouseenter", function () {
       //enter
+    var projectOptions1 = document.getElementById("content"+(i+2));
+    var projectOptions2 = document.getElementById("option"+(i+2));
+
       console.log("enter\t"+ post.id);
       projectOptions1.style.display = 'none';    
       projectOptions2.style.display = 'block';  
     });
 
-    post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div class = "btn"><a href="#"><img id = "memosheet" src="./src/image/button/Btn_view_memory.png"></a></div><br /><div class = "btn"><a href="#"><img id = "memosheet" class = "btn" src="./src/image/button/Btn_edit_memory.png"></a></div><br /><a href="#">DELETE MEMORY</a></div></div>';
-    td.appendChild(post);
-
+   td.appendChild(post);
    tr.appendChild(td);  
 
   temp++;
@@ -82,22 +88,28 @@ function addUnWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container_inv";
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div class = "btn"><a href="#"><img id = "memosheet" src="./src/image/button/Btn_view_memory.png"></a></div><br /><div class = "btn"><a href="#"><img id = "memosheet" class = "btn" src="./src/image/button/Btn_edit_memory.png"></a></div><br /><a href="#">DELETE MEMORY</a></div></div>';
+
   post.addEventListener("mouseleave", function () {
       //leave
+    var projectOptions1 = document.getElementById("content"+(i+2));
+    var projectOptions2 = document.getElementById("option"+(i+2));
+
       console.log("leave\t"+ post.id);
       projectOptions1.style.display = 'block';    
       projectOptions2.style.display = 'none';    
     });
     post.addEventListener("mouseenter", function () {
       //enter
+    var projectOptions1 = document.getElementById("content"+(i+2));
+    var projectOptions2 = document.getElementById("option"+(i+2));
+
       console.log("enter\t"+ post.id);
       projectOptions1.style.display = 'none';    
       projectOptions2.style.display = 'block';  
     });
 
-    post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div class = "btn"><a href="#"><img id = "memosheet" src="./src/image/button/Btn_view_memory.png"></a></div><br /><div class = "btn"><a href="#"><img id = "memosheet" class = "btn" src="./src/image/button/Btn_edit_memory.png"></a></div><br /><a href="#">DELETE MEMORY</a></div></div>';
-    td.appendChild(post);
-
+   td.appendChild(post);
    tr.appendChild(td);  
 
   temp++;
