@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+  
+<head>
+   
+<meta charset="UTF-8">
+   
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+  
+<link href="../add_new_memory/jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />  
+<link href="./View_memory.css" rel="stylesheet" />
+<link href="../popup_overlay.css" rel="stylesheet" />
+  
+</head>
+  
+	 <header>
+    <div class="header_wrapper">
+
+    <ul class="logo">
+      <li><a href="../index.html"><h1>JOBIS</h1></a></li>
+    </ul>
+
+    <ul class="menu">
+      <li><a href="../project.html">PROJECT</a></li>
+      <li><a href="../memory.html">MEMORY</a></li>
+    </ul>
+
+    <ul class="account">
+      <li><a onclick = "popup_logout()">login</a></li>
+    </ul>
+
+  </div>
+  </header>
+	
+<div id = "overlay"> Loading... </div>
+<div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
+
+
+
+<body>
+   
+
+<div class='front_page'> 
+	<div class='stage_title'>Memory Viewing</div>
+	<div class='stage_description'></div>
+	
+	<div class='stage_subtitle'>Title</div>
+	<textarea readonly id = 'Title'>  </textarea>
+	<div class='stage_subtitle'>Date</div>
+	<textarea readonly id = 'Date'> </textarea>
+	<div class='stage_subtitle'>Where</div>
+	<textarea readonly id = 'Where'>  </textarea>
+	<div class='stage_subtitle'>With</div>
+	<textarea readonly id = 'With'>  </textarea>
+	<div class='stage_subtitle'>What</div>
+	<textarea readonly id = 'What'></textarea>	
+	<div class='stage_subtitle'>How_long</div>
+	<textarea readonly id = 'How_long'>  </textarea>
+	<div class='stage_subtitle'>Why</div>
+	<textarea readonly id = 'Why'></textarea>
+	<div class='stage_subtitle'>What_you_felt</div>
+	<textarea readonly id = 'What_you_felt'></textarea>
+	
+	<div class='stage_subtitle'>Importance</div>
+	<div id='star'><span class="star_rating" >
+		<span></span>
+	</span></div>
+	
+	<a href="#" class="confirm_button" onclick="go_memory_page()">back</a>
+
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+    
+<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+
+<script type="text/javascript" src="../popup_overlay.js"></script>   
+<script type="text/javascript" src="./View_memory.js"></script>
+
+  
+</body>
+
+</html>

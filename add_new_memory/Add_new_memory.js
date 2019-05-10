@@ -69,7 +69,7 @@ function write_new_memory_db(){
 
 	return false;
 }
-
+/*
 function read_new_memory_db(){
 	document.getElementById("overlay").style.width = "100%";
 	firebase.database().ref('/data/' + now_account + '/memory/' + title.value.trim() ).once('value', function(snapshot){ 
@@ -79,7 +79,7 @@ function read_new_memory_db(){
 								document.getElementById("overlay").style.width = "0";
 							});
 }
-
+*/
 
 function go_main(){
     // 뒤로가기 누르면 다시 앞페이지로 이동

@@ -22,7 +22,6 @@ body {
 	padding-right:20%;
 //	padding-top:5%;
 	background-color: #f8f8f8;
-	//font-family: 'Open Sans', sans-serif;
 }
 
 .front_page{
@@ -41,7 +40,7 @@ body {
 
 .stage_description{
 	padding-left:2%;
-	font-size: 20px;
+	font-size: 25px;
 	color: black;//#3ea99f;
 	font-weight: bold;
 }
@@ -64,7 +63,6 @@ textarea{
 	border-radius:8px;
 	height:80px;
 	width:88%;
-	font-family: 'Merriweather', serif;
 	font-size:16pt;
 	 resize: none;
 	background-color: #f8f8f8;

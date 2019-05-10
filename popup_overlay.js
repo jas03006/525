@@ -20,8 +20,8 @@ $( document ).ready(function() {
 });
 
 function main(){
-	read_accounts();
-	read_now_account();
+	//read_accounts();
+	return read_now_account().then(function(data){ now_account = data; });
 }
 
 function read_accounts(){
@@ -46,10 +46,11 @@ function parse_accounts( data ){
 }
 
 function read_now_account(){
-	console.log('read_now\n');
+	
 	document.getElementById("overlay").style.width = "100%";
-	firebase.database().ref('/now_account/now_ID').once('value', function(snapshot){ 
-								
+	return new Promise(function(resolve, reject){
+		firebase.database().ref('/now_account/now_ID').once('value', function(snapshot){ 
+								console.log('read_now\n');
 								now_account = snapshot.val().trim();
 								if(now_account == ''){
     									window.history.forward(1);
@@ -57,8 +58,12 @@ function read_now_account(){
 								}else{
 									document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
 								}
+								console.log(now_account);
 								document.getElementById("overlay").style.width = "0";
+															
+								resolve(now_account);
 							});
+		});
 }
 
 
