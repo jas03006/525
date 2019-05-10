@@ -88,6 +88,28 @@ textarea::-webkit-scrollbar-thumb {
 	background-color: #3ea99f; 
 }
 
+input{
+	position: relative;
+	left: 2%;
+	padding: 9px 15px;
+	//padding-top:1%;
+	//padding-left:1.5%;
+	border: 2px solid #748695;
+	border-radius:4px;
+	height:80px;
+	width:22%;
+	font-family: 'Merriweather', serif;
+	font-size:19pt;
+	 letter-spacing: normal;
+  line-spacing: 10px;
+  line-height: 130%;
+	 resize: none;
+	background-color: #f8f8f8;
+	
+	// resize: vertical;
+}
+
+
 #Title{
 	height:35px;
 }
