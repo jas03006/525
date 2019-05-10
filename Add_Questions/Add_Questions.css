@@ -3,6 +3,10 @@ body {
   font-size:16px;
   color:#555555; 
 }
+
+.fas.fa-pencil-alt{
+  margin-top: 6px;
+}
 .md-stepper-horizontal {
   user-select: none;
 	display:table;
@@ -45,7 +49,8 @@ body {
   transform: translateY(-3px);
   background-color:#009E3D;
 }
-.md-stepper-horizontal.green .md-step.active .md-step-circle {
+.md-stepper-horizontal.green .md-step.active .md-step-circle,
+.md-stepper-horizontal.green .md-step.working .md-step-circle {
 	background-color:#00AE4D;
 }
 .md-stepper-horizontal .md-step.editable .md-step-circle {
@@ -53,11 +58,6 @@ body {
 	-o-transform: scaleX(-1);
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
-}
-.md-stepper-horizontal .md-step.working .md-step-circle:before {
-	font-family:'FontAwesome';
-	font-weight:100;
-	content: "\f128";
 }
 .md-stepper-horizontal .md-step .md-step-title {
 	margin-top:16px;
@@ -69,7 +69,8 @@ body {
 	text-align: center;
 	color:rgba(0,0,0,.26);
 }
-.md-stepper-horizontal .md-step.active .md-step-title {
+.md-stepper-horizontal .md-step.active .md-step-title,
+.md-stepper-horizontal .md-step.working .md-step-title{
 	font-weight: 600;
 	color:rgba(0,0,0,.87);
 }
@@ -136,40 +137,49 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: center;
   margin: 20px;
 }
+.fas.fa-caret-left{
+  display: table;
+  position: relative;
+  top: -33px;
+  left: 8px;
+}
+.fas.fa-caret-right{
+  display: table;
+  position: relative;
+  top: -33px;
+  left: 2px;
+}
 .helper{
-  
   #border: 1px solid red;
   position: relative;
   margin: auto;
   text-align: right;
   width: 45px;
   height: 50px;
-  top: -40px;
+  top: -45px;
   left: -50px;
   cursor: default;
 }
 .numDiv{
   display: inline-block;
   position: relative;
-  top: -20px;
+  top: -27px;
   #border: 1px solid black;
-  height: 60px;
+  height: 70px;
+  width: 100px;
 }
 .numPick, .num{
   user-select: none;
-  #border: 1px solid blue;
-  
   vertical-align: top;
   cursor: default;
   font-family: 'Merriweather', serif;
-  font-size: 22px;
+  font-size: 30px;
   text-align: right;
   margin: 10px;
-  width: 40px;
-  height: 36px;
+  width: 70px;
+  height: 40px;
   cursor: pointer;
-  padding-top: 4px;
-  padding-right: 4px;
+  padding: 4px;
   border-radius: 17px;
 }
 

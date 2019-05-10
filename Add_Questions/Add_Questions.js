@@ -23,6 +23,7 @@ function addQuestionBox(textline){
   var numDiv = document.createElement("div");
   var num = document.createElement("div");
   var helpDiv = document.createElement("div");
+  var arrowDiv = document.createElement("div");
   var deleteButton = document.createElement("div");
   var question = document.createElement("textarea");
   var buttonDiv = document.createElement("div");
@@ -41,7 +42,10 @@ function addQuestionBox(textline){
   }
   //Enter listener
   question.addEventListener('keyup', enterEvent);
+  arrowDiv.className = "fas fa-caret-left";
+  
   num.innerHTML = "Q" + questionNum + ". ";
+  num.appendChild(arrowDiv);
   num.className = "num";
   numDiv.className = "numDiv";
   num.addEventListener('click', numberClick);
@@ -52,6 +56,7 @@ function addQuestionBox(textline){
   deleteButton.className = "fas fa-minus-circle";
   num.id = questionNum;
   deleteButton.addEventListener('click', questionDelete);
+  
   numDiv.appendChild(num);
   numDiv.appendChild(helpDiv);
   
@@ -104,7 +109,7 @@ function myMoveLeft(elem) {
       if(pos == 25){
         elem.style.visibility = "visible";
       }
-      elem.style.left = pos + 'px';
+      elem.style.left = (pos - 10) + 'px';
       elem.style.opacity = (25 - pos) * 0.04;
       pos--;
     }
@@ -120,7 +125,7 @@ function myMoveRight(elem) {
       clearInterval(id);
       elem.style.visibility = "hidden";
     } else {
-      elem.style.left = pos + 'px';
+      elem.style.left = (pos - 10) + 'px';
       elem.style.opacity = (24 - pos) * 0.04;
       pos++;
     }
@@ -129,14 +134,15 @@ function myMoveRight(elem) {
 }
 
 function numberClick(){
-    if (this.className != event.target.className)
-      return;
+    // if (this.className != event.target.className)
+    //   return;
     
   if(this.className == "num"){
     var del = this.parentElement.children[1].children[0];
     this.style.fontWeight = "900";
     
     this.className = "numPick"
+    this.children[0].className = "fas fa-caret-right";
     myMoveLeft(del);
   }
   else if(this.className == "numPick"){
@@ -144,7 +150,7 @@ function numberClick(){
     
     this.style.fontWeight = "normal";
     this.className = "num"
-    
+    this.children[0].className = "fas fa-caret-left";
     myMoveRight(del);
   }
 }
@@ -175,19 +181,16 @@ function myDark(elem) {
 }
 
 function numberHover(){
-  //console.log(event.target.className, this.className);
-  if (this.className != event.target.className){
-    return;
-  }
-  myBright(this);
+  var arrow = this.children[0];
+  arrow.style.left = "5px";
+  //arrow.className = "fas fa-caret-right";
+  //myBright(this);
 }
 
 function numberHoverOut(){
-  //console.log(event.target.className, this.className);
-  if (this.className != event.target.className){
-    return;
-  }
-  myDark(this);
+  var arrow = this.children[0];
+  arrow.style.left = "8px";
+  //arrow.className = "fas fa-caret-left";
 }
 function myMoveDown(elem) {
   var pos = -25;
@@ -246,8 +249,12 @@ function questionDelete(){
     var question = document.getElementById(i + 1);
     //console.log(question);
     if(question != null){
+      var arrow = document.createElement("div");
+
+      arrow.className = "fas fa-caret-left";
       question.id = i;
       question.innerHTML = "Q" + i + ". ";
+      question.appendChild(arrow);
       question.parentElement.parentElement.children[1].placeholder = "Write question #" + i + " here";
     }
   }
