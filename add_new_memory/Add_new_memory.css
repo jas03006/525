@@ -4,7 +4,7 @@ li{list-style: none;}
 a{text-decoration: none;}
 
 /*header*/
-header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+header {height:75px; background-color: #4887f1; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
 .header_wrapper{width:1170px;margin: 0 auto;}
 
 .logo {}
@@ -34,7 +34,7 @@ body {
 
 .stage_title{
 	padding-bottom:2%;
-	font-size: 40px;
+	font-size: 30px;
 	color: black;//#359087;
 	font-weight: bold;
 }
@@ -50,7 +50,7 @@ body {
 	padding-left:2%;
 	padding-top:2%;
 	padding-bottom:1%;
-	font-size: 30px;
+	font-size: 25px;
 	color: black;//#3ea99f;
 	font-weight: bold;
 }
@@ -58,16 +58,21 @@ body {
 textarea{
 	position: relative;
 	left: 2%;
-	padding-top:1%;
-	padding-left:1.5%;
+	padding: 9px 15px;
+	//padding-top:1%;
+	//padding-left:1.5%;
 	border: 2px solid #748695;
-	border-radius:8px;
+	border-radius:4px;
 	height:80px;
 	width:88%;
 	font-family: 'Merriweather', serif;
-	font-size:16pt;
+	font-size:19pt;
+	 letter-spacing: normal;
+  line-spacing: 10px;
+  line-height: 130%;
 	 resize: none;
 	background-color: #f8f8f8;
+	
 	// resize: vertical;
 }
 textarea:focus{
@@ -114,7 +119,9 @@ textarea::-webkit-scrollbar-thumb {
 	vertical-align:top; 
 } 
 
+
 .confirm_button {
+	/*
 	//-moz-box-shadow: 0px 10px 14px -7px #276873;
 	//-webkit-box-shadow: 0px 10px 14px -7px #276873;
 	box-shadow: 0px 10px 14px -7px #276873;
@@ -132,8 +139,21 @@ textarea::-webkit-scrollbar-thumb {
 	padding:12px 30px;
 	text-decoration:none;
 	//text-shadow:0px 1px 0px #3d768a;
-	
+	*/
 	//position: relative;
-	margin-left: 74%;
+	margin-left: 80%;
 	//left: 820px;
+	
+	user-select: none;
+	background-color:#25ba4d;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:14px 29px;
+	text-decoration:none;
 }
