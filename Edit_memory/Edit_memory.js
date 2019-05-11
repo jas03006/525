@@ -41,9 +41,10 @@ function add_new_memory_db(){
 		}
 		create_new_memory_db(); 
 		write_new_memory_db();
+		change_memory_in_flowcharts_db( title_value);
 		document.getElementById("overlay").style.width = "0";
-		window.history.forward(1);
-		location.replace("../memory.html");
+		//window.history.forward(1);
+		//location.replace("../memory.html");
 	}else{
 		document.getElementById("overlay").style.width = "0";
 	}
@@ -80,9 +81,11 @@ function alert_error( ){
 		document.getElementsByClassName("stage_subtitle")[0].style.color = 'red';
 		title_.style.borderColor = 'red';
 		no_error = false;
+		document.getElementById("null_title").style.display = 'block';
 		title_.focus();
 	}else{
 		document.getElementsByClassName("stage_subtitle")[0].style.color = 'black';
+		document.getElementById("null_title").style.display = 'none';
 		title_.style.borderColor = '#748695';
 	}
 
@@ -117,7 +120,6 @@ function write_new_memory_db(){
 		With_whom: with_.value.trim(),
 		importance: importance_
 	});
-
 	return false;
 }
 
@@ -173,6 +175,48 @@ function read_memory_db( ID ){
 							});
 }
 
+
+function change_memory_in_flowcharts_db( past_title ){
+  var projects =  firebase.database().ref("data/testuser1/project");
+  projects.once('value', function(snapshot){
+      	var myValue = snapshot.val();
+      	if(myValue == null){
+        		return;
+      	}
+	var project_keys = Object.keys(myValue);
+
+	for(var i = 0; i < project_keys.length; i++){
+		var target_key;
+		var flowchart = myValue[project_keys[i]]['flowchart'];
+		var memory_keys = Object.keys(flowchart);
+		for(var j = 0; j <  memory_keys.length; j++){
+			if ( flowchart[memory_keys[j]]['title'].trim() == past_title.trim()){
+				target_key = memory_keys[j];
+				console.log(target_key);
+				break;
+			}
+		}
+		var YYYYMMDD = parseDate(date_.value);
+		var updates = {};
+		updates['title'] = title_.value.trim();
+		updates['date'] = YYYYMMDD[2];
+		updates['month'] =YYYYMMDD[1];
+		updates['year'] = YYYYMMDD[0];
+		updates['importance'] = importance_;	
+		firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).update(updates);
+	}
+	window.history.forward(1);
+	location.replace("../memory.html");
+  });
+}
+
+function parseDate(date){
+  var dates = date.split("-");
+  for(var i = 0; i < dates.length; i++){
+    dates[i] = parseInt(dates[i]);
+  }
+  return dates;
+}
 
 function go_main(){
     // 뒤로가기 누르면 다시 앞페이지로 이동

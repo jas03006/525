@@ -38,8 +38,8 @@ function add_new_memory_db( check ){
 		create_new_memory_db(); 
 		write_new_memory_db();
 		document.getElementById("overlay").style.width = "0";
-		window.history.forward(1);
-		location.replace("../memory.html");
+		//window.history.forward(1);
+		//location.replace("../memory.html");
 	}else{
 		document.getElementById("overlay").style.width = "0";
 	}
@@ -139,8 +139,46 @@ function write_new_memory_db(){
 		With_whom: with_.value.trim(),
 		importance: importance_
 	});
-
+	update_flowchart_db();
 	return false;
+}
+
+function update_flowchart_db(){
+	var YYYYMMDD = parseDate(date_.value.trim());
+	var projects =  firebase.database().ref("data/testuser1/project");
+
+	 projects.once('value', function(snapshot){
+      		var myValue = snapshot.val();
+      		if(myValue == null){
+        			return;
+      		}
+		var project_keys = Object.keys(myValue);
+
+	for(var i = 0; i < project_keys.length; i++){
+		var  tableHis = firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart");
+		var dic = {
+      			title:  title_.value.trim(),
+       			year: YYYYMMDD[0],
+        			month: YYYYMMDD[1],
+       			date: YYYYMMDD[2],
+      			importance: importance_,
+        			comment: ""
+     		 };
+    		console.log(tableHis);
+    		tableHis.push(dic);
+	}
+	
+		window.history.forward(1);
+		location.replace("../memory.html");
+	});
+}
+
+function parseDate(date){
+  var dates = date.split("-");
+  for(var i = 0; i < dates.length; i++){
+    dates[i] = parseInt(dates[i]);
+  }
+  return dates;
 }
 
 

@@ -55,6 +55,12 @@ body {
 	font-weight: bold;
 }
 
+.error_description{
+	padding-left:2%;
+	color: red;
+	display: none;
+}
+
 textarea{
 	position: relative;
 	left: 2%;

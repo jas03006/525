@@ -50,7 +50,7 @@ function readFromDatabase() {
       var currentKey = keyList[i];
       var currentDate = myValue[currentKey]['Date'];
       var cImp = myValue[currentKey]['importance'];
-      
+
       var currentImp = ""
 
       switch (cImp){
@@ -221,12 +221,41 @@ function delete_memory(obj){
 
   console.log(memory_name);
   if (confirm('Are you sure you want to Delete? This cannot be undone.')) {
-  //firebase.database().ref('/data/' + now_account + '/memory/'+memory_name).remove();
-    window.history.forward(1);
-    location.reload();
-} else {
+  firebase.database().ref('/data/' + now_account + '/memory/'+memory_name).remove();
+
+  //also delet in flowchart for each projects
+    delete_memory_in_flowcharts(memory_name);
+  } else {
     // Do nothing!
+  }
 }
+
+function delete_memory_in_flowcharts( memory_title ){
+  var projects =  firebase.database().ref("data/testuser1/project");
+  projects.once('value', function(snapshot){
+      	var myValue = snapshot.val();
+      	if(myValue == null){
+        		return;
+      	}
+	var project_keys = Object.keys(myValue);
+
+	for(var i = 0; i < project_keys.length; i++){
+		var target_key;
+		var flowchart = myValue[project_keys[i]]['flowchart'];
+		var memory_keys = Object.keys(flowchart);
+		for(var j = 0; j <  memory_keys.length; j++){
+			if ( flowchart[memory_keys[j]]['title'].trim() == memory_title.trim()){
+				target_key = memory_keys[j];
+				console.log(target_key);
+				//firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).remove();
+				break;
+			}
+		}
+		firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).remove();
+	}
+	//window.history.forward(1);
+    	location.reload();
+  });
 }
 
 function hover(id) {

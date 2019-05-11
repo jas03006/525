@@ -5,18 +5,18 @@ var currMemo = "";
 var framePinName = -1;
 var yearNum = [];
 var deleteShowing = 0;
-var config = {
+/*var config = {
       apiKey: "AIzaSyDAB7VdqDpWJ9-LPG9rT5H7dWR6m8EaGrQ",
     databaseURL: "https://hci525.firebaseio.com/"
     };
 firebase.initializeApp(config);
-
+*/
 var currentProject = "TEST PROJECT";
 var projects = firebase.database().ref("data/testuser1/project");
 var memoRef = firebase.database().ref("data/testuser1/memory");
 var tableHis;
-//memos = [];
-memos = [{title: "1", year: 2018, month: 5, date: 1, comment: "Hello", importance: 2}, {title: "2", year: 2018, month: 5, date: 5, comment: "", importance: 2}, {title: "3", year: 2018, month: 5, date: 3, comment: "", importance: 1}, {title: "4", year: 2015, month: 5, date: 4, comment: "", importance: 2}, {title: "5", year: 2018, month: 12, date: 31, comment: "", importance: 1}];
+memos = [];
+//memos = [{title: "1", year: 2018, month: 5, date: 1, comment: "Hello", importance: 2}, {title: "2", year: 2018, month: 5, date: 5, comment: "", importance: 2}, {title: "3", year: 2018, month: 5, date: 3, comment: "", importance: 1}, {title: "4", year: 2015, month: 5, date: 4, comment: "", importance: 2}, {title: "5", year: 2018, month: 12, date: 31, comment: "", importance: 1}];
 
 function parseDate(date){
   var dates = date.split("-");
@@ -519,7 +519,7 @@ function confirm(){
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Building_Stroy/Building_Story.html");
+  location.replace("../Building_Story/Building_Story.html");
 }
 
 initialize();
