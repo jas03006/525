@@ -5,26 +5,50 @@ var currMemo = "";
 var framePinName = -1;
 var yearNum = [];
 var deleteShowing = 0;
-
-var firebaseConfig = {
-    apiKey: "AIzaSyDAB7VdqDpWJ9-LPG9rT5H7dWR6m8EaGrQ",
-    authDomain: "hci525.firebaseapp.com",
-    databaseURL: "https://hci525.firebaseio.com",
-    projectId: "hci525",
-    storageBucket: "hci525.appspot.com",
-    messagingSenderId: "299033067890",
-    appId: "1:299033067890:web:39f73e6323e5bb1f"
-  };
-  // Initialize Firebase
-
-setTimeout(firebase.initializeApp(firebaseConfig), 100);
+var config = {
+      apiKey: "AIzaSyDAB7VdqDpWJ9-LPG9rT5H7dWR6m8EaGrQ",
+    databaseURL: "https://hci525.firebaseio.com/"
+    };
+firebase.initializeApp(config);
 
 var currentProject = "SS Electronics";
 var projects = firebase.database().ref("data/testuser1/project");
+var memoRef = firebase.database().ref("data/testuser1/memory");
 var tableHis;
-memos = [];
-//memos = [{title: "SS internship", year: 2016, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2016, month: 9, date: 18, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
-
+//memos = [];
+memos = [{title: "SS internship", year: 2017, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2017, month: 1, date: 25, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
+function parseDate(date){
+  var dates = date.split("-");
+  for(var i = 0; i < dates.length; i++){
+    dates[i] = parseInt(dates[i]);
+  }
+  return dates;
+}
+function loadMemos(){
+  memoRef.once('value', function(snapshot){
+      var myValue = snapshot.val();
+      if(myValue == null){
+        return;
+      }
+    var questions = Object.keys(myValue);
+    console.log(questions);
+    for(var i = 0; i < questions.length; i++){
+      var q = myValue[questions[i]];
+      var dates = parseDate(q.Date);
+      var dic = {
+        title: questions[i],
+        year: dates[0],
+        month: dates[1],
+        date: dates[2],
+        importance: q.importance,
+        comment: ""
+      }
+      
+      memos.push(dic);
+    }
+    drawOnce();
+  });
+}
 function countYear(year){
   var len = yearNum.length;
   
@@ -95,8 +119,7 @@ function drawYear(){
     chart.appendChild(newYear);
   }
 }
-
-function initialize(){
+function drawOnce(){
   drawYear();
   var pinNum = memos.length;
   
@@ -115,6 +138,24 @@ function initialize(){
     }
     //drawMemo(memos[i]);
   }
+}
+function initialize(){
+  projects.once('value', function(snapshot){
+      var myValue = snapshot.val();
+      if(myValue == null){
+        return;
+      }
+    var questions = Object.keys(myValue);
+    
+    for(var i = 0; i < questions.length; i++){
+      var q = myValue[questions[i]];
+      
+      if(q.title == currentProject){
+        tableHis = firebase.database().ref("data/testuser1/project/" + questions[i] + "/flowchart");
+      }
+    }
+  });
+  loadMemos();
 }
  
 function drawPin(pins, currYear, left, top, width){
@@ -268,7 +309,7 @@ function moveLeft(){
   while (chart.hasChildNodes()){
     chart.removeChild(chart.firstChild);
   }
-  initialize();
+  drawOnce();
   
   if(framePinName != -1){
     var maintainPin = document.getElementById(framePinName);
@@ -296,7 +337,7 @@ function moveRight(){
     while (chart.hasChildNodes()){
       chart.removeChild(chart.firstChild);
     }
-    initialize();
+    drawOnce();
     
     if(framePinName != -1){
       var maintainPin = document.getElementById(framePinName);
