@@ -6,7 +6,24 @@ var framePinName = -1;
 var yearNum = [];
 var deleteShowing = 0;
 
-memos = [{title: "SS internship", year: 2016, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2016, month: 9, date: 18, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
+var firebaseConfig = {
+    apiKey: "AIzaSyDAB7VdqDpWJ9-LPG9rT5H7dWR6m8EaGrQ",
+    authDomain: "hci525.firebaseapp.com",
+    databaseURL: "https://hci525.firebaseio.com",
+    projectId: "hci525",
+    storageBucket: "hci525.appspot.com",
+    messagingSenderId: "299033067890",
+    appId: "1:299033067890:web:39f73e6323e5bb1f"
+  };
+  // Initialize Firebase
+
+setTimeout(firebase.initializeApp(firebaseConfig), 100);
+
+var currentProject = "SS Electronics";
+var projects = firebase.database().ref("data/testuser1/project");
+var tableHis;
+memos = [];
+//memos = [{title: "SS internship", year: 2016, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2016, month: 9, date: 18, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
 
 function countYear(year){
   var len = yearNum.length;

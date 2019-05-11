@@ -1,7 +1,10 @@
 ﻿var questionNum = 1;
 var showing = 0;
-var currentProject = "SS Electronics";
-var tableHis = firebase.database().ref("data/testuser1/project/" + currentProject + "/questions");
+
+var currentProject = "TEST PROJECT";
+var projects = firebase.database().ref("data/testuser1/project");
+var tableHis;
+//= firebase.database().ref("data/testuser1/project/asdfasdf/questions");
 var currQuestions = [];
 
 //Write current questions into currQuestions array
@@ -77,8 +80,31 @@ function tableAddQuestions(){
 
 function initialize(){
   document.getElementById("project name").innerHTML = currentProject;
-  addQuestionBox("");
-  tableLoadQuestions();
+  //Find reference with current project
+  projects.once('value', function(snapshot){
+      var myValue = snapshot.val();
+      if(myValue == null){
+        return;
+      }
+    var questions = Object.keys(myValue);
+    
+    for(var i = 0; i < questions.length; i++){
+      var q = myValue[questions[i]];
+      
+      if(q.title == currentProject){
+        console.log(q.title);
+        tableHis = firebase.database().ref("data/testuser1/project/" + questions[i] + "/questions");
+        addQuestionBox("");
+        tableLoadQuestions();
+      }
+    }
+  });
+  
+  
+  
+  //currQuestions.push({draft: "",
+                      //  layout: "",
+                   //     memory: ""})
   //addQuestionBox("");
 }
 
