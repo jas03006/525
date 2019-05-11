@@ -20,42 +20,17 @@ function makeap() {
   var projectWrapper = document.createElement("div");
   projectWrapper.className = "project_wrapper";
   projectWrapper.id = "project0"; // = add project tab
-  projectWrapper.addEventListener("mouseleave", function () {
-    //leave
-    console.log("leave\t"+ projectWrapper.id);
-    projectImage1.style.display = 'block';
-    projectImage2.style.display = 'none';
-    projectOptions.style.display = 'none';    
-  });
-  projectWrapper.addEventListener("mouseenter", function () {
-    //enter
-    console.log("enter\t"+ projectWrapper.id);
-    projectImage1.style.display = 'none';
-    projectImage2.style.display = 'block';    
-    projectOptions.style.display = 'block';    
-  });
 
-  var projectImage =document.createElement("div");
+
+  var projectImage = document.createElement("div");
+  projectImage.className = "project_imag";
+  projectImage.id = "project0_image";
+  projectImage.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
   projectWrapper.appendChild(projectImage);
-
-  var projectImage1 = document.createElement("div");
-  projectImage1.className = "project_imag1";
-  projectImage1.id = "project0_image1";
-  projectImage1.innerHTML = '<img src="./src/image/project/new_project.png" width="200" border="0">';
-  projectImage.appendChild(projectImage1);
-
-  var projectImage2 = document.createElement("div");
-  projectImage2.className = "project_image2";
-  projectImage2.id = "project0_image2";
-  projectImage2.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
-  projectImage2.style.display = 'none';
-  projectImage.appendChild(projectImage2);
-
 
   var projectOptions = document.createElement("div");
   projectOptions.className = "project_options";
-  projectOptions.innerHTML = '<a href="./Add_Questions/Add_Questions.html">ADD PROJECT</a>';
-  projectOptions.style.display = 'none';  
+  projectOptions.innerHTML = '<h1>ADD PROJECT</h1>';
   projectImage.appendChild(projectOptions);
 
   document.getElementById("projects").appendChild(projectWrapper);  
@@ -70,14 +45,20 @@ function makep(i){
     projectWrapper.addEventListener("mouseleave", function () {
       //leave
       console.log("leave\t"+ projectWrapper.id);
-      projectOptions1.style.display = 'block';    
-      projectOptions2.style.display = 'none';    
+      TitleDate.style.display = 'block';    
+      EditDiv.style.display = 'none';    
+      WriteDiv.style.display = 'none';    
+      TitleDateh.style.display = 'none';    
+      DeleteDiv.style.display = 'none';    
     });
     projectWrapper.addEventListener("mouseenter", function () {
       //enter
       console.log("enter\t"+ projectWrapper.id);
-      projectOptions1.style.display = 'none';    
-      projectOptions2.style.display = 'block';    
+      TitleDate.style.display = 'none';    
+      EditDiv.style.display = 'block';    
+      WriteDiv.style.display = 'block';    
+      TitleDateh.style.display = 'block';    
+      DeleteDiv.style.display = 'block';    
     });
     var projectImage =document.createElement("div");
     projectWrapper.appendChild(projectImage);
@@ -88,26 +69,64 @@ function makep(i){
     projectImage1.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
     projectImage.appendChild(projectImage1);
 
-    var projectOptions1 = document.createElement("div");
-    projectOptions1.className = "project_options";
-    projectOptions1.innerHTML = projectTitles[i] + "<br>" + projectDates[i];
-    projectOptions1.style.display = 'block';  
-    projectImage.appendChild(projectOptions1);
+    var TitleDate = document.createElement("div");
+    TitleDate.innerHTML = "<h1>"+projectTitles[i] + "</h1><br>" + projectDates[i];
+    TitleDate.style.display = 'block';
+    TitleDate.id = "TitleDate";
+    projectImage.appendChild(TitleDate);
 
-    var projectOptions2 = document.createElement("div");
-    projectOptions2.className = "project_options";
-    projectOptions2.innerHTML = '<a href="./Add_Questions/Add_Questions.html">EDIT PROJECT</a><br><a href="./Draft/Draft.html">WRITE DRAFT</a><br><a href="#">DELETE PROJECT</a>';
-    projectOptions2.style.display = 'none';  
-    projectImage.appendChild(projectOptions2);
+    var TitleDateh = document.createElement("div");
+    TitleDateh.innerHTML = "<h1>"+projectTitles[i] + "</h1><br>" + projectDates[i];
+    TitleDateh.style.display = 'none';
+    TitleDateh.id = "TitleDateh";
+    projectImage.appendChild(TitleDateh);
+
+    var EditDiv = document.createElement("div");
+    var EditButton = document.createElement("a");
+    EditButton.id = "Button";
+    EditButton.innerHTML = 'Edit project';
+    EditButton.addEventListener("click", Edit);
+    EditDiv.appendChild(EditButton);
+    EditDiv.id = "EditDiv";
+    EditDiv.style.display = 'none';  
+    projectImage.appendChild(EditDiv);
+
+    var WriteDiv = document.createElement("div");
+    var WriteButton = document.createElement("a");
+    WriteButton.id = "Button";
+    WriteButton.innerHTML = 'Write draft';
+    WriteButton.addEventListener("click", Write);
+    WriteDiv.appendChild(WriteButton);
+    WriteDiv.id = "WriteDiv";
+    WriteDiv.style.display = 'none';  
+    projectImage.appendChild(WriteDiv);
+
+    var DeleteDiv = document.createElement("div");
+    var DeleteButton = document.createElement("a");
+    DeleteButton.innerHTML = '<i class="fas fa-times"></i>';
+    DeleteButton.id = "DeleteButton";
+    DeleteButton.addEventListener("click", Delete);
+    DeleteDiv.appendChild(DeleteButton);
+    DeleteDiv.id = "DeleteDiv";
+    DeleteDiv.style.display = 'none';  
+    projectImage.appendChild(DeleteDiv);
 
     document.getElementById("projects").appendChild(projectWrapper);  
 
   }
 
-  function hover(id) {
-    console.log("hover" + id);
-  }
+  function Edit() {
+  location.replace("./Add_Questions/Add_Questions.html");
 
+  }
+  function Write() {
+  location.replace("./Draft/Draft.html");
+
+  }
+  function Delete() {
+  location.replace("#");
+
+  }
   initialize();
 
 
