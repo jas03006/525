@@ -45,9 +45,13 @@
 	<div class='stage_title'>Add new Memory </div>
 	<div class='stage_description'>Add New Memory with following format.</div>
 	
-	<div class='stage_subtitle'>Title</div>
+	<div class='stage_subtitle'>Title</div> 
+	<span id = 'null_title' class='error_description'>You should write the title.</span>
+	<span id = 'existing_title' class='error_description'>This title already exists.</span>
 	<textarea id = 'Title' required> test_memory1 </textarea>
+
 	<div class='stage_subtitle'>Date</div>
+	<div id = 'null_date' class='error_description'>You should select the date.</div>
 	<input  type="date" id = 'Date' required>  </input>
 	<div class='stage_subtitle'>Where</div>
 	<textarea id = 'Where'> KAIST </textarea>
@@ -63,11 +67,12 @@
 	<textarea id = 'What_you_felt'> Sad </textarea>
 	
 	<div class='stage_subtitle'>Importance</div>
+	<span id = 'null_importance' class='error_description'>You should select importance.</span>
 	<div id='star'><span class="star_rating" OnClick="change_star(event)">
 		<span></span>
 	</span></div>
 	
-	<a href="#" class="confirm_button" onclick="add_new_memory_db()">confirm</a>
+	<a href="#" class="confirm_button" onclick="confirm()">confirm</a>
 
 
 </div>
