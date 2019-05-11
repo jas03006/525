@@ -6,7 +6,7 @@ a{text-decoration: none;}
 /*common*/
 
 /*header*/
-header {height:75px; background-color: #006F84; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
+header {height:75px; background-color:  #4887f1; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
 .header_wrapper{width:1170px;margin: 0 auto;}
 
 .logo {}
