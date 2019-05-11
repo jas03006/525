@@ -1,8 +1,10 @@
 ﻿var questionNum = 1;
 var showing = 0;
-var currentProject = "SS Electronics";
+
+var currentProject = "TEST PROJECT";
 var projects = firebase.database().ref("data/testuser1/project");
 var tableHis;
+//= firebase.database().ref("data/testuser1/project/asdfasdf/questions");
 var currQuestions = [];
 
 //Write current questions into currQuestions array
@@ -92,12 +94,17 @@ function initialize(){
       if(q.title == currentProject){
         console.log(q.title);
         tableHis = firebase.database().ref("data/testuser1/project/" + questions[i] + "/questions");
+        addQuestionBox("");
+        tableLoadQuestions();
       }
     }
   });
   
-  addQuestionBox("");
-  tableLoadQuestions();
+  
+  
+  //currQuestions.push({draft: "",
+                      //  layout: "",
+                   //     memory: ""})
   //addQuestionBox("");
 }
 
