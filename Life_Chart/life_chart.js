@@ -11,12 +11,13 @@ var config = {
     };
 firebase.initializeApp(config);
 
-var currentProject = "SS Electronics";
+var currentProject = "TEST PROJECT";
 var projects = firebase.database().ref("data/testuser1/project");
 var memoRef = firebase.database().ref("data/testuser1/memory");
 var tableHis;
 //memos = [];
-memos = [{title: "SS internship", year: 2017, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2017, month: 1, date: 25, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
+memos = [{title: "1", year: 2018, month: 5, date: 1, comment: "Hello", importance: 2}, {title: "2", year: 2018, month: 5, date: 5, comment: "", importance: 2}, {title: "3", year: 2018, month: 5, date: 3, comment: "", importance: 1}, {title: "4", year: 2015, month: 5, date: 4, comment: "", importance: 2}, {title: "5", year: 2018, month: 12, date: 31, comment: "", importance: 1}];
+
 function parseDate(date){
   var dates = date.split("-");
   for(var i = 0; i < dates.length; i++){
@@ -24,30 +25,122 @@ function parseDate(date){
   }
   return dates;
 }
+function memoSort(){
+  var temp = memos;
+  var result = [];
+  var min = 0;
+  //console.log(temp);
+  while(temp.length != 0){
+    min = 0;
+    for(var j = 0; j < temp.length; j++){
+      //console.log(temp[j]);
+      if(temp[min].date > temp[j].date){
+        min = j;
+      }
+    }
+    result.push(temp[min]);
+    temp.splice(min, 1);
+  }
+  temp = result;
+  result = [];
+  while(temp.length != 0){
+    min = 0;
+    for(var j = 0; j < temp.length; j++){
+      //console.log(temp[j]);
+      if(temp[min].month > temp[j].month){
+        min = j;
+      }
+    }
+    result.push(temp[min]);
+    temp.splice(min, 1);
+    
+  }
+  temp = result;
+  result = [];
+  while(temp.length != 0){
+    min = 0;
+    for(var j = 0; j < temp.length; j++){
+      //console.log(temp[j]);
+      if(temp[min].year > temp[j].year){
+        min = j;
+      }
+    }
+    result.push(temp[min]);
+    temp.splice(min, 1);
+    
+  }
+  memos = result;
+  //console.log(memos);
+}
 function loadMemos(){
-  memoRef.once('value', function(snapshot){
+  
+    tableHis.once('value', function(snapshot){
       var myValue = snapshot.val();
       if(myValue == null){
+        memoRef.once('value', function(snapshot){
+          var myValue = snapshot.val();
+          if(myValue == null){
+            return;
+          }
+        var questions = Object.keys(myValue);
+        //console.log(questions);
+        for(var i = 0; i < questions.length; i++){
+          var q = myValue[questions[i]];
+          var dates = parseDate(q.Date);
+          var dic = {
+            title: questions[i],
+            year: dates[0],
+            month: dates[1],
+            date: dates[2],
+            importance: q.importance,
+            comment: ""
+          }
+
+          memos.push(dic);
+        }
+        //console.log(memos.length);
+        memoSort();
+        drawOnce();
+      });
         return;
       }
     var questions = Object.keys(myValue);
-    console.log(questions);
+    //console.log(questions);
     for(var i = 0; i < questions.length; i++){
       var q = myValue[questions[i]];
-      var dates = parseDate(q.Date);
       var dic = {
-        title: questions[i],
-        year: dates[0],
-        month: dates[1],
-        date: dates[2],
+        title: q.title,
+        year: q.year,
+        month: q.month,
+        date: q.date,
         importance: q.importance,
-        comment: ""
+        comment: q.comment
       }
       
       memos.push(dic);
     }
+    //console.log(memos.length);
+    memoSort();
     drawOnce();
   });
+    
+}
+function saveMemosDB(){
+  console.log("here");
+  tableHis.remove();
+  for(var i = 0; i < memos.length; i++){
+    var q = memos[i];
+    var dic = {
+        title: q.title,
+        year: q.year,
+        month: q.month,
+        date: q.date,
+        importance: q.importance,
+        comment: q.comment
+      };
+    console.log(tableHis);
+    tableHis.push(dic);
+  }
 }
 function countYear(year){
   var len = yearNum.length;
@@ -133,7 +226,7 @@ function drawOnce(){
     if(memos[i].year >= yearStart && memos[i].year < (yearStart + 4)){
       var relLeft = currYear.offsetLeft - canvas.offsetLeft;
       var relTop = currYear.offsetTop - canvas.offsetTop;
-      
+      //console.log(currYear.id);
       drawPin(memos[i], currYear, relLeft, relTop, currYear.offsetWidth);
     }
     //drawMemo(memos[i]);
@@ -149,13 +242,14 @@ function initialize(){
     
     for(var i = 0; i < questions.length; i++){
       var q = myValue[questions[i]];
-      
+      //console.log(q.title, currentProject);
       if(q.title == currentProject){
         tableHis = firebase.database().ref("data/testuser1/project/" + questions[i] + "/flowchart");
+        //console.log("data/testuser1/project/" + questions[i] + "/flowchart");
       }
     }
+    loadMemos();
   });
-  loadMemos();
 }
  
 function drawPin(pins, currYear, left, top, width){
@@ -166,37 +260,48 @@ function drawPin(pins, currYear, left, top, width){
   var frac = Math.round(dateFraction(pins.year, pins.month, pins.date) * 100) / 100;
   var yearCount = countYear(pins.year);
 
+  
+  
   pin.className = "fas fa-pen";
   //pin.id = pins.year.toString() + '.' + pins.month.toString() + '.' + pins.date.toString();
   pin.id = pins.title;
   pinDiv.className = "pinDiv";
-  
 
   if(pins.importance == 3){
     pin.style.color = "#FF0000";
     pin.style.fontSize = "30px";
-    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-47 - yearCount * 30).toString() + "px";
   }
   else if(pins.importance == 2){
     pin.style.color = "#992222";
     pin.style.fontSize = "25px";
-    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+    //console.log(pins, -200 - yearCount * 146);
+    pinDiv.style.top = (-47 - yearCount * 30).toString() + "px";
   }
   else if(pins.importance == 1){
     pin.style.color = "#776666";
     pin.style.fontSize = "25px";
-    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
+    //console.log(pins, -200 - yearCount * 146);
+    pinDiv.style.top = (-47 - yearCount * 30).toString() + "px";
   }
-  
+  //console.log(pinDiv, pinDiv.style.top);
+  //console.log(pins.title, yearCount, pins.year, pins.month);
+  //pinDiv.style.left = (100 + (frac - 0.5) * width - 8 + yearCount * 13).toString() + "px";
   pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
-  
+  //console.log(pins.title, frac, width, yearCount, pinDiv.style.left);
   //pinDiv.style.left = (left + frac * width - 6 - i * 200).toString() + "px";
   //pinDiv.style.left = (-14 + frac * 114).toString() + "%";
   //pinDiv.style.top = (top - 80).toString() + "px";
   pin.addEventListener("click", pinPick);
   pin.addEventListener("mouseover", pinIn);
   pin.addEventListener("mouseout", pinOut);
-  memo.innerHTML = pins.title;
+  if(pins.title.length > 10){
+    memo.innerHTML = pins.title.substring(0, 10) + "..";
+  }
+  else{
+    memo.innerHTML = pins.title;
+  }
+  //memo.innerHTML = pins.title;
   memo.className = "memosOff";
   
   
@@ -215,10 +320,10 @@ function pinIn(){
   if(memoClass == "memosOff"){
     this.parentElement.children[1].className = "memosOn";
     //if(currPin == -1){
-    commentName.innerHTML = this.parentElement.children[1].innerHTML;
+    commentName.innerHTML = this.id;
     currMemo = comment.value;
     //findMemo(currPin.id).comment = comment.value;
-      comment.value = findMemo(this.parentElement.children[1].innerHTML).comment;
+      comment.value = findMemo(this.id).comment;
     //}
     commentDiv.style.visibility = "visible";
   }
@@ -384,7 +489,6 @@ function myMoveRight(elem) {
   
 }
 
-
 function deleteButtonShow(){
   var del = document.getElementById("deleteButton");
   
@@ -411,6 +515,7 @@ function goUploadQuestion(){
 }
 
 function confirm(){
+  saveMemosDB();
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
