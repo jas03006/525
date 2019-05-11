@@ -16,9 +16,9 @@ var firebaseConfig = {
     appId: "1:299033067890:web:39f73e6323e5bb1f"
   };
   // Initialize Firebase
-if (!firebase.apps.length) {
-firebase.initializeApp(firebaseConfig);
-}
+
+setTimeout(firebase.initializeApp(firebaseConfig), 100);
+
 var currentProject = "SS Electronics";
 var projects = firebase.database().ref("data/testuser1/project");
 var tableHis;
