@@ -1,9 +1,85 @@
 ﻿var questionNum = 1;
 var showing = 0;
+var currentProject = "SS Electronics";
+var tableHis = firebase.database().ref("data/testuser1/project/" + currentProject + "/questions");
+var currQuestions = [];
+
+//Write current questions into currQuestions array
+function writeQuestions(){
+  //console.log(currQuestions.length, questionNum);
+  for(var i = 0; i < currQuestions.length; i++){
+    //console.log(document.getElementById((i + 1)));
+    currQuestions[i].layout = document.getElementById("question" + (i + 1)).value;
+  }
+}
+
+//Load and draw Questions from DB
+function tableLoadQuestions(){
+  tableHis.once('value', function(snapshot){
+      var myValue = snapshot.val();
+      if(myValue == null){
+        return;
+      }
+    var questions = Object.keys(myValue);
+    
+    for(var i = 0; i < questions.length; i++){
+      var q = myValue[questions[i]];
+      
+      currQuestions.push({
+        draft: q.draft,
+        layout: q.layout,
+        memory: q.memory
+      });
+      if(i == 0){
+        document.getElementById("question1").value = q.layout;
+      }else if(i > 0){
+        submit((document.getElementById("question" + questionNum)));
+        document.getElementById("question" + questionNum).value = q.layout;
+      }
+    }
+  });
+}
+
+//Delete question from currQuestions array and save it to DB
+function tableDeleteQuestion(idx){
+  currQuestions.splice(idx,1);
+  //console.log(currQuestions);
+}
+//Save currentQuestions array to DB
+function tableSaveQuestions(){
+  //console.log("here");
+  writeQuestions();
+  tableHis.remove();
+  
+  for(var i = 0; i < currQuestions.length; i++){
+    var questionId = i + 1;
+    //console.log(tableHis.child(questionId).draft);
+    tableHis.push({
+      num: questionId,
+      draft: currQuestions[i].draft,
+      layout: currQuestions[i].layout,
+      memory: currQuestions[i].memory
+    });
+    //console.log(document.getElementById(questionId).value);
+  }
+}
+
+function tableAddQuestions(){
+  var questionId = "question" + questionNum;
+      //console.log(tableHis.child(questionId).draft);
+  var dic = {
+    draft: "",
+    layout: document.getElementById(questionId).value,
+    memory: ""
+  };
+  currQuestions.push(dic);
+}
 
 function initialize(){
-  
+  document.getElementById("project name").innerHTML = currentProject;
   addQuestionBox("");
+  tableLoadQuestions();
+  //addQuestionBox("");
 }
 
 function deleteAll(){
@@ -74,6 +150,11 @@ function addQuestionBox(textline){
   
   addButton.addEventListener("click", function (e){
     submit(question);
+    currQuestions.push({draft: "",
+                        layout: "",
+                        memory: ""});
+    tableSaveQuestions();
+    //tableAddQuestions();
   });
   
   addQuestionText.innerHTML = "Add Question";
@@ -182,6 +263,7 @@ function myDark(elem) {
 
 function numberHover(){
   var arrow = this.children[0];
+  
   arrow.style.left = "5px";
   //arrow.className = "fas fa-caret-right";
   //myBright(this);
@@ -247,26 +329,38 @@ function questionDelete(){
   
   for(var i = parseInt(qid.id); i < num; i++){
     var question = document.getElementById(i + 1);
-    //console.log(question);
+    //tableChangeName("question" + (i + 1), "question" + i);
     if(question != null){
       var arrow = document.createElement("div");
-
+      
       arrow.className = "fas fa-caret-left";
       question.id = i;
       question.innerHTML = "Q" + i + ". ";
       question.appendChild(arrow);
+      question.parentElement.parentElement.children[1].id = "question" + i;
       question.parentElement.parentElement.children[1].placeholder = "Write question #" + i + " here";
     }
   }
+  
   questionNum--;
+  tableDeleteQuestion(parseInt(qid.id) - 1);
+  tableSaveQuestions();
 }
 
 function confirm(){
-  for(var i = 0; i < questionNum; i++){
-    var questionId = "question" + (i + 1);
-    console.log(document.getElementById(questionId).value);
+  writeQuestions();
+  for(var i = 0; i < currQuestions.length; i++){
+    if(currQuestions[i].layout == ""){
+      alert("Please fill out all the questions.");
+      return;
+    }
   }
-  deleteAll();
+  tableSaveQuestions();
+  // for(var i = 0; i < questionNum; i++){
+  //   var questionId = "question" + (i + 1);
+  //   console.log(document.getElementById(questionId).value);
+  // }
+  // deleteAll();
 
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
@@ -288,7 +382,7 @@ function enterEvent(e) {
 
 function submit(questionBox){
   var question = questionBox.value;
-  
+
   //Remove enter listener
   questionBox.removeEventListener('keyup', enterEvent);
 
@@ -297,9 +391,11 @@ function submit(questionBox){
   document.getElementById("myButton").remove();
   document.getElementById("confirmDiv").remove();
   questionNum++;
-
+  
   //Add new questionBox
-  addQuestionBox("").focus();
+  addQuestionBox("");
+  
+    //.focus();
 }
 
 initialize();

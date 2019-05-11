@@ -4,6 +4,7 @@ var currPin = -1;
 var currMemo = "";
 var framePinName = -1;
 var yearNum = [];
+var deleteShowing = 0;
 
 memos = [{title: "SS internship", year: 2016, month: 1, date: 31, comment: "Hello", importance: 3}, {title: "AI conference", year: 2016, month: 9, date: 18, comment: "", importance: 2}, {title: "HCI team project", year: 2014, month: 8, date: 7, comment: "", importance: 1}, {title: "OS", year: 2019, month: 6, date: 30, comment: "", importance: 2}, {title: "Dummy", year: 2017, month: 1, date: 30, comment: "", importance: 1}]
 
@@ -116,17 +117,17 @@ function drawPin(pins, currYear, left, top, width){
   if(pins.importance == 3){
     pin.style.color = "#FF0000";
     pin.style.fontSize = "30px";
-    pinDiv.style.top = (-270 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
   }
   else if(pins.importance == 2){
     pin.style.color = "#992222";
     pin.style.fontSize = "25px";
-    pinDiv.style.top = (-270 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
   }
   else if(pins.importance == 1){
     pin.style.color = "#776666";
     pin.style.fontSize = "25px";
-    pinDiv.style.top = (-270 - yearCount * 146).toString() + "%";
+    pinDiv.style.top = (-200 - yearCount * 146).toString() + "%";
   }
   
   pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
@@ -291,12 +292,51 @@ function moveRight(){
   }
 }
 
+function myMoveLeft(elem) {
+  var pos = 25;
+  
+  var id = setInterval(function() {
+    if (pos == 0) {
+      clearInterval(id);
+      elem.style.visibility = "hidden";
+    } else {
+      elem.style.left = (pos - 10) + 'px';
+      elem.style.opacity = (25 - pos) * 0.04;
+      pos--;
+    }
+  }, 1);
+  
+}
+
+function myMoveRight(elem) {
+  var pos = 0;
+  
+  var id = setInterval(function() {
+    if (pos == 25) {
+      clearInterval(id);
+    } else {
+      if(pos == 0){
+        elem.style.visibility = "visible";
+      }
+      elem.style.left = (pos + 850) + 'px';
+      elem.style.opacity = (pos + 24) * 0.04;
+      pos++;
+    }
+  }, 1);
+  
+}
+
+
 function deleteButtonShow(){
-  document.getElementById("deleteButton").style.visibility = "visible";
+  var del = document.getElementById("deleteButton");
+  
+  del.style.visibility = "visible";
 }
 
 function deleteButtonHide(){
-  document.getElementById("deleteButton").style.visibility = "hidden";
+  var del = document.getElementById("deleteButton");
+  
+  del.style.visibility = "hidden";
 }
 
 function deleteComment(self){
@@ -316,7 +356,7 @@ function confirm(){
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Building_Story/Building_Story.html");
+  location.replace("../Building_Stroy/Building_Story.html");
 }
 
 initialize();

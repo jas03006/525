@@ -3,7 +3,12 @@ body {
   font-size:16px;
   color:#555555; 
 }
+
+.fas.fa-pencil-alt{
+  margin-top: 6px;
+}
 .md-stepper-horizontal {
+  user-select: none;
 	display:table;
 	width:100%;
   height: 150px;
@@ -44,7 +49,8 @@ body {
   transform: translateY(-3px);
   background-color:#009E3D;
 }
-.md-stepper-horizontal.green .md-step.active .md-step-circle {
+.md-stepper-horizontal.green .md-step.active .md-step-circle,
+.md-stepper-horizontal.green .md-step.working .md-step-circle {
 	background-color:#00AE4D;
 }
 .md-stepper-horizontal .md-step.editable .md-step-circle {
@@ -52,11 +58,6 @@ body {
 	-o-transform: scaleX(-1);
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
-}
-.md-stepper-horizontal .md-step.working .md-step-circle:before {
-	font-family:'FontAwesome';
-	font-weight:100;
-	content: "\f128";
 }
 .md-stepper-horizontal .md-step .md-step-title {
 	margin-top:16px;
@@ -68,7 +69,8 @@ body {
 	text-align: center;
 	color:rgba(0,0,0,.26);
 }
-.md-stepper-horizontal .md-step.active .md-step-title {
+.md-stepper-horizontal .md-step.active .md-step-title,
+.md-stepper-horizontal .md-step.working .md-step-title{
 	font-weight: 600;
 	color:rgba(0,0,0,.87);
 }
@@ -231,9 +233,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   transform-origin: 10% 70%;
   transform: rotate(-45deg) translateX(6px);
 }
-#commentName{
-  font-weight: bold;
-}
+
 .memosOn, .fixedOn, .fixedOut{
   #border: 1px solid black;
   font-family: "Open Sans" sans-serif;
@@ -254,8 +254,11 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 .memosOff{
   visibility: hidden;
 }
-
+#commentName{
+  font-weight: bold;
+}
 #commentDiv{
+  border: 1px solid #CCCC00;
   padding: 10px;
   text-align: left;
   vertical-align: top;
@@ -264,7 +267,6 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   width: 900px;
   height: 150px;
   background-color: #FFFF99;
-  border: 1px solid black;
   visibility: hidden;
 }
 
@@ -279,23 +281,12 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   height: 115px;
   background-color: #FFFF99;
   font-family: 'Noto Serif', serif;
-  font-size: 22px;
+  font-size: 23px;
   letter-spacing: 0.03em;
   line-height: 140%;
   resize: none;
   outline: none;
   display: inline-block;
-}
-
-.deleteHelper{
-  text-align: right;
-  position: relative;
-  padding-top: 10px;
-  vertical-align: center;
-  height: 60px;
-  width: 50px;
-  left: 895px;
-  top: -185px;
 }
 
 .far.fa-times-circle{
@@ -304,7 +295,19 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   color: #EE0000;
   cursor: pointer;
   position: relative;
+  top: -140px;
+  left: 875px;
   visibility: hidden;
+}
+
+.far.fa-times-circle:hover{
+  color: #DD0000;
+  transform: translateY(-1px);
+  
+}
+.far.fa-times-circle:active{
+  
+  transform: translateY(0px);
 }
 
 #confirmButton:active{
