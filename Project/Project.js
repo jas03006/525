@@ -20,18 +20,17 @@ function makeap() {
   var projectWrapper = document.createElement("div");
   projectWrapper.className = "project_wrapper";
   projectWrapper.id = "project0"; // = add project tab
+  projectWrapper.addEventListener("click", Add);
 
 
   var projectImage = document.createElement("div");
-  projectImage.className = "project_imag";
-  projectImage.id = "project0_image";
-  projectImage.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
+  projectImage.innerHTML = '<img src="./src/image/project/new_project.png" width="200" border="0">';
   projectWrapper.appendChild(projectImage);
 
-  var projectOptions = document.createElement("div");
-  projectOptions.className = "project_options";
-  projectOptions.innerHTML = '<h1>ADD PROJECT</h1>';
-  projectImage.appendChild(projectOptions);
+  var AddProject = document.createElement("div");
+  AddProject.className = "add_project";
+  AddProject.innerHTML = '<h1>ADD PROJECT</h1>';
+  projectImage.appendChild(AddProject);
 
   document.getElementById("projects").appendChild(projectWrapper);  
   temp++;
@@ -115,6 +114,10 @@ function makep(i){
 
   }
 
+  function Add() {
+  location.replace("./Add_Questions/Add_Questions.html");
+
+  }
   function Edit() {
   location.replace("./Add_Questions/Add_Questions.html");
 
