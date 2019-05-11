@@ -164,6 +164,9 @@ function create_new_Project_db(title){
     questions: '' ,
     date: today
   });
+  ref = firebase.database().ref('/data/' + 'testuser1' + '/project/' + title);
+//  ref.child("flowchart").set({});
+//  ref.child("questions").set({});
 }
 
 function read_project_db(){
