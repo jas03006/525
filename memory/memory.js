@@ -41,9 +41,7 @@ function readFromDatabase() {
                                                       function(snapshot) {
 
     var myValue = snapshot.val();
-    console.log(myValue);
     var keyList = Object.keys(myValue);
-    console.log(keyList.length);
     memoryNumber = keyList.length;
     addMemories();
 
@@ -64,13 +62,15 @@ function readFromDatabase() {
       
       var title = document.getElementById("content"+(i+2));
       title.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p><br /><p>'+currentImp+'</p>';
-      var title = document.getElementById("titles"+(i+2));
-      title.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p>';
+      var title2 = document.getElementById("titles"+(i+2));
+      title2.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p>';
+      /*
       console.log(title.innerHTML);
       console.log(myValue[currentKey]['Date']);
       console.log(cImp);
       console.log(currentImp);
       console.log(currentKey);
+      */
     }
     
   });
@@ -129,7 +129,7 @@ function addWrittenMemo(i, tr) {
     var projectOptions1 = document.getElementById("content"+(i+2));
     var projectOptions2 = document.getElementById("option"+(i+2));
 
-      console.log("leave\t"+ post.id);
+      //console.log("leave\t"+ post.id);
       projectOptions1.style.display = 'block';    
       projectOptions2.style.display = 'none';    
     });
@@ -138,7 +138,7 @@ function addWrittenMemo(i, tr) {
     var projectOptions1 = document.getElementById("content"+(i+2));
     var projectOptions2 = document.getElementById("option"+(i+2));
 
-      console.log("enter\t"+ post.id);
+      //console.log("enter\t"+ post.id);
       projectOptions1.style.display = 'none';    
       projectOptions2.style.display = 'block';  
     });

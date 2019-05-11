@@ -123,3 +123,7 @@ plus {
   text-decoration:none;
   text-align: center;
 }
+
+#add {
+    cursor:pointer;
+}
