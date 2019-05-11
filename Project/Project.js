@@ -1,10 +1,8 @@
-﻿var projectNumber = 1;
-var date = new Date();
-var today = date.getFullYear() + '.' + date.getMonth() + '.' +date.getDate();
-
+﻿
 function initialize(){
   makeProjects();
 }
+
 function makeProjects(){
   makeap();
   setTimeout(function() {
@@ -34,13 +32,6 @@ function makeap() {
   var ProjectNameDiv = document.createElement("div");
   ProjectNameDiv.id = "ProjectNameDiv";
   ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' onkeyup='enterkey();'>"
-
-/*  var ProjectName = document.createElement("input");
-  ProjectName.type = "text";
-  ProjectName.id = "ProjectName";
-  ProjectName. = "enterkey()";
-  ProjectNameDiv.appendChild(ProjectName);
-  */
   ProjectNameDiv.style.display = "none";
   projectWrapper.appendChild(ProjectNameDiv);
 
@@ -48,14 +39,12 @@ function makeap() {
 }
 
 //project boxs
-function makep(title,project){
+function makep(title,date,key){
   var projectWrapper = document.createElement("div");
   projectWrapper.className = "project_wrapper";
-  projectWrapper.id = "project" + projectNumber;
-  projectNumber++;
+  projectWrapper.id = key;
   projectWrapper.addEventListener("mouseleave", function () {
       //leave
-      console.log("leave\t"+ projectWrapper.id);
       TitleDate.style.display = 'block';    
       EditDiv.style.display = 'none';    
       WriteDiv.style.display = 'none';    
@@ -64,34 +53,35 @@ function makep(title,project){
     });
   projectWrapper.addEventListener("mouseenter", function () {
       //enter
-      console.log("enter\t"+ projectWrapper.id);
       TitleDate.style.display = 'none';    
       EditDiv.style.display = 'block';    
       WriteDiv.style.display = 'block';    
       TitleDateh.style.display = 'block';    
       DeleteDiv.style.display = 'block';    
     });
-  var projectImage =document.createElement("div");
+
+  //background image
+  var projectImage = document.createElement("div");
+  projectImage.className = "project_image";
+  projectImage.id = projectWrapper.id+"_image";
+  projectImage.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
   projectWrapper.appendChild(projectImage);
 
-  var projectImage1 = document.createElement("div");
-  projectImage1.className = "project_image";
-  projectImage1.id = projectWrapper.id+"_image";
-  projectImage1.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
-  projectImage.appendChild(projectImage1);
-
+  //title and date
   var TitleDate = document.createElement("div");
-  TitleDate.innerHTML = "<h1>"+title + "</h1><br>" + today;
+  TitleDate.innerHTML = "<h1>"+title + "</h1><br>" + date.substring(0,10);
   TitleDate.style.display = 'block';
   TitleDate.id = "TitleDate";
   projectImage.appendChild(TitleDate);
 
-  var TitleDateh = document.createElement("div");
-  TitleDateh.innerHTML = "<h1>"+title + "</h1><br>" + today;
+  //title and date when it hover
+  var TitleDateh = document.createElement("div"); 
+  TitleDateh.innerHTML = "<h1>"+title + "</h1><br>" + date;
   TitleDateh.style.display = 'none';
   TitleDateh.id = "TitleDateh";
   projectImage.appendChild(TitleDateh);
 
+  //edit project button
   var EditDiv = document.createElement("div");
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
@@ -102,6 +92,7 @@ function makep(title,project){
   EditDiv.style.display = 'none';  
   projectImage.appendChild(EditDiv);
 
+  //write draft button
   var WriteDiv = document.createElement("div");
   var WriteButton = document.createElement("a");
   WriteButton.id = "Button";
@@ -117,28 +108,36 @@ function makep(title,project){
   DeleteButton.innerHTML = '<i class="fas fa-times"></i>';
   DeleteButton.id = "DeleteButton";
   DeleteButton.addEventListener("click", function() {
-    delete_project_db(title);
-    var aa = document.getElementById(projectWrapper.id);
-    while(aa.firstChild) {
-      aa.removeChild(aa.firstChild);
-    }
+    delete_project_db(key);
+    document.getElementById(projectWrapper.id).remove();
   });
   DeleteDiv.appendChild(DeleteButton);
   DeleteDiv.id = "DeleteDiv";
   DeleteDiv.style.display = 'none';  
   projectImage.appendChild(DeleteDiv);
 
-  document.getElementById("projects").appendChild(projectWrapper);  
+  document.getElementById("project0").after(projectWrapper);  
 
 }
 
 function Add() {
   var title = document.getElementById("ProjectName").value; 
-  add_new_Project_db(title);
-  makep(title);
+  var date = getTime();
+  var key = create_new_Project_db(title,date);
+  makep(title,date,key);
   document.getElementById("ProjectName").value = "";
   document.getElementById("ProjectNameDiv").style.display = "none";
+//  resetProjects();
 }
+function create_new_Project_db(title,date){
+  var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/');
+  var new_memory_key = ref.push({
+    title: title ,
+    date: date
+  });
+  return String(new_memory_key).substring(53,1000);
+}
+
 function Edit() {
   location.replace("./Add_Questions/Add_Questions.html");
 
@@ -147,60 +146,34 @@ function Write() {
   location.replace("./Draft/Draft.html");
 
 }
-function Delete(title) {
-}
 
-function add_new_Project_db(title){
-  document.getElementById("overlay").style.width = "100%";
-  create_new_Project_db(title);
-  //write_new_Project_db();
-  document.getElementById("overlay").style.width = "0";
-}
-
-function create_new_Project_db(title){
-  var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/');
-  var new_memory_key = ref.child(title).set({
-    flowchart: '' ,
-    questions: '' ,
-    date: today
-  });
-  ref = firebase.database().ref('/data/' + 'testuser1' + '/project/' + title);
-//  ref.child("flowchart").set({});
-//  ref.child("questions").set({});
-}
 
 function read_project_db(){
   var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/');
-  var a = ref.once('value', function(snapshot){ 
+  var a = ref.orderByChild('date').once('value', function(snapshot){ 
     var data = snapshot.val();
     var keys = Object.keys(data);
     for(var i = 0; i < keys.length; i++){
-      makep(keys[i],data[keys[i]]);
+      makep(data[keys[i]]['title'],data[keys[i]]['date'], keys[i]);
     }
   });
 }
 
-function delete_project_db(title) {
-  var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/' + title);
+function delete_project_db(key) { 
+  console.log("remove: " + '/data/' + 'testuser1' + '/project/' + key);
+  var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/' + key);
   ref.remove();
-}
-function write_new_Project_db(){
-  firebase.database().ref('/data/' + now_account + '/project/' + title_.value.trim() ).set({
-    Date: date_.value.trim() ,
-    How_long: how_long_.value.trim()  ,
-    What_you_did: what_.value.trim(),
-    What_you_felt: what_you_felt_.value.trim(),
-    Where: where_.value.trim(),
-    Why: why_.value.trim(),
-    With_whom: with_.value.trim(),
-    importance: importance_
-  });
 }
 
 function enterkey() {
   if (window.event.keyCode == 13) {
     Add();
   }
+}
+
+function getTime() {
+  var date = new Date();
+  return String(date.getFullYear() + '-' + (date.getMonth()+1 < 10 ? '0'+ (date.getMonth()+1) : date.getMonth()+1) + '-' +(date.getDate()<10?'0'+date.getDate():date.getDate())+ ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours()) + ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes()) + ':' +(date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds()));
 }
 initialize();
 

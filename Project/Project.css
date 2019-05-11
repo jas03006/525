@@ -4,7 +4,6 @@ li{list-style: none;}
 a{text-decoration: none;}
 
 /*common*/
-
 /*header*/
 header {height:75px; background-color:  #4887f1; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed;}
 .header_wrapper{width:1170px;margin: 0 auto;}
@@ -22,6 +21,13 @@ header {height:75px; background-color:  #4887f1; width:100%; z-index: 9999; posi
 body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 .body_wrapper{width:1170px; height:100%;background-color: white;margin: 0 auto;}
 .projects{padding: 50px;}
+.comment {
+  padding-left: 10px;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+}
 .text-block {
   position: absolute;
   width: 340px;
@@ -41,6 +47,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   -webkit-box-align:center;
 }
 .project_wrapper{ margin: 25px; display:inline-block;position: relative;}
+.project_wrapper:hover{ transform: translateY(-1px);margin: 25px; display:inline-block;position: relative;}
 .project_image{}
 .project_text{padding: 5px 10px;  background-color: yellow; text-align: center; width:180px;}
 .add_project{position: absolute;top: 60%;left: 50%;transform: translate( -50%, -50% );}
@@ -92,9 +99,9 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   word-break: break-all;
 }
 
-#DeleteButton : hover{
-  transform: translateY(1px);
-    color : #EE0000;
+#DeleteButton:hover{
+  font-size: 30px;
+  color : #FF0000;
 }
 #DeleteButton{
     font-size: 25px;
