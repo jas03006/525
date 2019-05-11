@@ -1,4 +1,4 @@
-var temp = 0;
+﻿var temp = 0;
 var memoryNumber = 0;
 var trlines = parseInt((memoryNumber+1)/4);
 var remain = memoryNumber - trlines*4 + 1;
@@ -122,7 +122,7 @@ function addWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container";
-  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" href="#">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" href="#">Edit Memory</a></div><div id="delDiv"><a id="delBtn" href="#"><i class="fas fa-times"></i></a></div></div></div>';
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" onclick = "go_view_memory(this)">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" onclick = "go_edit_memory(this)">Edit Memory</a></div><div id="delDiv"><a id="delBtn" href="#"><i class="fas fa-times"></i></a></div></div></div>';
 
   post.addEventListener("mouseleave", function () {
       //leave
@@ -194,10 +194,26 @@ function addPlusMemo(tr) {
 }
 
 function go_add_memory(){
-  // 뒤로가기 누르면 다시 앞페이지로 이동
     window.history.forward(1);
-    // 기존 페이지를 새로운 페이지로 변경
     location.replace("./add_new_memory/Add_new_memory.html");
+}
+//onclick = "go_view_memory(this)"
+function go_view_memory(obj){
+	var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+
+	console.log(memory_name);
+	localStorage.setItem("memory_name", memory_name);
+    window.history.forward(1);
+    location.replace("./View_memory/View_memory.html");
+}
+//onclick = "go_edit_memory(this)"
+function go_edit_memory(obj){
+	var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+
+	console.log(memory_name);
+	localStorage.setItem("memory_name", memory_name);
+    window.history.forward(1);
+    location.replace("./Edit_memory/Edit_memory.html");
 }
 
 function hover(id) {

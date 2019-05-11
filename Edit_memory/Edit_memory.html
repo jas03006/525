@@ -8,8 +8,8 @@
    
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
   
-<link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />  
-<link href="./Add_new_memory.css" rel="stylesheet" />
+<link href="../add_new_memory/jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />  
+<link href="./Edit_memory.css" rel="stylesheet" />
 <link href="../popup_overlay.css" rel="stylesheet" />
   
 </head>
@@ -42,25 +42,25 @@
    
 
 <div class='front_page'> 
-	<div class='stage_title'>Add new Memory </div>
-	<div class='stage_description'>Add New Memory with following format.</div>
+	<div class='stage_title'>Edit Memory </div>
+	<div class='stage_description'></div>
 	
 	<div class='stage_subtitle'>Title</div>
-	<textarea id = 'Title' required> test_memory1 </textarea>
-	<div class='stage_subtitle'>Date</div>
+	<textarea id = 'Title'> </textarea>
+	<div class='stage_subtitle'> Date</div>
 	<input  type="date" id = 'Date' required>  </input>
-	<div class='stage_subtitle'>Where</div>
-	<textarea id = 'Where'> KAIST </textarea>
+	<div class='stage_subtitle'> Where</div>
+	<textarea id = 'Where'></textarea>
 	<div class='stage_subtitle'>With whom</div>
-	<textarea id = 'With'> Friends </textarea>
+	<textarea id = 'With'></textarea>
 	<div class='stage_subtitle'>What you did</div>
-	<textarea id = 'What'> HCI </textarea>	
+	<textarea id = 'What'></textarea>	
 	<div class='stage_subtitle'>How long</div>
-	<textarea id = 'How_long'> one semester </textarea>
+	<textarea id = 'How_long'></textarea>
 	<div class='stage_subtitle'>Why you did the things</div>
-	<textarea id = 'Why'> Lecture </textarea>
+	<textarea id = 'Why'> </textarea>
 	<div class='stage_subtitle'>What you felt</div>
-	<textarea id = 'What_you_felt'> Sad </textarea>
+	<textarea id = 'What_you_felt'> </textarea>
 	
 	<div class='stage_subtitle'>Importance</div>
 	<div id='star'><span class="star_rating" OnClick="change_star(event)">
@@ -73,13 +73,14 @@
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
-<script src="jquery/js/jquery-1.9.0.min.js"></script>
+<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
     
-<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 
-<script type="text/javascript" src="./Add_new_memory.js"></script>
 <script type="text/javascript" src="../popup_overlay.js"></script>   
+<script type="text/javascript" src="./Edit_memory.js"></script>
+
   
 </body>
 
