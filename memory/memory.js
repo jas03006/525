@@ -56,7 +56,7 @@ function addWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container";
-  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div class = "btn"><a href="#"><img id = "memosheet" src="./src/image/button/Btn_view_memory.png"></a></div><br /><div class = "btn"><a href="#"><img id = "memosheet" class = "btn" src="./src/image/button/Btn_edit_memory.png"></a></div><br /><a href="#">DELETE MEMORY</a></div></div>';
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="titles"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" href="#">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" href="#">Edit Memory</a></div><div id="delDiv"><a id="delBtn" href="#"><i class="fas fa-times"></i></a></div></div></div>';
 
   post.addEventListener("mouseleave", function () {
       //leave
