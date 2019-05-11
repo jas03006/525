@@ -25,6 +25,7 @@ $( document ).ready(function() {
 	main();
 });
 
+
 function main(){
 	read_accounts();
 	read_now_account();
@@ -112,7 +113,7 @@ function go_logined_page(){
 	header.style.display = "block";
 	document.getElementsByTagName("body")[0].style.marginTop = '75px';
 	document.getElementById("login_page").style.display = 'none';
-	document.getElementById("tutorial").style.width = '1820px';
+	document.getElementById("tutorial").style.width = '95%';//'1820px';
 	document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
 }
 

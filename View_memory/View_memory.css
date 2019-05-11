@@ -22,7 +22,6 @@ body {
 	padding-right:20%;
 //	padding-top:5%;
 	background-color: #f8f8f8;
-	//font-family: 'Open Sans', sans-serif;
 }
 
 .front_page{
@@ -140,7 +139,6 @@ input{
 	line-height:0; 
 	vertical-align:top; 
 } 
-
 
 .confirm_button {
 	/*
