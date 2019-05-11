@@ -59,27 +59,29 @@ function makep(title,date,key){
       TitleDateh.style.display = 'block';    
       DeleteDiv.style.display = 'block';    
     });
-  var projectImage =document.createElement("div");
+
+  //background image
+  var projectImage = document.createElement("div");
+  projectImage.className = "project_image";
+  projectImage.id = projectWrapper.id+"_image";
+  projectImage.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
   projectWrapper.appendChild(projectImage);
 
-  var projectImage1 = document.createElement("div");
-  projectImage1.className = "project_image";
-  projectImage1.id = projectWrapper.id+"_image";
-  projectImage1.innerHTML = '<img src="./src/image/project/empty_project.png" width="200" border="0">';
-  projectImage.appendChild(projectImage1);
-
+  //title and date
   var TitleDate = document.createElement("div");
   TitleDate.innerHTML = "<h1>"+title + "</h1><br>" + date.substring(0,10);
   TitleDate.style.display = 'block';
   TitleDate.id = "TitleDate";
   projectImage.appendChild(TitleDate);
 
-  var TitleDateh = document.createElement("div");
+  //title and date when it hover
+  var TitleDateh = document.createElement("div"); 
   TitleDateh.innerHTML = "<h1>"+title + "</h1><br>" + date;
   TitleDateh.style.display = 'none';
   TitleDateh.id = "TitleDateh";
   projectImage.appendChild(TitleDateh);
 
+  //edit project button
   var EditDiv = document.createElement("div");
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
@@ -90,6 +92,7 @@ function makep(title,date,key){
   EditDiv.style.display = 'none';  
   projectImage.appendChild(EditDiv);
 
+  //write draft button
   var WriteDiv = document.createElement("div");
   var WriteButton = document.createElement("a");
   WriteButton.id = "Button";
