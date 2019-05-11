@@ -1,13 +1,79 @@
-var temp = 0;
-var memoryNumber = 26;
+﻿var temp = 0;
+var memoryNumber = 0;
 var trlines = parseInt((memoryNumber+1)/4);
 var remain = memoryNumber - trlines*4 + 1;
-console.log(trlines);
-console.log(remain);
 var hoverable=false;
 
+/*
 function initialize(){
-  addMemories();
+  //addMemories();
+}
+*/
+
+function read_now_account(){
+  
+  document.getElementById("overlay").style.width = "100%";
+  return new Promise(function(resolve, reject){
+    firebase.database().ref('/now_account/now_ID').once('value', function(snapshot){ 
+                console.log('read_now\n');
+                now_account = snapshot.val().trim();
+                if(now_account == ''){
+                      window.history.forward(1);
+                    location.replace("../index.html");
+                }else{
+                  document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
+                }
+                console.log(now_account);
+                document.getElementById("overlay").style.width = "0";
+                readFromDatabase();            
+                resolve(now_account);
+              });
+    });
+}
+
+
+function readFromDatabase() {
+  /*
+     Read comments from the database
+     Print all the comments to the table
+  */
+  return firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
+                                                      function(snapshot) {
+
+    var myValue = snapshot.val();
+    var keyList = Object.keys(myValue);
+    memoryNumber = keyList.length;
+    addMemories();
+
+
+    for(var i=0;i<keyList.length;i++){
+      var currentKey = keyList[i];
+      var currentDate = myValue[currentKey]['Date'];
+      var cImp = myValue[currentKey]['importance'];
+      
+      var currentImp = ""
+
+      switch (cImp){
+        case 0 : currentImp = "☆ ☆ ☆"; break;
+        case 1 : currentImp = "★ ☆ ☆"; break;
+        case 2 : currentImp = "★ ★ ☆"; break;
+        default : currentImp = "★ ★ ★";
+      }
+      
+      var title = document.getElementById("content"+(i+2));
+      title.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p><br /><p>'+currentImp+'</p>';
+      var title2 = document.getElementById("titles"+(i+2));
+      title2.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p>';
+      /*
+      console.log(title.innerHTML);
+      console.log(myValue[currentKey]['Date']);
+      console.log(cImp);
+      console.log(currentImp);
+      console.log(currentKey);
+      */
+    }
+    
+  });
 }
 
 function addMemories(){
@@ -56,14 +122,14 @@ function addWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container";
-  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div class = "btn"><a href="#"><img id = "memosheet" src="./src/image/button/Btn_view_memory.png"></a></div><br /><div class = "btn"><a href="#"><img id = "memosheet" class = "btn" src="./src/image/button/Btn_edit_memory.png"></a></div><br /><a href="#">DELETE MEMORY</a></div></div>';
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" onclick = "go_view_memory(this)">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" onclick = "go_edit_memory(this)">Edit Memory</a></div><div id="delDiv"><a id="delBtn" href="#"><i class="fas fa-times"></i></a></div></div></div>';
 
   post.addEventListener("mouseleave", function () {
       //leave
     var projectOptions1 = document.getElementById("content"+(i+2));
     var projectOptions2 = document.getElementById("option"+(i+2));
 
-      console.log("leave\t"+ post.id);
+      //console.log("leave\t"+ post.id);
       projectOptions1.style.display = 'block';    
       projectOptions2.style.display = 'none';    
     });
@@ -72,7 +138,7 @@ function addWrittenMemo(i, tr) {
     var projectOptions1 = document.getElementById("content"+(i+2));
     var projectOptions2 = document.getElementById("option"+(i+2));
 
-      console.log("enter\t"+ post.id);
+      //console.log("enter\t"+ post.id);
       projectOptions1.style.display = 'none';    
       projectOptions2.style.display = 'block';  
     });
@@ -128,10 +194,26 @@ function addPlusMemo(tr) {
 }
 
 function go_add_memory(){
-  // 뒤로가기 누르면 다시 앞페이지로 이동
     window.history.forward(1);
-    // 기존 페이지를 새로운 페이지로 변경
     location.replace("./add_new_memory/Add_new_memory.html");
+}
+//onclick = "go_view_memory(this)"
+function go_view_memory(obj){
+	var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+
+	console.log(memory_name);
+	localStorage.setItem("memory_name", memory_name);
+    window.history.forward(1);
+    location.replace("./View_memory/View_memory.html");
+}
+//onclick = "go_edit_memory(this)"
+function go_edit_memory(obj){
+	var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+
+	console.log(memory_name);
+	localStorage.setItem("memory_name", memory_name);
+    window.history.forward(1);
+    location.replace("./Edit_memory/Edit_memory.html");
 }
 
 function hover(id) {
@@ -141,4 +223,5 @@ function hover(id) {
 function add() {
 
 }
-initialize();
+
+//initialize();

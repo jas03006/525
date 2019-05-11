@@ -9,7 +9,7 @@ var what_you_felt_ = document.getElementById("What_you_felt");
 
 var importance_ = 0;
 
-var title_value = "test_memory1";
+var title_value = localStorage.getItem("memory_name"); //"test_memory1"; 
 
 $( document ).ready(function() {
 	//window.onload = alert(localStorage.getItem("account_ID"));

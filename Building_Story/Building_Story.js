@@ -22,7 +22,7 @@ function addQuestionBox(){
   var mDiv = document.createElement("div");
   var cDiv = document.createElement("div");
   //var mImgs = document.createEmelent("img");
-  var memories = document.createElement("img");
+  var memories = document.createElement("div");
   var comments = document.createElement("textarea");
   var buttonDiv = document.createElement("div");
   var addButton = document.createElement("a");
@@ -34,7 +34,7 @@ function addQuestionBox(){
   //Text area specification
   memories.className = "memoryBox";
   memories.id = "question1_" + questionNum;
-  memories.src = "./../src/image/memory/post_it.png";
+  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block"><div class="contents"><h1>+</h1></div></div></div></td></tr></table>';
 
   comments.className = "commentBox";
   comments.id = "question2_" + questionNum;
@@ -59,8 +59,8 @@ function addQuestionBox(){
   mDiv.id = "mDiv" + questionNum;
   cDiv.id = "cDiv" + questionNum;
   qDiv.className = "left";
-  mDiv.className = "center";
-  cDiv.className = "center";
+  mDiv.className = "left";
+  cDiv.className = "left";
   
   //Add question to the content
   document.getElementById("paper").appendChild(qDiv);
