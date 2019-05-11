@@ -34,7 +34,7 @@ function addQuestionBox(){
   //Text area specification
   memories.className = "memoryBox";
   memories.id = "question1_" + questionNum;
-  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block"><div class="contents"><h1>+</h1></div></div></div></td></tr></table>';
+  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block"><div class="contents"><plus>+</plus></div></div></div></td><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div class="text-block"><div class="contents"><h3>Test_memory</h3><p>2019.05.09</p></div></div></div></td></tr></table>';
 
   comments.className = "commentBox";
   comments.id = "question2_" + questionNum;

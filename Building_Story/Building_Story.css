@@ -172,7 +172,6 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   height: 100%;
 }
 
-
 .container {
   position: relative;
   visibility: visible;
@@ -270,4 +269,25 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: right;
   margin: 50px;
   padding-right: 50px;
+}
+
+
+p {
+	margin-block-start: 0.2em;
+	margin-block-end: 0.2em;
+	font-size: 0.75vw;
+}
+
+h3 {
+	margin-block-start: 0.2em;
+	margin-block-end: 0.2em;
+	font-size: 1vw;
+}
+
+plus {
+	font-size: 3vw;
+}
+
+#add{
+	cursor: pointer;
 }
