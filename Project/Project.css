@@ -43,7 +43,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 .project_wrapper{ margin: 25px; display:inline-block;position: relative;}
 .project_image{}
 .project_text{padding: 5px 10px;  background-color: yellow; text-align: center; width:180px;}
-.add_project{position: absolute;top: 70%;left: 50%;transform: translate( -50%, -50% );}
+.add_project{position: absolute;top: 60%;left: 50%;transform: translate( -50%, -50% );}
 
 #Button:active{
   background-color: #4887f1;
@@ -77,10 +77,19 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
  }
 
 #TitleDate{
-  position: absolute;top: 50%;left: 0%;transform: translate( 25px, -50% );
+  width: 80%;
+  position: absolute;top: 50%;left: 0%;transform: translate( 10%, -50% );
+}
+#TitleDate h1{
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #TitleDateh{
+  width: 80%;
   position: absolute;top: 25%;left: 0%;transform: translate( 25px, -50% );
+}
+#TitleDateh h1{
+  word-break: break-all;
 }
 
 #DeleteButton : hover{
@@ -98,4 +107,13 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 
 #Project0{
   cursor:pointer;  
+}
+
+#ProjectNameDiv{
+  position: absolute;top: 85%;left: 50%;transform: translate( -50%, -50% );  
+}
+#ProjectName{
+  width: 150%;
+  height: 30px;
+  margin-left: -25%;
 }
