@@ -115,13 +115,17 @@ function confirm(){
 	var new_title = title_.value.trim();
 	var test_ref = firebase.database().ref(path + new_title);
 	firebase.database().ref(path).once('value',function(snapshot){
-					var titles = Object.keys(snapshot.val());
+					var myValue = snapshot.val();
+					if(myValue != null){
+					var titles = Object.keys(myValue);
+					
 					for(var i = 0; i < titles.length; i++){
 						console.log(titles[i]);
 						if(new_title == titles[i].trim()){
 							add_new_memory_db(  alert_error( false ) );
 							return false;
 						}
+					}
 					}
 					add_new_memory_db( alert_error( true ));
 					return false;
