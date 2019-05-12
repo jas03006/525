@@ -234,7 +234,9 @@ function drawOnce(){
 }
 function initialize(){
   document.getElementById("project_name").innerHTML = currentProject;
-  projects.once('value', function(snapshot){
+  tableHis = firebase.database().ref("data/testuser1/project/" + localStorage.getItem("currentkey") + "/flowchart");
+  loadMemos();
+  /*projects.once('value', function(snapshot){
       var myValue = snapshot.val();
       if(myValue == null){
         return;
@@ -250,7 +252,7 @@ function initialize(){
       }
     }
     loadMemos();
-  });
+  });*/
 }
  
 function drawPin(pins, currYear, left, top, width){

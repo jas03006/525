@@ -87,7 +87,10 @@ function tableAddQuestions(){
 function initialize(){
   document.getElementById("project name").innerHTML = currentProject;
   //Find reference with current project
-  projects.once('value', function(snapshot){
+  tableHis = firebase.database().ref("data/testuser1/project/" + localStorage.getItem("currentkey") + "/questions");
+  addQuestionBox("");
+  tableLoadQuestions();
+  /*projects.once('value', function(snapshot){
       var myValue = snapshot.val();
       if(myValue == null){
         return;
@@ -104,7 +107,7 @@ function initialize(){
         tableLoadQuestions();
       }
     }
-  });
+  });*/
   
   
   
