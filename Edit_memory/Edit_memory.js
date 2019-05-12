@@ -32,10 +32,10 @@ function change_star(event){
 	return false;
 }
 
-function add_new_memory_db(){
+function add_new_memory_db(check){
 	
 	document.getElementById("overlay").style.width = "100%";
-	if( alert_error() ){
+	if( check ){
 		if(title_.value.trim() != title_value){
 			delete_memory(title_value);
 		}
@@ -73,20 +73,29 @@ function create_new_memory_db(){
 	return true;
 }
 
-function alert_error( ){
+function alert_error( check ){
 	var no_error = true;
 	var new_title = title_.value.trim();
 	
 	if(new_title == ''){ //title
 		document.getElementsByClassName("stage_subtitle")[0].style.color = 'red';
 		title_.style.borderColor = 'red';
-		no_error = false;
 		document.getElementById("null_title").style.display = 'block';
+		document.getElementById("existing_title").style.display = 'none';
+		no_error = false;
+		title_.focus();
+	}else if( check == false ){
+		document.getElementsByClassName("stage_subtitle")[0].style.color = 'red';
+		title_.style.borderColor = 'red';
+		document.getElementById("existing_title").style.display = 'block';
+		document.getElementById("null_title").style.display = 'none';
+		no_error = false;
 		title_.focus();
 	}else{
 		document.getElementsByClassName("stage_subtitle")[0].style.color = 'black';
-		document.getElementById("null_title").style.display = 'none';
 		title_.style.borderColor = '#748695';
+		document.getElementById("null_title").style.display = 'none';
+		document.getElementById("existing_title").style.display = 'none';
 	}
 
 	if( date_.value == '' ){
@@ -217,6 +226,26 @@ function parseDate(date){
   }
   return dates;
 }
+
+
+function confirm(){
+	var path = '/data/' + now_account + '/memory/' ;
+	var new_title = title_.value.trim();
+	var test_ref = firebase.database().ref(path + new_title);
+	firebase.database().ref(path).once('value',function(snapshot){
+					var titles = Object.keys(snapshot.val());
+					for(var i = 0; i < titles.length; i++){
+						console.log(titles[i]);
+						if(new_title == titles[i].trim()){
+							add_new_memory_db(  alert_error( false ) );
+							return false;
+						}
+					}
+					add_new_memory_db( alert_error( true ));
+					return false;
+				});
+}
+
 
 function go_main(){
     // 뒤로가기 누르면 다시 앞페이지로 이동
