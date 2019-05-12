@@ -24,7 +24,7 @@ p {
 }
 
 h3 {
-	width: 200px;
+	width: 13vw;
 	white-space:nowrap; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -32,18 +32,16 @@ h3 {
 	margin-block-start: 0.2em;
 	margin-block-end: 0.2em;
 	font-size: 2vw;
+
 }
 
 h3:hover {
-	width: 200px;
-	//white-space:nowrap; 
-	//overflow:hidden; 
-	//text-overflow:ellipsis;
-	word-break:break-all;
-	margin-block-start: 0.2em;
-	margin-block-end: 0.2em;
-	font-size: 2vw;
+  white-space:normal; 
+  overflow:initial; 
+  text-overflow:initial;
+  font-size: 1.5vw;
 }
+
 plus {
 	font-size: 6vw;
 }
@@ -111,7 +109,7 @@ plus {
 }
 
 #delDiv{
-  position: absolute; top: 20%; left:70%; transform: translate(25px, -50%);
+  position: relative; left:50%;
 }
 
 .btn:active{
