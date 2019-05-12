@@ -1,0 +1,59 @@
+﻿<link href="./../source.css" rel="stylesheet" />
+<link href="./../popup_overlay.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<html>
+  <head>
+    <title>Jobis Select Memory</title>
+    <link href="./select_memory.css" rel="stylesheet" />
+
+  </head>
+  <header>
+    <div class="header_wrapper">
+
+    <ul class="logo">
+      <li><a href="./../index.html"><h1>JOBIS</h1></a></li>
+    </ul>
+
+    <ul class="menu">
+      <li><a href="./../project.html">PROJECT</a></li>
+      <li><a href="./../memory.html">MEMORY</a></li>
+    </ul>
+
+    <ul class="account">
+      <li><a onclick = "popup_logout()">login</a></li>
+    </ul>
+
+  </div>
+  </header>
+
+<div id = "overlay"> Loading... </div>
+<div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
+
+  <body>
+	<div id = "content">
+        <div id = "container">
+            <div class = "left"><h2 id = "Description">Your Memories</h2></div>
+        </div>
+    </div>
+
+    <div class = "left">
+	<table id="memtable">
+      
+    </table>
+	</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="./../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+    
+<script src="./../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script type="text/javascript" src="./../popup_overlay.js"></script> 
+<script  type="text/javascript" src="./select_memory.js"></script>
+
+<div id="confirmDiv">
+  <a id="confirmButton">Confirm</a>
+</div>
+
+</body>
+
+</html>
