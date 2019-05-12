@@ -1,7 +1,7 @@
 ﻿var questionNum = 1;
 var showing = 0;
 
-var currentProject = "TEST PROJECT";
+var currentProject = localStorage.getItem("currentproject");
 var projects = firebase.database().ref("data/testuser1/project");
 var tableHis;
 //= firebase.database().ref("data/testuser1/project/asdfasdf/questions");
@@ -12,7 +12,7 @@ function writeQuestions(){
   //console.log(currQuestions.length, questionNum);
   for(var i = 0; i < currQuestions.length; i++){
     //console.log(document.getElementById((i + 1)));
-    currQuestions[i].layout = document.getElementById("question" + (i + 1)).value;
+    currQuestions[i].question = document.getElementById("question" + (i + 1)).value;
   }
 }
 
@@ -31,13 +31,14 @@ function tableLoadQuestions(){
       currQuestions.push({
         draft: q.draft,
         layout: q.layout,
-        memory: q.memory
+        memory: q.memory,
+        question: q.question
       });
       if(i == 0){
-        document.getElementById("question1").value = q.layout;
+        document.getElementById("question1").value = q.question;
       }else if(i > 0){
         submit((document.getElementById("question" + questionNum)));
-        document.getElementById("question" + questionNum).value = q.layout;
+        document.getElementById("question" + questionNum).value = q.question;
       }
     }
   });
@@ -61,7 +62,8 @@ function tableSaveQuestions(){
       num: questionId,
       draft: currQuestions[i].draft,
       layout: currQuestions[i].layout,
-      memory: currQuestions[i].memory
+      memory: currQuestions[i].memory,
+      question: currQuestions[i].question
     });
     //console.log(document.getElementById(questionId).value);
   }
@@ -92,7 +94,7 @@ function initialize(){
       var q = myValue[questions[i]];
       
       if(q.title == currentProject){
-        console.log(q.title);
+        //console.log(q.title);
         tableHis = firebase.database().ref("data/testuser1/project/" + questions[i] + "/questions");
         addQuestionBox("");
         tableLoadQuestions();
@@ -178,7 +180,8 @@ function addQuestionBox(textline){
     submit(question);
     currQuestions.push({draft: "",
                         layout: "",
-                        memory: ""});
+                        memory: "",
+                        question: ""});
     tableSaveQuestions();
     //tableAddQuestions();
   });
@@ -350,6 +353,10 @@ function addButtonHoverOut(){
 function questionDelete(){
   var num = questionNum;
   var qid = this.parentElement.parentElement.children[0];
+  if(qid.id == 1 && num == 1){
+    alert("At least one question should be in your project.");
+    return;
+  }
   qid.parentElement.parentElement.remove();
   //console.log(qid.id, num);
   
@@ -376,7 +383,7 @@ function questionDelete(){
 function confirm(){
   writeQuestions();
   for(var i = 0; i < currQuestions.length; i++){
-    if(currQuestions[i].layout == ""){
+    if(currQuestions[i].question == ""){
       alert("Please fill out all the questions.");
       return;
     }
