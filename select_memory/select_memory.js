@@ -4,6 +4,16 @@ var trlines = 0;
 var remain = 0;
 var hoverable=false;
 var selected = [];
+var qkey;
+
+//var currentProject = localStorage.getItem("currentproject");
+
+var Qnum = localStorage.getItem("question_number");
+var qNumber = Qnum.substring(1, 2);
+var Qcont = localStorage.getItem("question_content");
+var pjKey = localStorage.getItem("pjKey");
+var currentProject = "test";
+console.log(currentProject);
 
 function read_now_account(){
   
@@ -26,44 +36,66 @@ function read_now_account(){
     });
 }
 
-
 function readFromDatabase() {
   /*
      Read comments from the database
      Print all the comments to the table
   */
-  firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
-                                                      function(snapshot) {
+  document.getElementById("title").innerHTML = currentProject;
+  document.getElementById("Description").innerHTML = "Select memories for "+Qnum+Qcont;
 
-    var myValue = snapshot.val();
+  firebase.database().ref('/data/testuser1/project/' + pjKey + '/questions/').once('value', function(snapshot){
+      var myValue = snapshot.val();
       if(myValue == null){
-      addMemories();
-      return;
-    }
-    var keyList = Object.keys(myValue);
-    memoryNumber = keyList.length;
-    trlines = parseInt((memoryNumber)/4);
-    remain = memoryNumber - trlines*4;
-    addMemories();
-
-    for(var i=0;i<keyList.length;i++){
-      var currentKey = keyList[i];
-      var currentDate = myValue[currentKey]['Date'];
-      var cImp = myValue[currentKey]['importance'];
-
-      var currentImp = ""
-
-      switch (cImp){
-        case 0 : currentImp = "☆ ☆ ☆"; break;
-        case 1 : currentImp = "★ ☆ ☆"; break;
-        case 2 : currentImp = "★ ★ ☆"; break;
-        default : currentImp = "★ ★ ★";
+        return;
       }
-      
-      var title = document.getElementById("content"+(i+2));
-      title.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p><br /><p>'+currentImp+'</p>';
+    var pjs = Object.keys(myValue);
+    qkey = pjs[qNumber-1];
+    var q = myValue[pjs[qNumber-1]];
+
+    for(var i = 0; i < q.memory.length; i++){
+      console.log(q.memory[i]);
+      selected.push(q.memory[i]);
     }
-  });
+    //selected = q.memory;
+    console.log(selected);
+
+    firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
+                                                          function(snapshot) {
+
+        var myValue = snapshot.val();
+          if(myValue == null){
+          return;
+        }
+        var keyList = Object.keys(myValue);
+        memoryNumber = keyList.length;
+        trlines = parseInt((memoryNumber)/4);
+        remain = memoryNumber - trlines*4;
+        addMemories();
+
+        for(var i=0;i<keyList.length;i++){
+          var currentKey = keyList[i];
+          var currentDate = myValue[currentKey]['Date'];
+          var cImp = myValue[currentKey]['importance'];
+
+          var currentImp = ""
+
+          switch (cImp){
+            case 0 : currentImp = "☆ ☆ ☆"; break;
+            case 1 : currentImp = "★ ☆ ☆"; break;
+            case 2 : currentImp = "★ ★ ☆"; break;
+            default : currentImp = "★ ★ ★";
+          }
+          
+          var title = document.getElementById("content"+(i+2));
+          title.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p><br /><p>'+currentImp+'</p>';
+
+          if(selected.includes(currentKey)){
+            title.parentElement.parentElement.className = "container_select";
+          }
+        }
+      });
+    });
   return;
 }
 
@@ -136,83 +168,44 @@ function select(con) {
   var cls = con.parentElement.className;
   if(cls == "container"){
     con.parentElement.className = "container_select";
+    selected.push(con.children[0].children[0].innerHTML);
   }
   else{
     con.parentElement.className = "container";
+    var index = selected.indexOf(con.children[0].children[0].innerHTML);
+    if (index > -1) {
+      selected.splice(index, 1);
+    }
   }
+  console.log(selected);
 }
 
-function go_add_memory(){
-    window.history.forward(1);
-    location.replace("./add_new_memory/Add_new_memory.html");
-}
-//onclick = "go_view_memory(this)"
-function go_view_memory(obj){
-   var memory_name  = obj.parentElement.parentElement.children[1].children[0].innerHTML;
-
-   console.log(memory_name);
-   localStorage.setItem("memory_name", memory_name);
-    window.history.forward(1);
-    location.replace("./View_memory/View_memory.html");
-}
-//onclick = "go_edit_memory(this)"
-function go_edit_memory(obj){
-   var memory_name  = obj.parentElement.parentElement.children[1].children[0].innerHTML;
-
-   console.log(memory_name);
-   localStorage.setItem("memory_name", memory_name);
-    window.history.forward(1);
-    location.replace("./Edit_memory/Edit_memory.html");
-}
-
-function delete_memory(obj){
-  var memory_name  = obj.parentElement.parentElement.children[1].children[0].innerHTML;
-
-  console.log(memory_name);
-  if (confirm('Are you sure you want to Delete? This cannot be undone.')) {
-  firebase.database().ref('/data/' + now_account + '/memory/'+memory_name).remove();
-
-  //also delet in flowchart for each projects
-    delete_memory_in_flowcharts(memory_name);
-  } else {
-    // Do nothing!
-  }
-}
-
-function delete_memory_in_flowcharts( memory_title ){
-  var projects =  firebase.database().ref("data/testuser1/project");
-  projects.once('value', function(snapshot){
-         var myValue = snapshot.val();
-         if(myValue == null){
-              return;
-         }
-   var project_keys = Object.keys(myValue);
-
-   for(var i = 0; i < project_keys.length; i++){
-      var target_key;
-      var flowchart = myValue[project_keys[i]]['flowchart'];
-      var memory_keys = Object.keys(flowchart);
-      for(var j = 0; j <  memory_keys.length; j++){
-         if ( flowchart[memory_keys[j]]['title'].trim() == memory_title.trim()){
-            target_key = memory_keys[j];
-            console.log(target_key);
-            //firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).remove();
-            break;
-         }
+function confirm(){
+  firebase.database().ref('/data/testuser1/project/' + pjKey + '/questions/').once('value', function(snapshot){
+      var myValue = snapshot.val();
+      if(myValue == null){
+        return;
       }
-      firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).remove();
-   }
-   //window.history.forward(1);
-       location.reload();
-  });
+    var pjs = Object.keys(myValue);
+    console.log(pjs);
+    
+    qkey = pjs[qNumber-1];
+    var q = myValue[pjs[qNumber-1]];
+    console.log(qkey);
+    console.log(q);
+
+    var updates = {};
+    console.log('/data/testuser1/project/' + pjKey + '/questions/'+qkey+'/memory');
+    updates['/data/testuser1/project/' + pjKey + '/questions/'+qkey+'/memory'] = selected;
+    firebase.database().ref().update(updates);
+    });
+
+   // 뒤로가기 누르면 다시 앞페이지로 이동
+  window.history.forward(1);
+  // 기존 페이지를 새로운 페이지로 변경
+  location.replace("./../Building_Story/Building_Story.html");
 }
 
 function hover(id) {
   console.log("hover" + id);
 }
-
-function add() {
-
-}
-
-//initialize();
