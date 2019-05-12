@@ -1,7 +1,7 @@
 ﻿var temp = 0;
 var memoryNumber = 0;
-var trlines = parseInt((memoryNumber+1)/4);
-var remain = memoryNumber - trlines*4 + 1;
+var trlines = 0;
+var remain = 0;
 var hoverable=false;
 
 /*
@@ -43,6 +43,10 @@ function readFromDatabase() {
     var myValue = snapshot.val();
     var keyList = Object.keys(myValue);
     memoryNumber = keyList.length;
+    trlines = parseInt((memoryNumber+1)/4);
+    remain = memoryNumber - trlines*4 + 1;
+    console.log(trlines);
+    console.log(remain);
     addMemories();
 
 
