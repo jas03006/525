@@ -88,6 +88,7 @@ function makep(title,date,key){
   EditButton.innerHTML = 'Edit project';
   EditButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
+    localStorage.setItem("currentkey", key);
     location.replace("./Add_Questions/Add_Questions.html");
   });
   EditDiv.appendChild(EditButton);
@@ -102,6 +103,7 @@ function makep(title,date,key){
   WriteButton.innerHTML = 'Write draft';
   WriteButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
+    localStorage.setItem("currentkey", key);
     location.replace("./Draft/Draft.html");
   });
   WriteDiv.appendChild(WriteButton);

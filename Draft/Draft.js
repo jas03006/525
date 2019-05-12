@@ -1,25 +1,37 @@
-﻿var draftNum = 1;
-var questionNumber = 3;
+﻿var currentkey;
+var draftNum = 1;
+var questionNumber;
 var currentQuestion = 1;
 var currentshow = 0; //buildingstory = 0 ; flowchart = 1
-var title = "TITLE_NAME";
-var question = Array("question1","question2","question3");
+var title;
+var question = new Array();
+var buildingstory = new Array();
+var Draft = new Array();
+var ref;
+var keys;
+var data;
 
 function initialize(){
-
-  makeDraft();
+  setTimeout(function() {
+    currentkey = localStorage.getItem("currentkey");
+    ref = firebase.database().ref('/data/' + 'testuser1' + '/project/' + currentkey);
+    var a = ref.once('value', function(snapshot){ 
+      data = snapshot.val();
+      keys = Object.keys(data['questions']);
+      title = data['title'];
+      questionNumber = keys.length;
+      for (var i = 0; i < keys.length; i++) {
+        question[data['questions'][keys[i]]['num']-1] = data['questions'][keys[i]]['question'];
+        buildingstory[data['questions'][keys[i]]['num']-1] = data['questions'][keys[i]]['layout'];
+        Draft[data['questions'][keys[i]]['num']-1] = data['questions'][keys[i]]['draft'];
+      }
+    });
+    setTimeout(function() {
+      makeDraft();
+    },1000);
+  },100);
 }
 
-function deleteAll(){
-  for(var i = 0; i < questionNumber; i++){
-    var draftDivId = "draftDiv" + (i + 1);
-    document.getElementById(draftDivId).remove();
-  }
-  document.getElementById("downBox").remove();
-  draftNum = 1;
-  
-  initialize();
-}
 
 function makeDraft(){
 
@@ -61,7 +73,7 @@ function makeDraft(){
 }
 
 function setQuestion() {
-  document.getElementById("question").innerHTML = "<h2>"+question[currentQuestion-1]+"</h2>";
+  document.getElementById("question").innerHTML = "<h2>Q."+(currentQuestion) +" " +question[currentQuestion-1]+"</h2>";
 }
 
 function makecb() {
@@ -82,6 +94,9 @@ function make1bs() {
   bs.className = "bsfcBox";
   bs.id = "bs" + draftNum;
   bs.placeholder = "building story of Q." + draftNum;
+  if(buildingstory[draftNum-1] != "") {
+    bs.innerHTML = buildingstory[draftNum-1];
+  }
   bsDiv.appendChild(bs);
   bsDiv.id = "bsDiv" + draftNum;
   bsDiv.className = "draft-container";
@@ -107,6 +122,9 @@ function make1draft() {
   draft.className = "draftBox";
   draft.id = "draft" + draftNum;
   draft.placeholder = "Write a Draft of Question #" +  draftNum + " here";
+  if(draft[draftNum-1] != "") {
+    draft.innerHTML = Draft[draftNum-1];
+  }
   draftDiv.appendChild(draft);
   draftDiv.id = "draftDiv" + draftNum;
   draftDiv.className = "draft-container";
@@ -165,9 +183,13 @@ function chan(){
   }
 }
 function confirm(){
-//  deleteAll();
-window.history.forward(1);
-location.replace("../Draft/Draft.html");
+  var update = {};
+  for(var i = 0; i < questionNumber; i++) {
+    var a = document.getElementById("draft"+( data['questions'][keys[i]]['num']) ).value;
+    update['/data/' + 'testuser1' + '/project/' + currentkey + '/questions/' + keys[i] + '/draft'] = a;
+  }
+  firebase.database().ref().update(update);
+  location.replace("../project.html");
 }
 function prev(){
   document.getElementById("draftDiv" + currentQuestion).style.display = 'none';
