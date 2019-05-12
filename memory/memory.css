@@ -24,6 +24,7 @@ p {
 }
 
 h3 {
+	word-break:break-all;
 	margin-block-start: 0.2em;
 	margin-block-end: 0.2em;
 	font-size: 2vw;
