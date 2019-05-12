@@ -49,7 +49,7 @@ function makeap() {
 
   var ProjectNameDiv = document.createElement("div");
   ProjectNameDiv.id = "ProjectNameDiv";
-  ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' onkeyup='enterkey();'>"
+  ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' placeholder = 'Project Name'onkeyup='enterkey();'>"
   ProjectNameDiv.style.display = "none";
   projectWrapper.appendChild(ProjectNameDiv);
 

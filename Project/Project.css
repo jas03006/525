@@ -92,7 +92,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   cursor: not-allowed;
 }
 #AddButton:active{
-  background-color: #DD0000;
+  background-color: #14a93c;
   transform: translateY(1px);
 }
 #AddButton:hover{
@@ -100,7 +100,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 #AddButton {
-  background-color:#FF0000;
+  background-color:#25ba4d;
   -moz-border-radius:17px;
   -webkit-border-radius:17px;
   border-radius:17px;

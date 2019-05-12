@@ -50,6 +50,7 @@ function makeDraft(){
     make1bs();      
     document.getElementById("bsDiv" + (i+1)).style.display = 'none';
   }
+  document.getElementById("mDiv1").style.display = 'block';
   document.getElementById("bsDiv" + currentQuestion).style.display = 'block';
   draftNum=1;
 
@@ -90,7 +91,6 @@ function makecb() {
   document.getElementById("paper").appendChild(chanDiv);
 
 }
-
 function make1bs() {
   var bsDiv = document.createElement("div");
   bsDiv.innerHTML = '<textarea class="bsfcBox" id = "bs'+draftNum+'" readonly="readonly" disabled>' +(buildingstory[draftNum-1] != ""?String(buildingstory[draftNum-1]):"") + '</textarea>';
@@ -176,12 +176,14 @@ function chan(){
   if (currentshow == 0) {
     currentshow = 1;
     document.getElementById("bsDiv" + currentQuestion).style.display = 'none';
+    document.getElementById("mDiv" + currentQuestion).style.display = 'none';
     document.getElementById("fcDiv").style.display = 'block';
     document.getElementById("currentstate").innerHTML = "<h2>Life Chart</h2>";
     document.getElementById("chanButton").innerHTML = "See Build Your Story";
   } else {
     currentshow = 0;
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';
+    document.getElementById("mDiv" + currentQuestion).style.display = 'block';
     document.getElementById("fcDiv").style.display = 'none';
     document.getElementById("currentstate").innerHTML = "<h2>Build Your Story</h2>";
     document.getElementById("chanButton").innerHTML = "See Life Chart";
@@ -200,22 +202,26 @@ function confirm(){
 function prev(){
   document.getElementById("draftDiv" + currentQuestion).style.display = 'none';
   document.getElementById("bsDiv" + currentQuestion).style.display = 'none';
+  document.getElementById("mDiv" + currentQuestion).style.display = 'none';
   currentQuestion--;
   if (currentQuestion==0) currentQuestion+=questionNumber;
   document.getElementById("draftDiv" + currentQuestion).style.display = 'block';
   if (currentshow == 0) {
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';    
+    document.getElementById("mDiv" + currentQuestion).style.display = 'block';
   }
   setQuestion();
 }
 function next(){
   document.getElementById("draftDiv" + currentQuestion).style.display = 'none';
   document.getElementById("bsDiv" + currentQuestion).style.display = 'none';
+  document.getElementById("mDiv" + currentQuestion).style.display = 'none';
   currentQuestion++;
   if (currentQuestion==questionNumber+1) currentQuestion=1;
   document.getElementById("draftDiv" + currentQuestion).style.display = 'block';
   if (currentshow == 0) {
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';    
+    document.getElementById("mDiv" + currentQuestion).style.display = 'block';
   }
   setQuestion();
 }

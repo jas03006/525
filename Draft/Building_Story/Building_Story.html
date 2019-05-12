@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Jobis Building Story</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	 <link href="./Building_Story.css" rel="stylesheet" />
+
+<link href="../popup_overlay.css" rel="stylesheet" />
+
+  <header>
+    <div class="header_wrapper">
+
+    <ul class="logo">
+      <li><a href="../index.html"><h1>JOBIS</h1></a></li>
+    </ul>
+
+    <ul class="menu">
+      <li><a href="../project.html">PROJECT</a></li>
+      <li><a href="../memory.html">MEMORY</a></li>
+    </ul>
+
+    <ul class="account">
+      <li><a onclick = "popup_logout()">login</a></li>
+    </ul>
+
+  </div>
+  </header>
+
+
+<div id = "overlay"> Loading... </div>
+<div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
+
+
+  <body>
+    <div id = "content">
+      <div id = "paper">
+        <div class="md-stepper-horizontal green">
+          <div class="md-step active">
+            <div class="md-step-circle" onclick="goUploadQuestion()"><span>1</span></div>
+              <div class="md-step-title">Upload Questions</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+          <div class="md-step active">
+            <div class="md-step-circle"onclick="goLifeChart()"><span>2</span></div>
+            <div class="md-step-title">Build Life Chart</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+          <div class="md-step working">
+            <div class="md-step-circle"><span class = "fas fa-pencil-alt"></span></div>
+            <div class="md-step-title">Build Your Story</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+        </div>
+          <div id = "container">
+            <div class = "left"><h1 id = "project_title">Sample Title</h1></div>
+            <div class = "left"><h2>Building Story</h2></div>
+            <div class = "left"><h4>Choose some memories and write short description about how you would use the memories for each questions.</h4></div>
+          </div>
+      </div>
+      </div>
+    </div>
+
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+    
+<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>  
+
+<script type="text/javascript" src="../popup_overlay.js"></script>
+<script type="text/javascript" src="./Building_Story.js"></script>
+
+</body>
+</html>
