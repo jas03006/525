@@ -441,6 +441,36 @@ function submit(questionBox){
   addQuestionBox("").focus();
 }
 
+function goLifeChart(){
+  writeQuestions();
+  for(var i = 0; i < currQuestions.length; i++){
+    if(currQuestions[i].question == ""){
+      alert("Please fill out all the questions.");
+      return;
+    }
+  }
+  tableSaveQuestions();
+  // 뒤로가기 누르면 다시 앞페이지로 이동
+  window.history.forward(1);
+  // 기존 페이지를 새로운 페이지로 변경
+  location.replace("../Life_Chart/life_chart.html");
+}
+
+function goBuildStory(){
+  writeQuestions();
+  for(var i = 0; i < currQuestions.length; i++){
+    if(currQuestions[i].question == ""){
+      alert("Please fill out all the questions.");
+      return;
+    }
+  }
+  tableSaveQuestions();
+  // 뒤로가기 누르면 다시 앞페이지로 이동
+  window.history.forward(1);
+  // 기존 페이지를 새로운 페이지로 변경
+  location.replace("../Building_Story/Building_Story.html");
+}
+
 initialize();
 
 
