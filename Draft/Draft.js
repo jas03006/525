@@ -103,7 +103,7 @@ function make1bs() {
 function makefc() {
   var fcDiv = document.createElement("div");
   fcDiv.id = "fcDiv";
-  fcDiv.innerHTML = '<div id = "life-chart-container">    <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>    <span id = "life-chart">    </span>    <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>    <div id = "commentDiv" onmouseover = "deleteButtonShow()" onmouseout = "deleteButtonHide()">      <div id = "commentName">My comment for this memory: </div>      <textarea id = "comment" placeholder = "Write your comment here"></textarea>      <div class = deleteHelper><i class="far fa-times-circle" id = "deleteButton" onclick = "deleteComment(this)"></i></div>    </div>  </div>  ';
+  fcDiv.innerHTML = '<div id = "life-chart-container">    <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>    <span id = "life-chart">    </span>    <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>    <div id = "commentDiv">      <div id = "commentName">My comment for this memory: </div>      <textarea id = "comment" readonly="readonly" disabled></textarea>      <div class = deleteHelper><i class="far fa-times-circle" id = "deleteButton" onclick = "deleteComment(this)"></i></div>    </div>  </div>  ';
   document.getElementById("container").appendChild(fcDiv);
 }
 /*
