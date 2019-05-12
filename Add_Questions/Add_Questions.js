@@ -9,7 +9,7 @@ var currQuestions = [];
 
 //Write current questions into currQuestions array
 function writeQuestions(){
-  //console.log(currQuestions.length, questionNum);
+  console.log(currQuestions.length, questionNum);
   for(var i = 0; i < currQuestions.length; i++){
     //console.log(document.getElementById((i + 1)));
     currQuestions[i].question = document.getElementById("question" + (i + 1)).value;
@@ -21,6 +21,10 @@ function tableLoadQuestions(){
   tableHis.once('value', function(snapshot){
       var myValue = snapshot.val();
       if(myValue == null){
+        currQuestions.push({draft: "",
+                        layout: "",
+                        memory: "",
+                        question: ""});
         return;
       }
     var questions = Object.keys(myValue);
