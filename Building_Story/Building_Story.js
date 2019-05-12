@@ -4,6 +4,7 @@ var showing = 0;
 var currentProject = localStorage.getItem("currentproject");
 var projects = firebase.database().ref('/data/testuser1/project/');
 var tableHis;
+var pjKey;
 //= firebase.database().ref("data/testuser1/project/asdfasdf/questions");
 var currQuestions = [];
 
@@ -14,14 +15,15 @@ function initialize(){
       if(myValue == null){
         return;
       }
-    var questions = Object.keys(myValue);
+    var pjs = Object.keys(myValue);
     
-    for(var i = 0; i < questions.length; i++){
-      var q = myValue[questions[i]];
+    for(var i = 0; i < pjs.length; i++){
+      var q = myValue[pjs[i]];
       
       if(q.title == currentProject){
+        pjKey = pjs[i];
         console.log(q.title);
-        tableHis = firebase.database().ref('/data/testuser1/project/' + questions[i] + '/questions/');
+        tableHis = firebase.database().ref('/data/testuser1/project/' + pjs[i] + '/questions/');
         addQuestionBox("");
         tableLoadQuestions();
       }
@@ -166,15 +168,10 @@ function confirm(){
     }
   }
   tableSaveQuestions();
-  /*
-  for(var i = 0; i < questionNum; i++){
-    var question1Id = "question1_" + (i + 1);
-    console.log(document.getElementById(question1Id).value);
-    var question2Id = "question2_" + (i + 1);
-    console.log(document.getElementById(question2Id).value);
-  }
-  deleteAll();
-*/
+  var updates = {};
+  updates['/data/testuser1/project/' + pjKey + '/writable'] = true;
+  firebase.database().ref().update(updates);
+
    // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경

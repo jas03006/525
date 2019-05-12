@@ -45,13 +45,12 @@ function readFromDatabase() {
       addMemories();
     }
     else{
-    var keyList = Object.keys(myValue);
-    memoryNumber = keyList.length;
-    trlines = parseInt((memoryNumber+1)/4);
-    remain = memoryNumber - trlines*4 + 1;
-    addMemories();
+      var keyList = Object.keys(myValue);
+      memoryNumber = keyList.length;
+      trlines = parseInt((memoryNumber+1)/4);
+      remain = memoryNumber - trlines*4 + 1;
+      addMemories();
     }
-
 
     for(var i=0;i<keyList.length;i++){
       var currentKey = keyList[i];
