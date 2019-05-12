@@ -167,8 +167,12 @@ function makep(title,date,key,writable){
   DeleteButton.innerHTML = '<i class="fas fa-times"></i>';
   DeleteButton.id = "DeleteButton";
   DeleteButton.addEventListener("click", function() {
-    delete_project_db(key);
-    document.getElementById(projectWrapper.id).remove();
+    if (confirm('Are you sure you want to Delete? This cannot be undone.')) {
+      delete_project_db(key);
+      document.getElementById(projectWrapper.id).remove();
+    } else {
+      
+    }
   });
   DeleteDiv.appendChild(DeleteButton);
   DeleteDiv.id = "DeleteDiv";
