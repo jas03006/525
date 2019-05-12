@@ -1,8 +1,12 @@
 var questionNum = 1;
+var temp = 0;
 var showing = 0;
 
 var currentProject = localStorage.getItem("currentproject");
 var projects = firebase.database().ref('/data/testuser1/project/');
+var memories = firebase.database().ref('/data/testuser1/memory/');
+
+var memsel = [];
 var tableHis;
 var pjKey;
 //= firebase.database().ref("data/testuser1/project/asdfasdf/questions");
@@ -91,6 +95,31 @@ function tableLoadQuestions(){
 
       }
 
+      memsel.push(q.memory);
+      //console.log(memoBox.innerHTML);
+        memories.once('value', function(snapshot){
+        var myValue = snapshot.val();
+        if(myValue == null){
+          return;
+        }
+      var mems = Object.keys(myValue);
+      console.log(temp);
+      console.log(memsel[temp]);
+
+      var memoBox = document.getElementById("mDiv"+(temp+1)).children[1].children[0].children[0].children[0];
+      for(var i = 0; i < mems.length; i++){
+        //console.log(mems[i]);
+        if(memsel[temp].includes(mems[i])){
+          var dt = myValue[mems[i]].Date;
+          var td = document.createElement("td");
+          td.className = "element";
+          td. innerHTML='<div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div class="text-block"><div class="contents"><h3>'+mems[i]+'</h3><p>'+dt+'</p></div></div></div>';
+          memoBox.appendChild(td);
+        }
+      }
+      temp++;
+    });
+
     }
   });
 }
@@ -120,7 +149,7 @@ function addQuestionBox(textline){
   //Text area specification
   memories.className = "memoryBox";
   memories.id = "question1_" + questionNum;
-  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block" onclick = "go_select_memory(this)"><div class="contents"><plus>+</plus></div></div></div></td><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div class="text-block"><div class="contents"><h3>Test_memory</h3><p>2019.05.09</p></div></div></div></td></tr></table>';
+  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block" onclick = "go_select_memory(this)"><div class="contents"><plus>+</plus></div></div></div></td></tr></table>';
 
   comments.className = "commentBox";
   comments.id = "question2_" + questionNum;

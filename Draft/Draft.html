@@ -1,8 +1,10 @@
 <html>
 <head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 	<link href="./Draft.css" rel="stylesheet" />
+	<link href="./life_chart/life_chart.css" rel="stylesheet" />
 
 	<link href="../popup_overlay.css" rel="stylesheet" />
 
@@ -31,23 +33,25 @@
 <div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
 
 <body>
+
 	<div id = "paper">
 		<div id = "container">
-			<div class = "title" id="title"><h1>SS electronics</h1></div>
-			<div class = "question" id="question"><h2>Q.1 asd?</h2></div>
-			<div id = "chanDiv"><a id = "chanButton" onclick = "chan()">See Flowchart</a></div>
+			<div class = "title" id="title"><h1></h1></div>
+			<div class = "question" id="question"><h2></h2></div>
+			<div id = "currentstateDiv"><div id = "currentstate"><h2> Build Your Story</h2></div><div id = "chanDiv"><a id = "chanButton" onclick = "chan()">See Flowchart</a></div></div>
 		</div>
 	</div>
 
-  
-<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
-<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
-    
-<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+	<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+
+	<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 
 	<script type="text/javascript" src="./Draft.js"></script>
+	<script type="text/javascript" src="./life_chart/life_chart.js"></script>
 
-<script type="text/javascript" src="../popup_overlay.js"></script> 
+	<script type="text/javascript" src="../popup_overlay.js"></script> 
 </body>
 </html>
