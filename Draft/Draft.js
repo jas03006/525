@@ -58,7 +58,10 @@ function makeDraft(){
   makefc();
   document.getElementById("fcDiv").style.display = 'none';
 
-
+  var aboutdraft = document.createElement("div");
+  aboutdraft.innerHTML="<h2>Write your draft</h2>";
+  aboutdraft.id = "aboutdraft";
+  document.getElementById("container").appendChild(aboutdraft);
   //draft
   for (var i = 0; i < questionNumber; i++) {
     make1draft();      
@@ -90,20 +93,20 @@ function makecb() {
 
 function make1bs() {
   var bsDiv = document.createElement("div");
-  var bs = document.createElement("textarea");
-  bs.className = "bsfcBox";
-  bs.id = "bs" + draftNum;
-  bs.placeholder = "building story of Q." + draftNum;
-  if(buildingstory[draftNum-1] != "") {
-    bs.innerHTML = buildingstory[draftNum-1];
-  }
-  bsDiv.appendChild(bs);
+  bsDiv.innerHTML = '<textarea class="bsfcBox" id = "bs'+draftNum+'" readonly="readonly" disabled>' +(buildingstory[draftNum-1] != ""?String(buildingstory[draftNum-1]):"") + '</textarea>';
   bsDiv.id = "bsDiv" + draftNum;
   bsDiv.className = "draft-container";
   document.getElementById("container").appendChild(bsDiv);  
   draftNum++;
 }
 
+function makefc() {
+  var fcDiv = document.createElement("div");
+  fcDiv.id = "fcDiv";
+  fcDiv.innerHTML = '<div id = "life-chart-container">    <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>    <span id = "life-chart">    </span>    <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>    <div id = "commentDiv" onmouseover = "deleteButtonShow()" onmouseout = "deleteButtonHide()">      <div id = "commentName">My comment for this memory: </div>      <textarea id = "comment" placeholder = "Write your comment here"></textarea>      <div class = deleteHelper><i class="far fa-times-circle" id = "deleteButton" onclick = "deleteComment(this)"></i></div>    </div>  </div>  ';
+  document.getElementById("container").appendChild(fcDiv);
+}
+/*
 function makefc() {
   var fcDiv = document.createElement("div");
   var fc = document.createElement("textarea");
@@ -115,7 +118,7 @@ function makefc() {
   fcDiv.className = "draft-container";
   document.getElementById("container").appendChild(fcDiv);  
 }
-
+*/
 function make1draft() {
   var draftDiv = document.createElement("div");
   var draft = document.createElement("textarea");
@@ -174,12 +177,14 @@ function chan(){
     currentshow = 1;
     document.getElementById("bsDiv" + currentQuestion).style.display = 'none';
     document.getElementById("fcDiv").style.display = 'block';
-    document.getElementById("chanButton").innerHTML = "See buildingstory";
+    document.getElementById("currentstate").innerHTML = "<h2>Life Chart</h2>";
+    document.getElementById("chanButton").innerHTML = "See Build Your Story";
   } else {
     currentshow = 0;
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';
     document.getElementById("fcDiv").style.display = 'none';
-    document.getElementById("chanButton").innerHTML = "See FlowChart";
+    document.getElementById("currentstate").innerHTML = "<h2>Build Your Story</h2>";
+    document.getElementById("chanButton").innerHTML = "See Life Chart";
   }
 }
 function confirm(){
@@ -189,6 +194,7 @@ function confirm(){
     update['/data/' + 'testuser1' + '/project/' + currentkey + '/questions/' + keys[i] + '/draft'] = a;
   }
   firebase.database().ref().update(update);
+  saveMemosDB();
   location.replace("../project.html");
 }
 function prev(){

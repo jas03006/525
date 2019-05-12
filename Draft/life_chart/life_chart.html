@@ -1,0 +1,101 @@
+<html>
+  <head>
+<script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    
+    </script>  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <link href="./life_chart.css" rel="stylesheet" />
+
+<link href="../popup_overlay.css" rel="stylesheet" />
+
+  </head>
+    <header>
+    <div class="header_wrapper">
+
+    <ul class="logo">
+      <li><a href="../index.html"><h1>JOBIS</h1></a></li>
+    </ul>
+
+    <ul class="menu">
+      <li><a href="../project.html">PROJECT</a></li>
+      <li><a href="../memory.html">MEMORY</a></li>
+    </ul>
+
+    <ul class="account">
+      <li><a onclick = "popup_logout()">login</a></li>
+    </ul>
+
+  </div>
+  </header>
+
+<div id = "overlay"> Loading... </div>
+<div id = "logout_popup" class = "popup" ><div class = "popup_content"> Are you sure to logout? <div><button onclick = "logout()"> Yes </button> <button onclick = "popdown_logout()"> No </button></div></div> </div>
+
+
+
+  <body>
+    <div id = "content">
+      <div id = "paper">
+        <div class="md-stepper-horizontal green">
+          <div class="md-step active">
+            <div class="md-step-circle" onclick="goUploadQuestion()"><span>1</span></div>
+            <div class="md-step-title">Upload Questions</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+          <div class="md-step working">
+            <div class="md-step-circle"><span class = "fas fa-pencil-alt"></span></div>
+            <div class="md-step-title">Build Life Chart</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+          <div class="md-step">
+            <div class="md-step-circle"><span>3</span></div>
+            <div class="md-step-title">Build Your Story</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+          </div>
+        </div>
+        <div style = "margin-top: 50px">
+          <h1 class = "left" id = "project_name"></h1>
+          <h3 class = "left">Your memory is now pinned on your life chart by importance from red to grey.</h3>
+          <h3 class = "left">Leave a short memo at your memory.</h3>
+          <h3 class = "left">What you felt, what you learned, your life change after such memory will be a good memo.</h3>
+        <div id = "life-chart-container">
+          <i class="fas fa-chevron-left fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveLeft()"></i>
+          <span id = "life-chart">
+            
+          </span>
+          <i class="fas fa-chevron-right fa-3x" style = "display: inline-block; cursor: pointer;" onclick = "moveRight()"></i>
+            <div id = "commentDiv" onmouseover = "deleteButtonShow()" onmouseout = "deleteButtonHide()">
+              <div id = "commentName">My comment for this memory: </div>
+              <textarea id = "comment" ></textarea>
+              <div class = deleteHelper><i class="far fa-times-circle" id = "deleteButton" onclick = "deleteComment(this)"></i></div>
+          </div>
+        </div>
+      </div>
+        <div id = "confirmDiv">
+          <a id = "confirmButton" onclick = "confirm()">
+            Next
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    
+   
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="../add_new_memory/jquery/js/jquery-1.9.0.min.js"></script>
+    
+<script src="../add_new_memory/jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+
+<script type="text/javascript" src="../popup_overlay.js"></script> 
+    <script type="text/javascript" src="./life_chart.js"></script>
+
+  </body>
+</html>
