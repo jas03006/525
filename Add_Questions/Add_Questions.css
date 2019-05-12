@@ -304,9 +304,10 @@ textarea::-webkit-scrollbar-thumb {
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:17px;
+	font-size:21px;
 	padding:14px 29px;
 	text-decoration:none;
+	#font-weight: bold;
 }
 
 #confirmDiv{
