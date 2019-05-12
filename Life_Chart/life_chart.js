@@ -395,7 +395,7 @@ function turnComment(self){
   //Same pin picked -> unpick pin
   else{
     //Save current Pin comment
-    findMemo(currPin.id).comment = currMemo;
+    findMemo(currPin.id).comment = document.getElementById("comment").value;
     //Unpick pin
     currPin = -1;
     currMemo = "";
@@ -505,9 +505,14 @@ function deleteButtonHide(){
 }
 
 function deleteComment(self){
-  var comment = document.getElementById("comment").value = "";
+  var r = confirm("Do you really want to erase the comment? It cannot be undone.");
+  if (r == true) {
+    document.getElementById("comment").value  = "";
   
-  findMemo(currPin.id).comment = comment.value;
+    findMemo(currPin.id).comment = "";
+  } else {
+    return;
+  }
 }
 
 function goUploadQuestion(){
@@ -521,7 +526,7 @@ function goUploadQuestion(){
 
 
 
-function confirm(){
+function next(){
   findMemo(currPin.id).comment = document.getElementById("comment").value;
   saveMemosDB();
   // 뒤로가기 누르면 다시 앞페이지로 이동
