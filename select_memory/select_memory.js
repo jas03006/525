@@ -43,7 +43,7 @@ function readFromDatabase() {
   */
   document.getElementById("title").innerHTML = currentProject;
   document.getElementById("Description").innerHTML = "Select memories for "+Qnum+Qcont;
-
+document.getElementById("overlay").style.width = "100%";
   firebase.database().ref('/data/testuser1/project/' + pjKey + '/questions/').once('value', function(snapshot){
       var myValue = snapshot.val();
       if(myValue == null){
@@ -94,6 +94,7 @@ function readFromDatabase() {
             title.parentElement.parentElement.className = "container_select";
           }
         }
+        document.getElementById("overlay").style.width = "0";
       });
     });
   return;
@@ -124,7 +125,7 @@ function addMemories(){
       }
       document.getElementById("memtable").appendChild(tr);
     }
-
+    if(remain!=0){
     var tr = document.createElement("tr");
     for(var i=0; i < remain; i++){
       addWrittenMemo(temp, tr);
@@ -133,6 +134,7 @@ function addMemories(){
       addUnWrittenMemo(temp, tr);
     }
    document.getElementById("memtable").appendChild(tr);
+ }
   }
   
   hoverable=true;
@@ -196,6 +198,7 @@ function confirm(){
 
     var updates = {};
     console.log('/data/testuser1/project/' + pjKey + '/questions/'+qkey+'/memory');
+    console.log(selected);
     updates['/data/testuser1/project/' + pjKey + '/questions/'+qkey+'/memory'] = selected;
     firebase.database().ref().update(updates);
     });
@@ -203,9 +206,5 @@ function confirm(){
    // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("./../Building_Story/Building_Story.html");
-}
-
-function hover(id) {
-  console.log("hover" + id);
+  setTimeout(function(){ location.replace("./../Building_Story/Building_Story.html"); }, 1000);
 }
