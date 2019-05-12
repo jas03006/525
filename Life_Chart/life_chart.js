@@ -11,7 +11,7 @@ var deleteShowing = 0;
     };
 firebase.initializeApp(config);
 */
-var currentProject = "TEST PROJECT";
+var currentProject = localStorage.getItem("currentproject");
 var projects = firebase.database().ref("data/testuser1/project");
 var memoRef = firebase.database().ref("data/testuser1/memory");
 var tableHis;
@@ -233,6 +233,7 @@ function drawOnce(){
   }
 }
 function initialize(){
+  document.getElementById("project_name").innerHTML = currentProject;
   projects.once('value', function(snapshot){
       var myValue = snapshot.val();
       if(myValue == null){
