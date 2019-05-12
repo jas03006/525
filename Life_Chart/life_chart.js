@@ -288,10 +288,10 @@ function drawPin(pins, currYear, left, top, width){
   //console.log(pinDiv, pinDiv.style.top);
   //console.log(pins.title, yearCount, pins.year, pins.month);
   //pinDiv.style.left = (100 + (frac - 0.5) * width - 8 + yearCount * 13).toString() + "px";
-  pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
+  //pinDiv.style.left = (100 + (frac - 0.5) * width - 8).toString() + "px";
   //console.log(pins.title, frac, width, yearCount, pinDiv.style.left);
   //pinDiv.style.left = (left + frac * width - 6 - i * 200).toString() + "px";
-  //pinDiv.style.left = (-14 + frac * 114).toString() + "%";
+  pinDiv.style.left = (-12 + frac * 112).toString() + "%";
   //pinDiv.style.top = (top - 80).toString() + "px";
   pin.addEventListener("click", pinPick);
   pin.addEventListener("mouseover", pinIn);
