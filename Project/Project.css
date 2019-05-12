@@ -115,13 +115,13 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 #EditDiv{
-  position: absolute;top: 65%;left: 0%;transform: translate( 25px, -50% );
+  position: absolute;top: 73%;left: 0%;transform: translate( 25px, -50% );
  }
 #AddDiv{
   position: absolute;top: 85%;left: 0%;transform: translate( 25px, -50% );
  }
 #WriteDiv{
-  position: absolute;top: 85%;left: 0%;transform: translate( 25px, -50% );
+  position: absolute;top: 88%;left: 0%;transform: translate( 25px, -50% );
  }
 
 #TitleDate{
@@ -134,7 +134,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 #TitleDateh{
   width: 80%;
-  position: absolute;top: 25%;left: 0%;transform: translate( 25px, -50% );
+  position: absolute;top: 35%;left: 0%;transform: translate( 25px, -50% );
 }
 #TitleDateh h1{
   word-break: break-all;
