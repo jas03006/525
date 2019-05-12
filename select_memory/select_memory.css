@@ -75,7 +75,8 @@ plus {
   position: relative;
   visibility: visible;
   cursor: pointer;
-  box-shadow: 2px 2px 6px #0000FF;
+  box-shadow: 2px 2px 6px #BBBBFF;
+  background-color:#BBBBFF;
 }
 
 .container:hover {
