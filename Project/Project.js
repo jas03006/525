@@ -123,9 +123,9 @@ function makep(title,date,key,writable){
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
   if (writable) {
-  EditButton.innerHTML = 'Edit project';
+    EditButton.innerHTML = 'Edit project';
   } else {
-  EditButton.innerHTML = 'Start project';
+    EditButton.innerHTML = 'Start project';
   }
   EditButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
@@ -197,7 +197,28 @@ function create_new_Project_db(title,date){
     date: date ,
     writable : false
   });
-  return String(new_memory_key).substring(53,1000);
+  var key = String(new_memory_key).substring(53,1000);
+  console.log(key);
+  ref = firebase.database().ref('/data/' + 'testuser1' + '/project/'+key+'/flowchart');
+  refmem = firebase.database().ref('/data/' + 'testuser1' + '/memory');
+  var a= refmem.once('value',function(snapshot){
+    var data = snapshot.val();
+    var keys = Object.keys(data);
+    for(var i = 0; i < keys.length; i++) {
+      var year_ = parseDate(data[keys[i]]['Date'])[0];
+      var month_ = parseDate(data[keys[i]]['Date'])[1];
+      var date_ = parseDate(data[keys[i]]['Date'])[2];
+      ref.push({
+        comment : '',
+        date : date_,
+        importance : data[keys[i]]['importance'],
+        month : month_,
+        title : keys[i],
+        year : year_
+      });
+    }
+  });
+  return key;
 }
 
 
@@ -228,6 +249,14 @@ function enterkey() {
 function getTime() {
   var date = new Date();
   return String(date.getFullYear() + '-' + (date.getMonth()+1 < 10 ? '0'+ (date.getMonth()+1) : date.getMonth()+1) + '-' +(date.getDate()<10?'0'+date.getDate():date.getDate())+ ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours()) + ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes()) + ':' +(date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds()));
+}
+
+function parseDate(date){
+  var dates = date.split("-");
+  for(var i = 0; i < dates.length; i++){
+    dates[i] = parseInt(dates[i]);
+  }
+  return dates;
 }
 initialize();
 
