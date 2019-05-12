@@ -150,10 +150,19 @@ function write_new_memory_db(){
 function update_flowchart_db(){
 	var YYYYMMDD = parseDate(date_.value.trim());
 	var projects =  firebase.database().ref("data/testuser1/project");
-
+	console.log(projects);
+	if(projects == null){
+			console.log('projects is null!');
+			window.history.forward(1);
+			location.replace("../memory.html");
+        			return;
+      	}
 	 projects.once('value', function(snapshot){
       		var myValue = snapshot.val();
       		if(myValue == null){
+			console.log('flowchart is null!');
+			window.history.forward(1);
+			location.replace("../memory.html");
         			return;
       		}
 		var project_keys = Object.keys(myValue);

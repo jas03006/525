@@ -187,21 +187,28 @@ function read_memory_db( ID ){
 
 function change_memory_in_flowcharts_db( past_title ){
   var projects =  firebase.database().ref("data/testuser1/project");
+      if(projects == null){
+	window.history.forward(1);
+	location.replace("../memory.html");
+        	return;
+      }
   projects.once('value', function(snapshot){
       	var myValue = snapshot.val();
       	if(myValue == null){
+		window.history.forward(1);
+		location.replace("../memory.html");
         		return;
       	}
 	var project_keys = Object.keys(myValue);
 
 	for(var i = 0; i < project_keys.length; i++){
-		var target_key;
+		var target_key = '';
 		var flowchart = myValue[project_keys[i]]['flowchart'];
 		if(flowchart == null){
 			console.log('flowchart is null');
 			window.history.forward(1);
 			location.replace("../memory.html");
-			return false;
+			return;
 		}
 		var memory_keys = Object.keys(flowchart);
 		for(var j = 0; j <  memory_keys.length; j++){

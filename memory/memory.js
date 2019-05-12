@@ -236,19 +236,30 @@ function delete_memory(obj){
     // Do nothing!
   }
 }
-
 function delete_memory_in_flowcharts( memory_title ){
   var projects =  firebase.database().ref("data/testuser1/project");
+  	if(projects == null){
+			console.log('projects is null');
+			 location.reload();
+			return;
+	}
   projects.once('value', function(snapshot){
          var myValue = snapshot.val();
-         if(myValue == null){
-              return;
-         }
+	if(myValue == null){
+			console.log('project_value is null');
+			 location.reload();
+			return;
+	}
    var project_keys = Object.keys(myValue);
 
    for(var i = 0; i < project_keys.length; i++){
       var target_key;
       var flowchart = myValue[project_keys[i]]['flowchart'];
+	if(flowchart == null){
+		console.log('flowchart is null');
+		 location.reload();
+		return;
+	}
       var memory_keys = Object.keys(flowchart);
       for(var j = 0; j <  memory_keys.length; j++){
          if ( flowchart[memory_keys[j]]['title'].trim() == memory_title.trim()){
@@ -264,6 +275,7 @@ function delete_memory_in_flowcharts( memory_title ){
        location.reload();
   });
 }
+
 
 function hover(id) {
   console.log("hover" + id);
