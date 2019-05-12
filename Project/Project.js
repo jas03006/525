@@ -87,6 +87,7 @@ function makep(title,date,key,writable){
       WriteDiv.style.display = 'none';    
       TitleDateh.style.display = 'none';    
       DeleteDiv.style.display = 'none';    
+      this.style.boxShadow = "none";
     });
   projectWrapper.addEventListener("mouseenter", function () {
       //enter
@@ -95,6 +96,7 @@ function makep(title,date,key,writable){
       WriteDiv.style.display = 'block';    
       TitleDateh.style.display = 'block';    
       DeleteDiv.style.display = 'block';    
+      this.style.boxShadow = "0px 0px 20px #777777";
     });
 
   //background image

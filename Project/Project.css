@@ -89,6 +89,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   width:110px;
   text-decoration:none;
   text-align: center;
+  cursor: not-allowed;
 }
 #AddButton:active{
   background-color: #DD0000;
