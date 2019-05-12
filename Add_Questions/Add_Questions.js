@@ -363,7 +363,7 @@ function questionDelete(){
   }
   qid.parentElement.parentElement.remove();
   //console.log(qid.id, num);
-  
+  document.getElementById(num - 1).parentElement.parentElement.children[1].addEventListener('keyup', enterEvent);
   for(var i = parseInt(qid.id); i < num; i++){
     var question = document.getElementById(i + 1);
     //tableChangeName("question" + (i + 1), "question" + i);
@@ -412,6 +412,11 @@ function enterEvent(e) {
       this.value = this.value.replace(/(\r\n|\n|\r)/gm, "");
       if(this.value != ""){
         submit(this);
+        currQuestions.push({draft: "",
+                        layout: "",
+                        memory: "",
+                        question: ""});
+        tableSaveQuestions();
         return;
       }
     }
@@ -430,9 +435,7 @@ function submit(questionBox){
   questionNum++;
   
   //Add new questionBox
-  addQuestionBox("");
-  
-    //.focus();
+  addQuestionBox("").focus();
 }
 
 initialize();
