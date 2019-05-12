@@ -17,6 +17,7 @@ display:none;
 .menu{float:left; margin-left: 50px;}
 .menu li{float:left;}
 .menu a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+.menu a:hover{ background-color: #3776E0;}
 
 .account{float:right;}
 .account a{line-height: 75px; color:white; padding: 0 15px; display: block;}
