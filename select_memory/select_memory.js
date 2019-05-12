@@ -32,16 +32,19 @@ function readFromDatabase() {
      Read comments from the database
      Print all the comments to the table
   */
-  return firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
+  firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
                                                       function(snapshot) {
 
     var myValue = snapshot.val();
+      if(myValue == null){
+      addMemories();
+      return;
+    }
     var keyList = Object.keys(myValue);
     memoryNumber = keyList.length;
     trlines = parseInt((memoryNumber)/4);
     remain = memoryNumber - trlines*4;
     addMemories();
-
 
     for(var i=0;i<keyList.length;i++){
       var currentKey = keyList[i];
@@ -60,8 +63,8 @@ function readFromDatabase() {
       var title = document.getElementById("content"+(i+2));
       title.innerHTML = '<h3>'+currentKey+'</h3><p>'+currentDate+'</p><br /><p>'+currentImp+'</p>';
     }
-    
   });
+  return;
 }
 
 function addMemories(){

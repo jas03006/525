@@ -39,8 +39,11 @@ function readFromDatabase() {
   */
   return firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
                                                       function(snapshot) {
-
     var myValue = snapshot.val();
+    if(myValue == null){
+      addMemories();
+      return;
+    }
     var keyList = Object.keys(myValue);
     memoryNumber = keyList.length;
     trlines = parseInt((memoryNumber+1)/4);
