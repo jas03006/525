@@ -15,7 +15,7 @@ var currentProject = localStorage.getItem("currentproject");
 var projects = firebase.database().ref("data/testuser1/project");
 var memoRef = firebase.database().ref("data/testuser1/memory");
 var tableHis;
-memos = [];
+var memos = [];
 //memos = [{title: "1", year: 2018, month: 5, date: 1, comment: "Hello", importance: 2}, {title: "2", year: 2018, month: 5, date: 5, comment: "", importance: 2}, {title: "3", year: 2018, month: 5, date: 3, comment: "", importance: 1}, {title: "4", year: 2015, month: 5, date: 4, comment: "", importance: 2}, {title: "5", year: 2018, month: 12, date: 31, comment: "", importance: 1}];
 
 function parseDate(date){
@@ -516,6 +516,7 @@ function goUploadQuestion(){
 }
 
 function confirm(){
+  findMemo(currPin.id).comment = document.getElementById("comment").value;
   saveMemosDB();
   // 뒤로가기 누르면 다시 앞페이지로 이동
   window.history.forward(1);
