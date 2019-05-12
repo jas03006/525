@@ -24,11 +24,26 @@ p {
 }
 
 h3 {
+	width: 200px;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	word-break:break-all;
 	margin-block-start: 0.2em;
 	margin-block-end: 0.2em;
 	font-size: 2vw;
 }
 
+h3:hover {
+	width: 200px;
+	//white-space:nowrap; 
+	//overflow:hidden; 
+	//text-overflow:ellipsis;
+	word-break:break-all;
+	margin-block-start: 0.2em;
+	margin-block-end: 0.2em;
+	font-size: 2vw;
+}
 plus {
 	font-size: 6vw;
 }

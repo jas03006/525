@@ -71,3 +71,7 @@ button{
 	padding:14px 29px;
 	text-decoration:none;
 }
+
+a{
+	cursor: pointer;
+}
