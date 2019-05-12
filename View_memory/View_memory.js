@@ -51,7 +51,7 @@ function read_memory_db( ID ){
 								var data = snapshot.val();
 								console.log(data);
 								
-								title_.value = title_value;
+								title_.innerHTML = title_value;
 								date_.value = data['Date'];
 								how_long_.value = data['How_long'];
 								what_.value = data['What_you_did'];
