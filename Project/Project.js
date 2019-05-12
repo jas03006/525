@@ -22,10 +22,28 @@ function makeap() {
   projectWrapper.appendChild(projectImage);
   projectImage.addEventListener("click", function() {
     ProjectNameDiv.style.display = "block";
+    AddDiv.style.display = "block";
+    DeleteDiv.style.display ="block";
+    AddProject.style.display = "none";
     ProjectName.focus();
   });
+
+  var AddDiv = document.createElement("div");
+  var AddButton = document.createElement("a");
+  AddButton.id = "AddButton";
+  AddButton.innerHTML = 'Add project';
+  AddButton.addEventListener("click", function() {
+    Add();
+  });
+  AddDiv.appendChild(AddButton);
+  AddDiv.id = "AddDiv";
+  AddDiv.style.display = 'none';  
+  projectImage.appendChild(AddDiv);
+
+
   var AddProject = document.createElement("div");
   AddProject.className = "add_project";
+  AddProject.id = "AddProject";
   AddProject.innerHTML = '<h1>ADD PROJECT</h1>';
   projectImage.appendChild(AddProject);
 
@@ -35,11 +53,30 @@ function makeap() {
   ProjectNameDiv.style.display = "none";
   projectWrapper.appendChild(ProjectNameDiv);
 
+  var DeleteDiv = document.createElement("div");
+  var DeleteButton = document.createElement("a");
+  DeleteButton.innerHTML = '<i class="fas fa-times"></i>';
+  DeleteButton.id = "DeleteButton";
+  DeleteButton.addEventListener("click", function() {
+    setTimeout(function() {
+      document.getElementById("ProjectName").value = "";
+      AddDiv.style.display = "none";
+      ProjectNameDiv.style.display = "none";
+      DeleteDiv.style.display ="none";
+      AddProject.style.display = "block";
+
+    },50);
+  });
+  DeleteDiv.appendChild(DeleteButton);
+  DeleteDiv.id = "DeleteDiv0";
+  DeleteDiv.style.display = 'none';  
+  projectImage.appendChild(DeleteDiv);
+
   document.getElementById("projects").appendChild(projectWrapper);  
 }
 
 //project boxs
-function makep(title,date,key){
+function makep(title,date,key,writable){
   var projectWrapper = document.createElement("div");
   projectWrapper.className = "project_wrapper";
   projectWrapper.id = key;
@@ -85,7 +122,11 @@ function makep(title,date,key){
   var EditDiv = document.createElement("div");
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
+  if (writable) {
   EditButton.innerHTML = 'Edit project';
+  } else {
+  EditButton.innerHTML = 'Start project';
+  }
   EditButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
     localStorage.setItem("currentkey", key);
@@ -99,12 +140,20 @@ function makep(title,date,key){
   //write draft button
   var WriteDiv = document.createElement("div");
   var WriteButton = document.createElement("a");
-  WriteButton.id = "Button";
+  if (writable) {
+    WriteButton.id = "Button";
+  } else {
+    WriteButton.id = "DisableButton";
+  }
   WriteButton.innerHTML = 'Write draft';
   WriteButton.addEventListener("click", function() {
-    localStorage.setItem("currentproject", title);
-    localStorage.setItem("currentkey", key);
-    location.replace("./Draft/Draft.html");
+    if (writable) {
+      localStorage.setItem("currentproject", title);
+      localStorage.setItem("currentkey", key);
+      location.replace("./Draft/Draft.html");      
+    } else {
+
+    }
   });
   WriteDiv.appendChild(WriteButton);
   WriteDiv.id = "WriteDiv";
@@ -132,16 +181,21 @@ function Add() {
   var title = document.getElementById("ProjectName").value; 
   var date = getTime();
   var key = create_new_Project_db(title,date);
-  makep(title,date,key);
-  document.getElementById("ProjectName").value = "";
-  document.getElementById("ProjectNameDiv").style.display = "none";
-//  resetProjects();
+  makep(title,date,key,false);
+  setTimeout(function() {
+    document.getElementById("ProjectName").value = "";
+    document.getElementById("AddDiv").style.display = "none";
+    document.getElementById("ProjectNameDiv").style.display = "none";
+    document.getElementById("DeleteDiv0").style.display = "none";
+    document.getElementById("AddProject").style.display = "block";
+  },50);
 }
 function create_new_Project_db(title,date){
   var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/');
   var new_memory_key = ref.push({
     title: title ,
-    date: date
+    date: date ,
+    writable : false
   });
   return String(new_memory_key).substring(53,1000);
 }
@@ -155,13 +209,12 @@ function read_project_db(){
     var data = snapshot.val();
     var keys = Object.keys(data);
     for(var i = 0; i < keys.length; i++){
-      makep(data[keys[i]]['title'],data[keys[i]]['date'], keys[i]);
+      makep(data[keys[i]]['title'],data[keys[i]]['date'], keys[i],data[keys[i]]['writable']);
     }
   });
 }
 
 function delete_project_db(key) { 
-  console.log("remove: " + '/data/' + 'testuser1' + '/project/' + key);
   var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/' + key);
   ref.remove();
 }

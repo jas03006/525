@@ -75,9 +75,50 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-decoration:none;
   text-align: center;
 }
+#DisableButton {
+  background-color:#888888;
+  -moz-border-radius:17px;
+  -webkit-border-radius:17px;
+  border-radius:17px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:20px;
+  padding:8px 20px;
+  width:110px;
+  text-decoration:none;
+  text-align: center;
+}
+#AddButton:active{
+  background-color: #DD0000;
+  transform: translateY(1px);
+}
+#AddButton:hover{
+  transform: translateY(-1px);
+}
+
+#AddButton {
+  background-color:#FF0000;
+  -moz-border-radius:17px;
+  -webkit-border-radius:17px;
+  border-radius:17px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:20px;
+  padding:8px 20px;
+  width:110px;
+  text-decoration:none;
+  text-align: center;
+}
 
 #EditDiv{
   position: absolute;top: 65%;left: 0%;transform: translate( 25px, -50% );
+ }
+#AddDiv{
+  position: absolute;top: 85%;left: 0%;transform: translate( 25px, -50% );
  }
 #WriteDiv{
   position: absolute;top: 85%;left: 0%;transform: translate( 25px, -50% );
@@ -111,13 +152,17 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   position: absolute;top: 10%;left: 70%;transform: translate( 25px, -50% );  
   cursor:pointer;
 }
+#DeleteDiv0{
+  position: absolute;top: 10%;left: 70%;transform: translate( 25px, -50% );  
+  cursor:pointer;
+}
 
 #Project0{
   cursor:pointer;  
 }
 
 #ProjectNameDiv{
-  position: absolute;top: 85%;left: 50%;transform: translate( -50%, -50% );  
+  position: absolute;top: 65%;left: 50%;transform: translate( -50%, -50% );  
 }
 #ProjectName{
   width: 150%;
