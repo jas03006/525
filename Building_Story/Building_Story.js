@@ -22,6 +22,7 @@ function initialize(){
       
       if(q.title == currentProject){
         pjKey = pjs[i];
+        localStorage.setItem("pjKey", pjKey);
         console.log(q.title);
         tableHis = firebase.database().ref('/data/testuser1/project/' + pjs[i] + '/questions/');
         addQuestionBox("");
@@ -119,7 +120,7 @@ function addQuestionBox(textline){
   //Text area specification
   memories.className = "memoryBox";
   memories.id = "question1_" + questionNum;
-  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block"><div class="contents"><plus>+</plus></div></div></div></td><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div class="text-block"><div class="contents"><h3>Test_memory</h3><p>2019.05.09</p></div></div></div></td></tr></table>';
+  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block" onclick = "go_select_memory(this)"><div class="contents"><plus>+</plus></div></div></div></td><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div class="text-block"><div class="contents"><h3>Test_memory</h3><p>2019.05.09</p></div></div></div></td></tr></table>';
 
   comments.className = "commentBox";
   comments.id = "question2_" + questionNum;
@@ -205,6 +206,17 @@ function submit(questionBox){
   addQuestionBox().focus();
 }
 
+function go_select_memory(obj){
+   var qnum  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].innerHTML;
+   var quest  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].innerHTML;
+
+   console.log(qnum);
+   console.log(quest);
+   localStorage.setItem("question_number", qnum);
+   localStorage.setItem("question_content", quest);
+   window.history.forward(1);
+   location.replace("./../select_memory/select_memory.html");
+}
 
 function goUploadQuestion(){
   // µÚ·Î°¡±â ´©¸£¸é ´Ù½Ã ¾ÕÆäÀÌÁö·Î ÀÌµ¿
