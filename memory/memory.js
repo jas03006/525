@@ -37,7 +37,7 @@ function readFromDatabase() {
      Read comments from the database
      Print all the comments to the table
   */
-  return firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
+  firebase.database().ref('/data/' + now_account + '/memory/').once('value', 
                                                       function(snapshot) {
     var myValue = snapshot.val();
     if(myValue == null){
@@ -81,6 +81,8 @@ function readFromDatabase() {
     }
     
   });
+
+  return;
 }
 
 function addMemories(){

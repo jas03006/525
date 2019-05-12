@@ -113,7 +113,7 @@ function tableLoadQuestions(){
           var dt = myValue[mems[i]].Date;
           var td = document.createElement("td");
           td.className = "element";
-          td. innerHTML='<div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div class="text-block"><div class="contents"><h3>'+mems[i]+'</h3><p>'+dt+'</p></div></div></div>';
+          td. innerHTML='<div class="container"><img id = memosheet src = "./../src/image/memory/memo.png"><div class="text-block"><div class="contents"><h3>'+mems[i]+'</h3><p>'+dt+'</p></div></div></div>';
           memoBox.appendChild(td);
         }
       }
@@ -149,7 +149,7 @@ function addQuestionBox(textline){
   //Text area specification
   memories.className = "memoryBox";
   memories.id = "question1_" + questionNum;
-  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/post_it.png"><div id = "add" class="text-block" onclick = "go_select_memory(this)"><div class="contents"><plus>+</plus></div></div></div></td></tr></table>';
+  memories.innerHTML = '<table id="memotable"><tr><td class="element"><div class="container"><img id = memosheet src = "./../src/image/memory/memo.png"><div id = "add" class="text-block" onclick = "go_select_memory(this)"><div class="contents"><plus>+</plus></div></div></div></td></tr></table>';
 
   comments.className = "commentBox";
   comments.id = "question2_" + questionNum;
