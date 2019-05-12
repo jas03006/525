@@ -197,6 +197,12 @@ function change_memory_in_flowcharts_db( past_title ){
 	for(var i = 0; i < project_keys.length; i++){
 		var target_key;
 		var flowchart = myValue[project_keys[i]]['flowchart'];
+		if(flowchart == null){
+			console.log('flowchart is null');
+			window.history.forward(1);
+			location.replace("../memory.html");
+			return false;
+		}
 		var memory_keys = Object.keys(flowchart);
 		for(var j = 0; j <  memory_keys.length; j++){
 			if ( flowchart[memory_keys[j]]['title'].trim() == past_title.trim()){
@@ -236,7 +242,7 @@ function confirm(){
 					var titles = Object.keys(snapshot.val());
 					for(var i = 0; i < titles.length; i++){
 						console.log(titles[i]);
-						if(new_title == titles[i].trim()){
+						if((title_value != titles[i].trim()) && (new_title == titles[i].trim())){
 							add_new_memory_db(  alert_error( false ) );
 							return false;
 						}
