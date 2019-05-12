@@ -236,6 +236,9 @@ function submit(questionBox){
 }
 
 function go_select_memory(obj){
+  writeQuestions();
+  tableSaveQuestions();
+
    var qnum  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].innerHTML;
    var quest  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].innerHTML;
 
