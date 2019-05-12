@@ -86,7 +86,10 @@ function makep(title,date,key){
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
   EditButton.innerHTML = 'Edit project';
-  EditButton.addEventListener("click", Edit);
+  EditButton.addEventListener("click", function() {
+    localStorage.setItem("currentproject", title);
+    location.replace("./Add_Questions/Add_Questions.html");
+  });
   EditDiv.appendChild(EditButton);
   EditDiv.id = "EditDiv";
   EditDiv.style.display = 'none';  
@@ -97,7 +100,10 @@ function makep(title,date,key){
   var WriteButton = document.createElement("a");
   WriteButton.id = "Button";
   WriteButton.innerHTML = 'Write draft';
-  WriteButton.addEventListener("click", Write);
+  WriteButton.addEventListener("click", function() {
+    localStorage.setItem("currentproject", title);
+    location.replace("./Draft/Draft.html");
+  });
   WriteDiv.appendChild(WriteButton);
   WriteDiv.id = "WriteDiv";
   WriteDiv.style.display = 'none';  
@@ -138,14 +144,7 @@ function create_new_Project_db(title,date){
   return String(new_memory_key).substring(53,1000);
 }
 
-function Edit() {
-  location.replace("./Add_Questions/Add_Questions.html");
 
-}
-function Write() {
-  location.replace("./Draft/Draft.html");
-
-}
 
 
 function read_project_db(){
