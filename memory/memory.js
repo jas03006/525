@@ -126,7 +126,7 @@ function addWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container";
-  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" onclick = "go_view_memory(this)">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" onclick = "go_edit_memory(this)">Edit Memory</a></div><div id="delDiv"><a id="delBtn" onclick = "delete_memory(this)"><i class="fas fa-times"></i></a></div></div></div>';
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="delDiv"><a id="delBtn" onclick = "delete_memory(this)"><i class="fas fa-times"></i></a></div><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" onclick = "go_view_memory(this)">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" onclick = "go_edit_memory(this)">Edit Memory</a></div></div></div>';
 
   post.addEventListener("mouseleave", function () {
       //leave
@@ -158,7 +158,7 @@ function addUnWrittenMemo(i, tr) {
   var post = document.createElement("div");
   post.id = "post" + (i+2);
   post.className = "container_inv";
-  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" onclick = "go_view_memory(this)">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" onclick = "go_edit_memory(this)">Edit Memory</a></div><div id="delDiv"><a id="delBtn" href="#"><i class="fas fa-times"></i></a></div></div></div>';
+  post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "textbox'+(i+2)+'" class="text-block"> <div id = "content'+(i+2)+'" class="contents"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p><br /><p>★ ★ ☆</p></div><div id = "option'+(i+2)+'" class="options" style = "display: none"><div id="delDiv"><a id="delBtn" onclick = "delete_memory(this)"><i class="fas fa-times"></i></a></div><div id="titles'+(i+2)+'"><h3>Test_memory'+(i+1)+'</h3><p>2019.05.09</p></div><div id="viewDiv"><a id="viewBtn" class = "btn" onclick = "go_view_memory(this)">View Memory</a></div><br /><div id="editDiv"><a id="editBtn" class = "btn" onclick = "go_edit_memory(this)">Edit Memory</a></div></div></div>';
 
   post.addEventListener("mouseleave", function () {
       //leave
@@ -203,7 +203,7 @@ function go_add_memory(){
 }
 //onclick = "go_view_memory(this)"
 function go_view_memory(obj){
-   var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+   var memory_name  = obj.parentElement.parentElement.children[1].children[0].innerHTML;
 
    console.log(memory_name);
    localStorage.setItem("memory_name", memory_name);
@@ -212,7 +212,7 @@ function go_view_memory(obj){
 }
 //onclick = "go_edit_memory(this)"
 function go_edit_memory(obj){
-   var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+   var memory_name  = obj.parentElement.parentElement.children[1].children[0].innerHTML;
 
    console.log(memory_name);
    localStorage.setItem("memory_name", memory_name);
@@ -221,7 +221,7 @@ function go_edit_memory(obj){
 }
 
 function delete_memory(obj){
-  var memory_name  = obj.parentElement.parentElement.children[0].children[0].innerHTML;
+  var memory_name  = obj.parentElement.parentElement.children[1].children[0].innerHTML;
 
   console.log(memory_name);
   if (confirm('Are you sure you want to Delete? This cannot be undone.')) {
