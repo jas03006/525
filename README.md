@@ -12,7 +12,7 @@
 #### project listing page. User can start project or writing draft in this page.
 
 ## add_new_memory.html
-#### memory adding page. 
+#### memory adding page. User can upload a new memory. A new memory requires title, date and importance to be saved.
 
 ## view_memory.html
 #### memory viewing page. User can view edit selected memory, cannot edit it.
