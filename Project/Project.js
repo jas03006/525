@@ -185,16 +185,22 @@ function makep(title,date,key,writable){
 
 function Add() {
   var title = document.getElementById("ProjectName").value; 
-  var date = getTime();
-  var key = create_new_Project_db(title,date);
-  makep(title,date,key,false);
-  setTimeout(function() {
-    document.getElementById("ProjectName").value = "";
-    document.getElementById("AddDiv").style.display = "none";
-    document.getElementById("ProjectNameDiv").style.display = "none";
-    document.getElementById("DeleteDiv0").style.display = "none";
-    document.getElementById("AddProject").style.display = "block";
-  },50);
+  if (title == "") {
+    alert("you should write project title");
+    document.getElementById("ProjectName").focus; 
+  } else {
+    var date = getTime();
+    var key = create_new_Project_db(title,date);
+    makep(title,date,key,false);
+    setTimeout(function() {
+      document.getElementById("ProjectName").value = "";
+      document.getElementById("AddDiv").style.display = "none";
+      document.getElementById("ProjectNameDiv").style.display = "none";
+      document.getElementById("DeleteDiv0").style.display = "none";
+      document.getElementById("AddProject").style.display = "block";
+    },50);
+
+  }
 }
 function create_new_Project_db(title,date){
   var ref = firebase.database().ref('/data/' + 'testuser1' + '/project/');
