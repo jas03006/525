@@ -1,10 +1,10 @@
 # Jobis
 #### team 525
 
-## Tool for writing personal statement
+#### Tool for writing personal statement
 
 ### index.html
-## 
+#### - main page of jobis. Has login function and tutorial contents  
 
 ### memory.html
 
