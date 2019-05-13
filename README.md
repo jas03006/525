@@ -3,7 +3,7 @@
 
 #### Tool for writing personal statement
 
-### index.html
+## index.html
 #### - main page of jobis. Has login function and tutorial contents  
 
 ### memory.html
