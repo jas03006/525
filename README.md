@@ -1,5 +1,5 @@
-##### Jobis
-# team 525
+# Jobis
+#### team 525
 
 ## Tool for writing personal statement
 
@@ -35,4 +35,4 @@
 
 
 ### src
-## has image source file for tutorial and for some icons.
+##### has image source file for tutorial and for some icons.
