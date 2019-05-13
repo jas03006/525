@@ -261,10 +261,10 @@ function drawOnce(){
   
 }*/
 
-function initialize(){
+function initialize_lc(){
   setTimeout(function(){
   tableHis = firebase.database().ref("data/testuser1/project/" + localStorage.getItem("currentkey") + "/flowchart");
-  loadMemos();}, 1000);
+  loadMemos();}, 2000);
 }
 
 function drawPin(pins, currYear, left, top, width){
@@ -529,7 +529,7 @@ function goUploadQuestion(){
   location.replace("../Add_Questions/Add_Questions.html");
 }
 
-initialize();
+initialize_lc();
 
 
 //console.log(document.getElementById("life-chart"));

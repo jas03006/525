@@ -29,7 +29,7 @@ function initialize(){
     setTimeout(function() {
       makeDraft();
     },1000);
-  },100);
+  },500);
 }
 
 
@@ -150,6 +150,8 @@ function makedownbox() {
   prevButton.addEventListener("click", prev);
   prevDiv.appendChild(prevButton);
   prevDiv.id = "prevDiv";
+  prevDiv.style.visibility='hidden';
+  
 
   confirmButton.id = "confirmButton";
   confirmButton.innerHTML = "confirm";
@@ -162,7 +164,9 @@ function makedownbox() {
   nextButton.addEventListener("click", next);
   nextDiv.appendChild(nextButton);
   nextDiv.id = "nextDiv";
-
+  if(questionNumber==1) {
+    nextDiv.style.visibility='hidden';
+  }
   downBox.id = "downBox";
   downBox.appendChild(prevDiv);
   downBox.appendChild(confirmDiv);
@@ -204,7 +208,11 @@ function prev(){
   document.getElementById("bsDiv" + currentQuestion).style.display = 'none';
   document.getElementById("mDiv" + currentQuestion).style.display = 'none';
   currentQuestion--;
-  if (currentQuestion==0) currentQuestion+=questionNumber;
+  //if (currentQuestion==0) currentQuestion+=questionNumber;
+  if (currentQuestion == 1) document.getElementById("prevDiv").style.visibility = 'hidden';
+  else document.getElementById("prevDiv").style.visibility = 'visible';
+  if (currentQuestion == questionNumber) document.getElementById("nextDiv").style.visibility = 'hidden';
+  else document.getElementById("nextDiv").style.visibility = 'visible';
   document.getElementById("draftDiv" + currentQuestion).style.display = 'block';
   if (currentshow == 0) {
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';    
@@ -217,7 +225,11 @@ function next(){
   document.getElementById("bsDiv" + currentQuestion).style.display = 'none';
   document.getElementById("mDiv" + currentQuestion).style.display = 'none';
   currentQuestion++;
-  if (currentQuestion==questionNumber+1) currentQuestion=1;
+//  if (currentQuestion==questionNumber+1) currentQuestion=1;
+  if (currentQuestion == 1) document.getElementById("prevDiv").style.visibility = 'hidden';
+  else document.getElementById("prevDiv").style.visibility = 'visible';
+  if (currentQuestion == questionNumber) document.getElementById("nextDiv").style.visibility = 'hidden';
+  else document.getElementById("nextDiv").style.visibility = 'visible';
   document.getElementById("draftDiv" + currentQuestion).style.display = 'block';
   if (currentshow == 0) {
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';    

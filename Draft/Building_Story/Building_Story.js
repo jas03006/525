@@ -12,7 +12,7 @@ var pjKey;
 //= firebase.database().ref("data/testuser1/project/asdfasdf/questions");
 var currQuestions = [];
 
-function initialize(){
+function initialize_bs(){
   setTimeout(function(){
     projects = firebase.database().ref('/data/testuser1/project/');
     memories = firebase.database().ref('/data/testuser1/memory/');
@@ -39,7 +39,7 @@ function initialize(){
         }
       });
     },100);
-  },100);
+  },300);
 
 }
 
@@ -239,4 +239,4 @@ function goLifeChart(){
 
 
 
-initialize();
+initialize_bs();
