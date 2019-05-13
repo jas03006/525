@@ -42,4 +42,7 @@
 # dependencies
 #### We do not use any other external tools except JQUERY and font-awesome used in HCI pr assignment.
 
+# Error
+In this version, it support only one user { ID: 'testuser1', password: 1234}. Multiple users can login with this account in different computer. And if one computer log-out the 'testuser1', 'testuser1' is logouted in every other computer. So, 
+#### you must not logout. 
 There can be some error if user fastly press buttons many times because of firebase problem. If error occurs, try to refresh the page or go to previous page and retry. 
