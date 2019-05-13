@@ -24,14 +24,16 @@
 #### first step of project. Once user starts a project, user can upload questions for personal statement.
 
 ## life_chart.html
-####
+#### second step of project. After uploading questions, user can see the lifechart and write memos.
 
 ## building_story.html
+#### third step of project. User can organize stories for each questions combining several memories.
 
 ## select_memory.html
+#### memory selecting page. In third step, user should select memories to organize story.
 
 ## draft.html
-
+#### draft writing page. After finish 3 steps of project, user can write a draft for each questions seeing the previous step.
 
 ## src
 ##### has image source file for tutorial and for some icons.
