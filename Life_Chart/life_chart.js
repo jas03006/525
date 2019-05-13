@@ -505,6 +505,9 @@ function deleteButtonHide(){
 }
 
 function deleteComment(self){
+  if(document.getElementById("comment").value == ""){
+    return;
+  }
   var r = confirm("Do you really want to erase the comment? It cannot be undone.");
   if (r == true) {
     document.getElementById("comment").value  = "";
