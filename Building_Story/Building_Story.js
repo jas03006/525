@@ -138,6 +138,7 @@ function deleteAll(){
 
 function addQuestionBox(textline){
   var qDiv = document.createElement("div");
+  var qTitleDiv = document.createElement("div");
   var mDiv = document.createElement("div");
   var cDiv = document.createElement("div");
   var memories = document.createElement("div");
@@ -158,12 +159,14 @@ function addQuestionBox(textline){
   //Enter listener
   //memories.addEventListener('keyup', enterEvent);
   //comments.addEventListener('keyup', enterEvent);
-  qDiv.innerHTML = '<h2>Q' + questionNum + '. </h2><qst id="question'+questionNum+'">Sample Question</qst>';
+  qTitleDiv.id = 'qTitle'
+  qTitleDiv.innerHTML = '<h2>Q' + questionNum + '. </h2><h2 id="question'+questionNum+'">Sample Question</h2>';
   mDiv.innerHTML = "Memories<br />"
   cDiv.innerHTML = "Comments<br />"
   mDiv.appendChild(memories);
   //memories.appendChild(mImgs);
   cDiv.appendChild(comments);
+  qDiv.appendChild(qTitleDiv);
   qDiv.appendChild(mDiv);
   qDiv.appendChild(cDiv);
   qDiv.id = "qDiv" + questionNum;
@@ -193,7 +196,7 @@ function confirm(){
   for(var i = 0; i < currQuestions.length; i++){
     //console.log(currQuestions[i]);
     if(currQuestions[i].layout == ""){
-      alert("Please fill out all the questions.");
+      alert("Please fill out all the comments.");
       return;
     }
   }
@@ -239,8 +242,8 @@ function go_select_memory(obj){
   writeQuestions();
   tableSaveQuestions();
 
-   var qnum  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].innerHTML;
-   var quest  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].innerHTML;
+   var qnum  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].innerHTML;
+   var quest  = obj.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].innerHTML;
 
    console.log(qnum);
    console.log(quest);

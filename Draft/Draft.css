@@ -144,6 +144,10 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 	text-align: left;
 }
 
+.question h2{
+  font-family: 'Merriweather', serif;
+}
+
 .center{
 	/*border: 1px solid black;*/
 	text-align: center;

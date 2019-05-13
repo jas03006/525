@@ -77,7 +77,7 @@ function makeDraft(){
 }
 
 function setQuestion() {
-  document.getElementById("question").innerHTML = "<h2>Q."+(currentQuestion) +" " +question[currentQuestion-1]+"</h2>";
+  document.getElementById("question").innerHTML = "<h2>Q"+(currentQuestion) +". " +question[currentQuestion-1]+"</h2>";
 }
 
 function makecb() {
