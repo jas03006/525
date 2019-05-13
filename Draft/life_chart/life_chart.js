@@ -209,6 +209,7 @@ function drawYear(){
     }
     //newYearDiv.appendChild(newYear);
     //newYear.style.top = "-150px";
+    console.log(chart);
     chart.appendChild(newYear);
   }
 }
@@ -232,7 +233,7 @@ function drawOnce(){
     //drawMemo(memos[i]);
   }
 }
-function initialize(){
+/*function initialize(){
   setTimeout(function(){
     var projects = firebase.database().ref("data/testuser1/project");
     var memoRef = firebase.database().ref("data/testuser1/memory");
@@ -258,6 +259,12 @@ function initialize(){
     },100);
   },100);
   
+}*/
+
+function initialize(){
+  setTimeout(function(){
+  tableHis = firebase.database().ref("data/testuser1/project/" + localStorage.getItem("currentkey") + "/flowchart");
+  loadMemos();}, 1000);
 }
 
 function drawPin(pins, currYear, left, top, width){
