@@ -93,7 +93,7 @@ function makecb() {
 }
 function make1bs() {
   var bsDiv = document.createElement("div");
-  bsDiv.innerHTML = '<textarea class="bsfcBox" id = "bs'+draftNum+'" readonly="readonly" disabled>' +(buildingstory[draftNum-1] != ""?String(buildingstory[draftNum-1]):"") + '</textarea>';
+  bsDiv.innerHTML = '<div style="text-align: left;width:80%;margin:0 auto; padding:20px"><h2>Comment</h2></div><textarea class="bsfcBox" id = "bs'+draftNum+'" readonly="readonly" disabled>' +(buildingstory[draftNum-1] != ""?String(buildingstory[draftNum-1]):"") + '</textarea>';
   bsDiv.id = "bsDiv" + draftNum;
   bsDiv.className = "draft-container";
   document.getElementById("container").appendChild(bsDiv);  
