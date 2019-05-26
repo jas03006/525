@@ -304,12 +304,13 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 #chanButton:active{
-	background-color: #777777;
+	background-color: #35ca5d;
 	transform: translateY(1px);
 }
 
 #chanButton {
-	background-color:#888888;
+	font-weight: bold;
+	background-color:#45da6d;
 	-moz-border-radius:17px;
 	-webkit-border-radius:17px;
 	border-radius:17px;
