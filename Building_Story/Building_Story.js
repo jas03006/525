@@ -193,7 +193,7 @@ function confirm(){
   for(var i = 0; i < currQuestions.length; i++){
     //console.log(currQuestions[i]);
     if(currQuestions[i].layout == ""){
-      alert("Please fill out all the questions.");
+      alert("Please fill out all the comments.");
       return;
     }
   }
