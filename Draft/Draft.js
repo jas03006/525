@@ -146,7 +146,7 @@ function makedownbox() {
 
   //downbox
   prevButton.id = "prevButton";
-  prevButton.innerHTML = "Prev";
+  prevButton.innerHTML = "&lt;Prev";
   prevButton.addEventListener("click", prev);
   prevDiv.appendChild(prevButton);
   prevDiv.id = "prevDiv";
@@ -160,7 +160,7 @@ function makedownbox() {
   confirmDiv.id = "confirmDiv";
 
   nextButton.id = "nextButton";
-  nextButton.innerHTML = "Next";
+  nextButton.innerHTML = "Next&gt;";
   nextButton.addEventListener("click", next);
   nextDiv.appendChild(nextButton);
   nextDiv.id = "nextDiv";
