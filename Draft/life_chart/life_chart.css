@@ -153,9 +153,8 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 #life-chart-container{
   margin: 20px auto;
   padding-top: 70px;
-  width: 1000px;
+  width: 1200px;
   height: 400px;
-  margin-top:10px;
   border: 2px solid #748695;
   text-align: center;
   border-radius: 20px;
@@ -166,7 +165,7 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 
 #life-chart{
-  width: 750px;
+  width: 950px;
   height: 50px;
   margin: 0 auto;
   padding-top: 20px;
@@ -191,7 +190,6 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   transform: translateY(16px);
   background-color: #CCCCCC;
 }
-
 .year{
   border: 1px solid black;
   font-weight: bold;

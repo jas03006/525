@@ -305,3 +305,7 @@ plus {
 #add{
 	cursor: pointer;
 }
+
+#qTitle h2 {
+  font-family: 'Merriweather', serif;
+}

@@ -12,7 +12,7 @@ var Qnum = localStorage.getItem("question_number");
 var qNumber = Qnum.substring(1, 2);
 var Qcont = localStorage.getItem("question_content");
 var pjKey = localStorage.getItem("pjKey");
-var currentProject = "test";
+var currentProject = localStorage.getItem("currentproject");
 console.log(currentProject);
 
 function read_now_account(){
