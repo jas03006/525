@@ -4,6 +4,10 @@ li{list-style: none;}
 a{text-decoration: none;}
 
 /*common*/
+html {
+  scroll-behavior: smooth;
+ }
+
 
 /*header height:75px;*/ 
 header {height:75px; background-color: #4887f1; width:100%; z-index: 9999; position:fixed; top:0; left:0; position:fixed; 
@@ -107,7 +111,7 @@ button{
 	text-align: center;
 	border: 2px none;//solid;
 	border-color: #7F7F7F;
-	margin-top: 30px;
+	//margin-top: 30px;
 	margin-bottom: 30px;
 	margin-left: 40px;
 	//margin-right: 220px;
@@ -123,8 +127,8 @@ button{
 	margin-bottom: 50px;
 	margin-left: 60px;
 	margin-right: 60px;
-	padding-top: 120px;
-	padding-bottom: 100px;
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
 
 .tutorial_logo{
@@ -135,7 +139,7 @@ button{
 .tutorial_title{
 	font-weight: bold;
 	font-size: 39px;
-	padding-top: 110px;
+	padding-top: 80px;
 	padding-bottom: 75px;
 }
 
@@ -143,6 +147,18 @@ button{
 	font-weight: bold;
 	font-size: 29px;
 	padding-bottom: 40px;
+}
+
+.tutorial_go{
+	font-weight: bold;
+	font-size: 36px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 0;
+	display:inline-block;
+	width: auto;
+	height: auto;
+	background-color:#60a5ff;
 }
 
 .step{
