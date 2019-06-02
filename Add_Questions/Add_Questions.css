@@ -138,17 +138,19 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
   text-align: center;
   margin: 20px;
 }
-.fas.fa-caret-left{
+.fas.fa-caret-square-left{
   display: table;
   position: relative;
+  color: #777777;
   top: -33px;
-  left: 8px;
+  left: -5px;
 }
-.fas.fa-caret-right{
+.fas.fa-caret-square-right{
   display: table;
   position: relative;
+color: #777777;
   top: -33px;
-  left: 2px;
+  left: -5px;
 }
 .helper{
   #border: 1px solid red;

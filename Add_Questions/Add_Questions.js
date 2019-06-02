@@ -152,7 +152,7 @@ function addQuestionBox(textline){
   }
   //Enter listener
   question.addEventListener('keyup', enterEvent);
-  arrowDiv.className = "fas fa-caret-left";
+  arrowDiv.className = "fas fa-caret-square-left";
   
   num.innerHTML = "Q" + questionNum + ". ";
   num.appendChild(arrowDiv);
@@ -258,7 +258,7 @@ function numberClick(){
     this.style.fontWeight = "900";
     
     this.className = "numPick"
-    this.children[0].className = "fas fa-caret-right";
+    this.children[0].className = "fas fa-caret-square-right";
     myMoveLeft(del);
   }
   else if(this.className == "numPick"){
@@ -266,7 +266,7 @@ function numberClick(){
     
     this.style.fontWeight = "normal";
     this.className = "num"
-    this.children[0].className = "fas fa-caret-left";
+    this.children[0].className = "fas fa-caret-square-left";
     myMoveRight(del);
   }
 }
@@ -299,14 +299,14 @@ function myDark(elem) {
 function numberHover(){
   var arrow = this.children[0];
   
-  arrow.style.left = "5px";
+  arrow.style.left = "-7px";
   //arrow.className = "fas fa-caret-right";
   //myBright(this);
 }
 
 function numberHoverOut(){
   var arrow = this.children[0];
-  arrow.style.left = "8px";
+  arrow.style.left = "-5px";
   //arrow.className = "fas fa-caret-left";
 }
 function myMoveDown(elem) {
@@ -372,8 +372,12 @@ function questionDelete(){
     //tableChangeName("question" + (i + 1), "question" + i);
     if(question != null){
       var arrow = document.createElement("div");
-      
-      arrow.className = "fas fa-caret-left";
+      if(question.className == "num"){
+        arrow.className = "fas fa-caret-square-left";
+      }
+      else if(question.className == "numPick"){
+        arrow.className = "fas fa-caret-square-right";
+      }
       question.id = i;
       question.innerHTML = "Q" + i + ". ";
       question.appendChild(arrow);

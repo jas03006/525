@@ -403,10 +403,14 @@ function turnComment(self){
 }
 
 function moveLeft(){
-  yearStart -= 1;
   var chart = document.getElementById("life-chart");
 
-  
+  if(memos[0].year >= yearStart){
+    return;
+  }
+
+  yearStart -= 1;
+
   //If current pin exists, maintain current pin
   if(currPin != -1){
     framePinName = currPin.id;
