@@ -113,7 +113,7 @@ function tableLoadQuestions(){
           var dt = myValue[mems[i]].Date;
           var td = document.createElement("td");
           td.className = "element";
-          td. innerHTML='<div class="container"><img id = memosheet src = "./../src/image/memory/memo.png"><div class="text-block"><div class="contents"><h3>'+mems[i]+'</h3><p>'+dt+'</p></div></div></div>';
+          td. innerHTML='<div class="container"><img id = memosheet src = "./../src/image/memory/memo.png"><div class="text-block"><div class="contents"><h4>'+mems[i]+'</h4><p>'+dt+'</p></div></div></div>';
           memoBox.appendChild(td);
         }
       }
