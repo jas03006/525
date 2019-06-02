@@ -9,7 +9,6 @@ var currQuestions = [];
 
 //Write current questions into currQuestions array
 function writeQuestions(){
-  console.log(currQuestions.length, questionNum);
   for(var i = 0; i < currQuestions.length; i++){
     //console.log(document.getElementById((i + 1)));
     currQuestions[i].question = document.getElementById("question" + (i + 1)).value;
@@ -365,8 +364,9 @@ function questionDelete(){
     return;
   }
   qid.parentElement.parentElement.remove();
-  //console.log(qid.id, num);
-  document.getElementById(num - 1).parentElement.parentElement.children[1].addEventListener('keyup', enterEvent);
+  console.log(qid.id, num);
+  if(qid.id == num)
+	document.getElementById(num - 1).parentElement.parentElement.children[1].addEventListener('keyup', enterEvent);
   for(var i = parseInt(qid.id); i < num; i++){
     var question = document.getElementById(i + 1);
     //tableChangeName("question" + (i + 1), "question" + i);
