@@ -196,7 +196,7 @@ function addPlusMemo(tr) {
   post.id = "post1";
   post.className = "container";
 
-    post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo.png"><div id = "add" class="text-block" onclick = "go_add_memory()"><div class="contents"><plus>+</plus><p>Add new memory</p></div></div>';
+    post.innerHTML = '<img id = "memosheet" src="./src/image/memory/memo_add.png"><div id = "add" class="text-block" onclick = "go_add_memory()"><div class="contents"><plus>+</plus><p>Add new memory</p></div></div>';
     td.appendChild(post);
 
    tr.appendChild(td);  
