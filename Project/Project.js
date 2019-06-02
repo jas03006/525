@@ -44,7 +44,7 @@ function makeap() {
   var AddProject = document.createElement("div");
   AddProject.className = "add_project";
   AddProject.id = "AddProject";
-  AddProject.innerHTML = '<h1>ADD PROJECT</h1>';
+  AddProject.innerHTML = '<h2>ADD PERSONAL STATEMENT</h2>';
   projectImage.appendChild(AddProject);
 
   var ProjectNameDiv = document.createElement("div");
