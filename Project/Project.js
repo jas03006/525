@@ -31,7 +31,7 @@ function makeap() {
   var AddDiv = document.createElement("div");
   var AddButton = document.createElement("a");
   AddButton.id = "AddButton";
-  AddButton.innerHTML = 'Add project';
+  AddButton.innerHTML = 'Add PS';
   AddButton.addEventListener("click", function() {
     Add();
   });
@@ -49,7 +49,7 @@ function makeap() {
 
   var ProjectNameDiv = document.createElement("div");
   ProjectNameDiv.id = "ProjectNameDiv";
-  ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' placeholder = 'Project Name'onkeyup='enterkey();'>"
+  ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' placeholder = 'PS Name'onkeyup='enterkey();'>"
   ProjectNameDiv.style.display = "none";
   projectWrapper.appendChild(ProjectNameDiv);
 
@@ -125,9 +125,9 @@ function makep(title,date,key,writable){
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
   if (writable) {
-    EditButton.innerHTML = 'Edit project';
+    EditButton.innerHTML = 'Edit PS';
   } else {
-    EditButton.innerHTML = 'Start project';
+    EditButton.innerHTML = 'Start PS';
   }
   EditButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
@@ -147,7 +147,7 @@ function makep(title,date,key,writable){
   } else {
     WriteButton.id = "DisableButton";
   }
-  WriteButton.innerHTML = 'Write draft';
+  WriteButton.innerHTML = 'Write Draft';
   WriteButton.addEventListener("click", function() {
     if (writable) {
       localStorage.setItem("currentproject", title);
@@ -186,7 +186,7 @@ function makep(title,date,key,writable){
 function Add() {
   var title = document.getElementById("ProjectName").value; 
   if (title == "") {
-    alert("you should write project title");
+    alert("you should write PS title");
     document.getElementById("ProjectName").focus; 
   } else {
     var date = getTime();

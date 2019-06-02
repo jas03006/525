@@ -64,6 +64,10 @@ plus {
   visibility: visible;
 }
 
+.container:hover {
+  box-shadow: 1px 1px 5px #AAAAAA;
+}
+
 .container_inv {
   position: relative;
   visibility: hidden;
