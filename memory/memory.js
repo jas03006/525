@@ -204,7 +204,7 @@ function readFromDatabase() {
   }
 
   function go_add_memory(){
-    location.href = "../add_new_memory/Add_new_memory.html";
+    location.href = "./add_new_memory/Add_new_memory.html";
     //window.history.forward(1);
     //location.replace("./add_new_memory/Add_new_memory.html");
   }
@@ -214,7 +214,7 @@ function go_view_memory(obj){
 
  console.log(memory_name);
  localStorage.setItem("memory_name", memory_name);
- location.href = "../View_memory/View_memory.html";
+ location.href = "./View_memory/View_memory.html";
  //window.history.forward(1);
  //location.replace("./View_memory/View_memory.html");
 }
@@ -224,7 +224,7 @@ function go_edit_memory(obj){
 
  console.log(memory_name);
  localStorage.setItem("memory_name", memory_name);
- location.href = "../Edit_memory/Edit_memory.html";
+ location.href = "./Edit_memory/Edit_memory.html";
  //window.history.forward(1);
  //location.replace("./Edit_memory/Edit_memory.html");
 }
