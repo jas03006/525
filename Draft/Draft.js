@@ -29,7 +29,7 @@ function initialize(){
     setTimeout(function() {
       makeDraft();
     },1000);
-  },500);
+  },1500);
 }
 
 
@@ -201,7 +201,8 @@ function confirm(){
   }
   firebase.database().ref().update(update);
   saveMemosDB();
-  location.replace("../project.html");
+  location.href = "../project.html";
+  //location.replace("../project.html");
 }
 function prev(){
   document.getElementById("draftDiv" + currentQuestion).style.display = 'none';

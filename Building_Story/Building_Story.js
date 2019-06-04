@@ -205,10 +205,11 @@ function confirm(){
   updates['/data/testuser1/project/' + pjKey + '/writable'] = true;
   firebase.database().ref().update(updates);
 
-   // 뒤로가기 누르면 다시 앞페이지로 이동
-  window.history.forward(1);
+    location.href = "../project.html";
+ // 뒤로가기 누르면 다시 앞페이지로 이동
+  //window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../project.html");
+  //location.replace("../project.html");
 }
 
 function enterEvent(e) {
@@ -249,23 +250,28 @@ function go_select_memory(obj){
    console.log(quest);
    localStorage.setItem("question_number", qnum);
    localStorage.setItem("question_content", quest);
-   window.history.forward(1);
-   location.replace("./../select_memory/select_memory.html");
+     location.href = "./../select_memory/select_memory.html";
+//   window.history.forward(1);
+
+  // location.replace("./../select_memory/select_memory.html");
 }
 
 function goUploadQuestion(){
+  location.href = "../Add_Questions/Add_Questions.html";
   // µÚ·Î°¡±â ´©¸£¸é ´Ù½Ã ¾ÕÆäÀÌÁö·Î ÀÌµ¿
-  window.history.forward(2);
+  //window.history.forward(2);
   // ±âÁ¸ ÆäÀÌÁö¸¦ »õ·Î¿î ÆäÀÌÁö·Î º¯°æ
-  location.replace("../Add_Questions/Add_Questions.html");
+  //location.replace("../Add_Questions/Add_Questions.html");
 }
 
 
 function goLifeChart(){
+  location.href = "../Life_Chart/life_chart.html";
   // µÚ·Î°¡±â ´©¸£¸é ´Ù½Ã ¾ÕÆäÀÌÁö·Î ÀÌµ¿
-  window.history.forward(1);
+  //window.history.forward(1);
   // ±âÁ¸ ÆäÀÌÁö¸¦ »õ·Î¿î ÆäÀÌÁö·Î º¯°æ
-  location.replace("../Life_Chart/life_chart.html");
+  //location.replace("../Life_Chart/life_chart.html");\
+
 }
 
 

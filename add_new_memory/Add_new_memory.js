@@ -115,21 +115,21 @@ function confirm(){
 	var new_title = title_.value.trim();
 	var test_ref = firebase.database().ref(path + new_title);
 	firebase.database().ref(path).once('value',function(snapshot){
-					var myValue = snapshot.val();
-					if(myValue != null){
-					var titles = Object.keys(myValue);
-					
-					for(var i = 0; i < titles.length; i++){
-						console.log(titles[i]);
-						if(new_title == titles[i].trim()){
-							add_new_memory_db(  alert_error( false ) );
-							return false;
-						}
-					}
-					}
-					add_new_memory_db( alert_error( true ));
+		var myValue = snapshot.val();
+		if(myValue != null){
+			var titles = Object.keys(myValue);
+
+			for(var i = 0; i < titles.length; i++){
+				console.log(titles[i]);
+				if(new_title == titles[i].trim()){
+					add_new_memory_db(  alert_error( false ) );
 					return false;
-				});
+				}
+			}
+		}
+		add_new_memory_db( alert_error( true ));
+		return false;
+	});
 }
 
 function write_new_memory_db(){
@@ -152,53 +152,57 @@ function update_flowchart_db(){
 	var projects =  firebase.database().ref("data/testuser1/project");
 	console.log(projects);
 	if(projects == null){
-			console.log('projects is null!');
-			window.history.forward(1);
-			location.replace("../memory.html");
-        			return;
-      	}
-	 projects.once('value', function(snapshot){
-      		var myValue = snapshot.val();
-      		if(myValue == null){
+		console.log('projects is null!');
+		location.href = "../memory.html";
+		//window.history.forward(1);
+		//location.replace("../memory.html");
+		return;
+	}
+	projects.once('value', function(snapshot){
+		var myValue = snapshot.val();
+		if(myValue == null){
 			console.log('flowchart is null!');
-			window.history.forward(1);
-			location.replace("../memory.html");
-        			return;
-      		}
+			location.href = "../memory.html";
+			//window.history.forward(1);
+			//location.replace("../memory.html");
+			return;
+		}
 		var project_keys = Object.keys(myValue);
 
-	for(var i = 0; i < project_keys.length; i++){
-		var  tableHis = firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart");
-		var dic = {
-      			title:  title_.value.trim(),
-       			year: YYYYMMDD[0],
-        			month: YYYYMMDD[1],
-       			date: YYYYMMDD[2],
-      			importance: importance_,
-        			comment: ""
-     		 };
-    		console.log(tableHis);
-    		tableHis.push(dic);
-	}
-	
-		window.history.forward(1);
-		location.replace("../memory.html");
+		for(var i = 0; i < project_keys.length; i++){
+			var  tableHis = firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart");
+			var dic = {
+				title:  title_.value.trim(),
+				year: YYYYMMDD[0],
+				month: YYYYMMDD[1],
+				date: YYYYMMDD[2],
+				importance: importance_,
+				comment: ""
+			};
+			console.log(tableHis);
+			tableHis.push(dic);
+		}
+
+		location.href = "../memory.html";
+		//window.history.forward(1);
+		//location.replace("../memory.html");
 	});
 }
 
 function parseDate(date){
-  var dates = date.split("-");
-  for(var i = 0; i < dates.length; i++){
-    dates[i] = parseInt(dates[i]);
-  }
-  return dates;
+	var dates = date.split("-");
+	for(var i = 0; i < dates.length; i++){
+		dates[i] = parseInt(dates[i]);
+	}
+	return dates;
 }
 
 
 function go_main(){
+    location.href = "../index.html";
     // 뒤로가기 누르면 다시 앞페이지로 이동
-    window.history.forward(1);
+    //window.history.forward(1);
     // 기존 페이지를 새로운 페이지로 변경
-    location.replace("../index.html");
+    //location.replace("../index.html");
 }
 

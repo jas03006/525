@@ -264,7 +264,7 @@ function drawOnce(){
 function initialize_lc(){
   setTimeout(function(){
   tableHis = firebase.database().ref("data/testuser1/project/" + localStorage.getItem("currentkey") + "/flowchart");
-  loadMemos();}, 2000);
+  loadMemos();}, 4000);
 }
 
 function drawPin(pins, currYear, left, top, width){

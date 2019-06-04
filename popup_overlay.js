@@ -1,15 +1,15 @@
 
-  var firebaseConfig = {
-    apiKey: "AIzaSyDAB7VdqDpWJ9-LPG9rT5H7dWR6m8EaGrQ",
-    authDomain: "hci525.firebaseapp.com",
-    databaseURL: "https://hci525.firebaseio.com",
-    projectId: "hci525",
-    storageBucket: "hci525.appspot.com",
-    messagingSenderId: "299033067890",
-    appId: "1:299033067890:web:39f73e6323e5bb1f"
-  };
+var firebaseConfig = {
+	apiKey: "AIzaSyDAB7VdqDpWJ9-LPG9rT5H7dWR6m8EaGrQ",
+	authDomain: "hci525.firebaseapp.com",
+	databaseURL: "https://hci525.firebaseio.com",
+	projectId: "hci525",
+	storageBucket: "hci525.appspot.com",
+	messagingSenderId: "299033067890",
+	appId: "1:299033067890:web:39f73e6323e5bb1f"
+};
 
-  firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 
 var accounts = [];
@@ -26,8 +26,8 @@ function main(){
 
 function read_accounts(){
 	firebase.database().ref('/accounts/pairs').once('value', function(snapshot){ 
-								parse_accounts( snapshot.val() +'');
-							});
+		parse_accounts( snapshot.val() +'');
+	});
 	return false;
 }
 
@@ -50,27 +50,29 @@ function read_now_account(){
 	document.getElementById("overlay").style.width = "100%";
 	return new Promise(function(resolve, reject){
 		firebase.database().ref('/now_account/now_ID').once('value', function(snapshot){ 
-								console.log('read_now\n');
-								now_account = snapshot.val().trim();
-								if(now_account == ''){
-    									window.history.forward(1);
-  									location.replace("../index.html");
-								}else{
-									document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
-								}
-								console.log(now_account);
-								document.getElementById("overlay").style.width = "0";
-															
-								resolve(now_account);
-							});
+			console.log('read_now\n');
+			now_account = snapshot.val().trim();
+			if(now_account == ''){
+				location.href = "../index.html";
+				//window.history.forward(1);
+				//location.replace("../index.html");
+			}else{
+				document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
+			}
+			console.log(now_account);
+			document.getElementById("overlay").style.width = "0";
+
+			resolve(now_account);
 		});
+	});
 }
 
 
 function go_logouted_page(){
 	document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = 'login';
-	window.history.forward(1);
-  	location.replace("../index.html");
+	location.href = "../index.html";
+	//window.history.forward(1);
+	//location.replace("../index.html");
 }
 
 function logout(){

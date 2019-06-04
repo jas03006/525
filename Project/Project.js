@@ -132,7 +132,8 @@ function makep(title,date,key,writable){
   EditButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
     localStorage.setItem("currentkey", key);
-    location.replace("./Add_Questions/Add_Questions.html");
+    location.href = "./Add_Questions/Add_Questions.html";
+    //location.replace("./Add_Questions/Add_Questions.html");
   });
   EditDiv.appendChild(EditButton);
   EditDiv.id = "EditDiv";
@@ -152,7 +153,8 @@ function makep(title,date,key,writable){
     if (writable) {
       localStorage.setItem("currentproject", title);
       localStorage.setItem("currentkey", key);
-      location.replace("./Draft/Draft.html");      
+      location.href = "./Draft/Draft.html";
+      //location.replace("./Draft/Draft.html");      
     } else {
 
     }
@@ -171,7 +173,7 @@ function makep(title,date,key,writable){
       delete_project_db(key);
       document.getElementById(projectWrapper.id).remove();
     } else {
-      
+
     }
   });
   DeleteDiv.appendChild(DeleteButton);

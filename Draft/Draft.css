@@ -195,11 +195,10 @@ body {margin-top: 75px; width: 100%; background-color: #EEEEEE;}
 }
 #content{
 	width: 100%;
-	height: 100%;
 }
 
 #paper{
-	width: 80%;
+	width: 1300px;
 	height: 100%;
 	display: table;
 	margin: 0 auto;

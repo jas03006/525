@@ -138,25 +138,26 @@ function read_now_account(){
 	document.getElementById("overlay").style.width = "100%";
 	return new Promise(function(resolve, reject){
 		firebase.database().ref('/now_account/now_ID').once('value', function(snapshot){ 
-								console.log('read_now\n');
-								now_account = snapshot.val().trim();
-								if(now_account == ''){
-    									window.history.forward(1);
-  									location.replace("../index.html");
-								}else{
-									document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
-								}
-								console.log(now_account);
-								document.getElementById("overlay").style.width = "0";
-								read_memory_db(now_account);							
-								resolve(now_account);
-							});
+			console.log('read_now\n');
+			now_account = snapshot.val().trim();
+			if(now_account == ''){
+				location.href = "../index.html";
+				//window.history.forward(1);
+				//location.replace("../index.html");
+			}else{
+				document.getElementsByClassName("account")[0].getElementsByTagName("a")[0].innerHTML = now_account;
+			}
+			console.log(now_account);
+			document.getElementById("overlay").style.width = "0";
+			read_memory_db(now_account);							
+			resolve(now_account);
 		});
+	});
 }
-	
+
 
 function draw_star(num_star){
-		document.getElementById("star").children[0].children[0].style = 'width:' + (num_star * 33.33) +'%';
+	document.getElementById("star").children[0].children[0].style = 'width:' + (num_star * 33.33) +'%';
 	return false;
 }
 
@@ -164,80 +165,84 @@ function read_memory_db( ID ){
 	var path = '/data/' + ID + '/memory/' + title_value;
 	document.getElementById("overlay").style.width = "100%";
 	firebase.database().ref(path).once('value', function(snapshot){ 
-								console.log(path);
-								var data = snapshot.val();
-								console.log(data);
-								
-								title_.value = title_value;
-								date_.value = data['Date'];
-								how_long_.value = data['How_long'];
-								what_.value = data['What_you_did'];
-								what_you_felt_.value = data['What_you_felt'];
-								where_.value = data['Where'];
-								why_.value = data['Why'];
-								with_.value = data['With_whom'];
-								importance_ = data['importance'];
-								
-								draw_star(importance_);
+		console.log(path);
+		var data = snapshot.val();
+		console.log(data);
 
-								document.getElementById("overlay").style.width = "0";
-							});
+		title_.value = title_value;
+		date_.value = data['Date'];
+		how_long_.value = data['How_long'];
+		what_.value = data['What_you_did'];
+		what_you_felt_.value = data['What_you_felt'];
+		where_.value = data['Where'];
+		why_.value = data['Why'];
+		with_.value = data['With_whom'];
+		importance_ = data['importance'];
+
+		draw_star(importance_);
+
+		document.getElementById("overlay").style.width = "0";
+	});
 }
 
 
 function change_memory_in_flowcharts_db( past_title ){
-  var projects =  firebase.database().ref("data/testuser1/project");
-      if(projects == null){
-	window.history.forward(1);
-	location.replace("../memory.html");
-        	return;
-      }
-  projects.once('value', function(snapshot){
-      	var myValue = snapshot.val();
-      	if(myValue == null){
-		window.history.forward(1);
-		location.replace("../memory.html");
-        		return;
-      	}
-	var project_keys = Object.keys(myValue);
-
-	for(var i = 0; i < project_keys.length; i++){
-		var target_key = '';
-		var flowchart = myValue[project_keys[i]]['flowchart'];
-		if(flowchart == null){
-			console.log('flowchart is null');
-			window.history.forward(1);
-			location.replace("../memory.html");
+	var projects =  firebase.database().ref("data/testuser1/project");
+	if(projects == null){
+		location.href = "../memory.html";
+		//window.history.forward(1);
+		//location.replace("../memory.html");
+		return;
+	}
+	projects.once('value', function(snapshot){
+		var myValue = snapshot.val();
+		if(myValue == null){
+			location.href = "../memory.html";
+			//window.history.forward(1);
+			//location.replace("../memory.html");
 			return;
 		}
-		var memory_keys = Object.keys(flowchart);
-		for(var j = 0; j <  memory_keys.length; j++){
-			if ( flowchart[memory_keys[j]]['title'].trim() == past_title.trim()){
-				target_key = memory_keys[j];
-				console.log(target_key);
-				break;
+		var project_keys = Object.keys(myValue);
+
+		for(var i = 0; i < project_keys.length; i++){
+			var target_key = '';
+			var flowchart = myValue[project_keys[i]]['flowchart'];
+			if(flowchart == null){
+				console.log('flowchart is null');
+				location.href = "../memory.html";
+				//window.history.forward(1);
+				//location.replace("../memory.html");
+				return;
 			}
+			var memory_keys = Object.keys(flowchart);
+			for(var j = 0; j <  memory_keys.length; j++){
+				if ( flowchart[memory_keys[j]]['title'].trim() == past_title.trim()){
+					target_key = memory_keys[j];
+					console.log(target_key);
+					break;
+				}
+			}
+			var YYYYMMDD = parseDate(date_.value);
+			var updates = {};
+			updates['title'] = title_.value.trim();
+			updates['date'] = YYYYMMDD[2];
+			updates['month'] =YYYYMMDD[1];
+			updates['year'] = YYYYMMDD[0];
+			updates['importance'] = importance_;	
+			firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).update(updates);
 		}
-		var YYYYMMDD = parseDate(date_.value);
-		var updates = {};
-		updates['title'] = title_.value.trim();
-		updates['date'] = YYYYMMDD[2];
-		updates['month'] =YYYYMMDD[1];
-		updates['year'] = YYYYMMDD[0];
-		updates['importance'] = importance_;	
-		firebase.database().ref("data/testuser1/project/" + project_keys[i] + "/flowchart/" + target_key).update(updates);
-	}
-	window.history.forward(1);
-	location.replace("../memory.html");
-  });
+		location.href = "../memory.html";
+		//window.history.forward(1);
+		//location.replace("../memory.html");
+	});
 }
 
 function parseDate(date){
-  var dates = date.split("-");
-  for(var i = 0; i < dates.length; i++){
-    dates[i] = parseInt(dates[i]);
-  }
-  return dates;
+	var dates = date.split("-");
+	for(var i = 0; i < dates.length; i++){
+		dates[i] = parseInt(dates[i]);
+	}
+	return dates;
 }
 
 
@@ -246,29 +251,31 @@ function confirm(){
 	var new_title = title_.value.trim();
 	var test_ref = firebase.database().ref(path + new_title);
 	firebase.database().ref(path).once('value',function(snapshot){
-					var titles = Object.keys(snapshot.val());
-					for(var i = 0; i < titles.length; i++){
-						console.log(titles[i]);
-						if((title_value != titles[i].trim()) && (new_title == titles[i].trim())){
-							add_new_memory_db(  alert_error( false ) );
-							return false;
-						}
-					}
-					add_new_memory_db( alert_error( true ));
-					return false;
-				});
+		var titles = Object.keys(snapshot.val());
+		for(var i = 0; i < titles.length; i++){
+			console.log(titles[i]);
+			if((title_value != titles[i].trim()) && (new_title == titles[i].trim())){
+				add_new_memory_db(  alert_error( false ) );
+				return false;
+			}
+		}
+		add_new_memory_db( alert_error( true ));
+		return false;
+	});
 }
 
 
 function go_main(){
+    location.href = "../index.html";
     // 뒤로가기 누르면 다시 앞페이지로 이동
-    window.history.forward(1);
+    //window.history.forward(1);
     // 기존 페이지를 새로운 페이지로 변경
-    location.replace("../index.html");
+    //location.replace("../index.html");
 }
 
 
 function go_memory_page(){
-    window.history.forward(1);
-    location.replace("../memory.html");
+	location.href = "../memory.html";
+	//window.history.forward(1);
+	//location.replace("../memory.html");
 }

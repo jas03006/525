@@ -525,10 +525,12 @@ function deleteComment(self){
 function goUploadQuestion(){
   findMemo(currPin.id).comment = document.getElementById("comment").value;
   saveMemosDB();
+  
+  location.href = "../Add_Questions/Add_Questions.html";
   // 뒤로가기 누르면 다시 앞페이지로 이동
-  window.history.forward(1);
+  //window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Add_Questions/Add_Questions.html");
+  //location.replace("../Add_Questions/Add_Questions.html");
 }
 
 
@@ -536,10 +538,11 @@ function goUploadQuestion(){
 function next(){
   findMemo(currPin.id).comment = document.getElementById("comment").value;
   saveMemosDB();
+  location.href = "../Building_Story/Building_Story.html";
   // 뒤로가기 누르면 다시 앞페이지로 이동
-  window.history.forward(1);
+  //window.history.forward(1);
   // 기존 페이지를 새로운 페이지로 변경
-  location.replace("../Building_Story/Building_Story.html");
+  //location.replace("../Building_Story/Building_Story.html");
 }
 
 initialize();
