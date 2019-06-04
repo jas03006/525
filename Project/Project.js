@@ -31,7 +31,7 @@ function makeap() {
   var AddDiv = document.createElement("div");
   var AddButton = document.createElement("a");
   AddButton.id = "AddButton";
-  AddButton.innerHTML = 'Add PS';
+  AddButton.innerHTML = 'Add Paper';
   AddButton.addEventListener("click", function() {
     Add();
   });
@@ -49,7 +49,7 @@ function makeap() {
 
   var ProjectNameDiv = document.createElement("div");
   ProjectNameDiv.id = "ProjectNameDiv";
-  ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' placeholder = 'PS Name'onkeyup='enterkey();'>"
+  ProjectNameDiv.innerHTML = "<input type = 'text' id = 'ProjectName' placeholder = 'Paper Name'onkeyup='enterkey();'>"
   ProjectNameDiv.style.display = "none";
   projectWrapper.appendChild(ProjectNameDiv);
 
@@ -125,9 +125,9 @@ function makep(title,date,key,writable){
   var EditButton = document.createElement("a");
   EditButton.id = "Button";
   if (writable) {
-    EditButton.innerHTML = 'Edit PS';
+    EditButton.innerHTML = 'Edit Paper';
   } else {
-    EditButton.innerHTML = 'Start PS';
+    EditButton.innerHTML = 'Start Paper';
   }
   EditButton.addEventListener("click", function() {
     localStorage.setItem("currentproject", title);
@@ -188,7 +188,7 @@ function makep(title,date,key,writable){
 function Add() {
   var title = document.getElementById("ProjectName").value; 
   if (title == "") {
-    alert("you should write PS title");
+    alert("you should write Paper title");
     document.getElementById("ProjectName").focus; 
   } else {
     var date = getTime();
