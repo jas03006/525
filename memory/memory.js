@@ -204,7 +204,7 @@ function readFromDatabase() {
   }
 
   function go_add_memory(){
-    location.href = "..Add_new_memory/Add_new_memory.html";
+    location.href = "../add_new_memory/Add_new_memory.html";
     //window.history.forward(1);
     //location.replace("./add_new_memory/Add_new_memory.html");
   }
