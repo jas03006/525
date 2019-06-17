@@ -28,7 +28,7 @@ function initialize(){
     });
     setTimeout(function() {
       makeDraft();
-    },1000);
+    },2000);
   },1500);
 }
 
@@ -172,8 +172,18 @@ function makedownbox() {
   downBox.appendChild(confirmDiv);
   downBox.appendChild(nextDiv);
 
+  //
+  var Message = document.createElement("a");
+  var Div = document.createElement("div");
+  Message.id = "XofX";
+  Message.innerHTML = currentQuestion + " of " + questionNumber + " Questions";
+  Div.appendChild(Message);
+  document.getElementById("paper").appendChild(Div);
+  //
+
   //Add button to the content
   document.getElementById("paper").appendChild(downBox);
+
 }
 
 function chan(){
@@ -219,6 +229,7 @@ function prev(){
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';    
     document.getElementById("mDiv" + currentQuestion).style.display = 'block';
   }
+  document.getElementById("XofX").innerHTML = currentQuestion + " of " + questionNumber + " Questions";
   setQuestion();
 }
 function next(){
@@ -236,6 +247,7 @@ function next(){
     document.getElementById("bsDiv" + currentQuestion).style.display = 'block';    
     document.getElementById("mDiv" + currentQuestion).style.display = 'block';
   }
+  document.getElementById("XofX").innerHTML = currentQuestion + " of " + questionNumber + " Questions";
   setQuestion();
 }
 
